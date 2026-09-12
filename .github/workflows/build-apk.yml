@@ -1,0 +1,48 @@
+name: Compiler l'APK
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - uses: android-actions/setup-android@v3
+
+      - uses: gradle/actions/setup-gradle@v3
+        with:
+          gradle-version: '8.9'
+
+      - name: Copier les fichiers web dans l'app Android
+        run: python3 android/sync-assets.py
+
+      - name: Compiler
+        working-directory: android
+        run: gradle assembleDebug --no-daemon
+
+      - name: Renommer l'APK
+        run: cp android/app/build/outputs/apk/debug/app-debug.apk menu-semaine.apk
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: menu-semaine-apk
+          path: menu-semaine.apk
+
+      - name: Publier dans les Releases
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: build-${{ github.run_number }}
+          name: Menu de la Semaine — build ${{ github.run_number }}
+          files: menu-semaine.apk
