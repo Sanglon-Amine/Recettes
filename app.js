@@ -17,7 +17,7 @@
 
   /* ---------- État ---------- */
   let state = load();
-  const ui = { tab: "semaine", picking: null, sheet: null, search: "", cat: "all", cui: "all", selected: new Set() };
+  const ui = { tab: "semaine", picking: null, sheet: null, search: "", cat: "all", cui: "all", selected: new Set(), version: null };
   let toastTimer = null;
 
   function load() {
@@ -280,6 +280,7 @@
           </header>
           ${mealRow(i, "midi")}${mealRow(i, "soir")}
         </section>`).join("")}
+      <p class="hint version">Menu de la Semaine${ui.version ? ` · recettes v${ui.version}` : ""} · 2 personnes · sans porc ni alcool</p>
       ${n ? `<div class="select-bar" role="region" aria-label="Sélection">
           <span>${n} repas coché${n > 1 ? "s" : ""}</span>
           <button class="btn btn-ghost" data-act="clearSelection">Annuler</button>
@@ -513,6 +514,7 @@
   /* ---------- Démarrage ---------- */
   if (!state) newWeek();
   render();
+  fetch("version.json", { cache: "no-store" }).then(r => r.json()).then(v => { ui.version = v.version; if (ui.tab === "semaine") render(); }).catch(() => {});
 
   if ("serviceWorker" in navigator && location.protocol === "https:") {
     try { navigator.serviceWorker.register("sw.js").catch(() => {}); } catch (e) { /* hébergement sans service worker */ }

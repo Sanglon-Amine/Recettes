@@ -51,6 +51,14 @@ Dépôt GitHub : https://github.com/Sanglon-Amine/Recettes
 À chaque `git push` sur `main`, GitHub Actions (`.github/workflows/build-apk.yml`) compile la coque Android
 (`android/`, WebView Java qui embarque les fichiers web) et publie `menu-semaine.apk` dans les **Releases**.
 
+### Mises à jour automatiques
+- **Recettes et fonctionnalités** : à chaque ouverture, l'app compare `version.json` sur GitHub avec sa version et télécharge
+  les fichiers web (index.html, app.js, recipes.js, styles.css, manifest.json) dans son stockage privé, puis se recharge.
+  Rien à réinstaller. Un hook git (`.git/hooks/pre-commit`) incrémente `version.json` automatiquement quand un de ces
+  fichiers est modifié ; à défaut, lancer `python bump-version.py` avant de committer.
+- **Coque Android** (`android/`) : compilée seulement quand ce dossier change. L'app vérifie une fois par jour la dernière
+  Release ; si son numéro de build est plus grand, elle propose de télécharger le nouvel APK (l'installation reste un tap manuel).
+
 Sur le téléphone : ouvrir https://github.com/Sanglon-Amine/Recettes/releases/latest, télécharger le `.apk`,
 autoriser l'installation depuis cette source, installer. Pour mettre à jour : réinstaller le nouvel APK par-dessus
 (les données restent).

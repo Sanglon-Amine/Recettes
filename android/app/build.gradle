@@ -2,6 +2,10 @@ plugins {
     id 'com.android.application'
 }
 
+// La CI passe -PversionCode=<numero de build> ; en local on compile en 1.
+def vCode = project.hasProperty('versionCode') ? project.property('versionCode').toInteger() : 1
+def vName = project.hasProperty('versionName') ? project.property('versionName').toString() : '1.0'
+
 android {
     namespace 'app.menusemaine'
     compileSdk 34
@@ -10,8 +14,11 @@ android {
         applicationId 'app.menusemaine'
         minSdk 24
         targetSdk 34
-        versionCode 1
-        versionName '1.0'
+        versionCode vCode
+        versionName vName
+    }
+    buildFeatures {
+        buildConfig true
     }
     buildTypes {
         release { minifyEnabled false }
