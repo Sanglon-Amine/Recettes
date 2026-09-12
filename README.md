@@ -16,7 +16,7 @@ En ligne : https://claude.ai/code/artifact/120359d2-2c5f-4867-baa8-35c811dbad6d
 ## Fichiers
 - `index.html` — coque de l'app, icônes SVG
 - `styles.css` — thème clair/sombre, mise en page mobile
-- `recipes.js` — 102 recettes (quantités pour 2) de 8 cuisines (française, marocaine, italienne, méditerranéenne, asiatique, indienne, mexicaine, américaine), dictionnaire des ingrédients et rayons
+- `recipes.js` — 118 recettes (quantités pour 2) de 8 cuisines (française, marocaine, italienne, méditerranéenne, asiatique, indienne, mexicaine, américaine), dictionnaire des ingrédients et rayons
 - `app.js` — génération de la semaine, rotation, liste de courses, fiche recette, sauvegarde locale
 - `manifest.json`, `sw.js`, `icon-*.png` — installation PWA et mode hors ligne
 
@@ -27,6 +27,14 @@ En ligne : https://claude.ai/code/artifact/120359d2-2c5f-4867-baa8-35c811dbad6d
 - Rotation : les plats des 2 semaines précédentes ne sont pas reproposés (l'historique est archivé à chaque changement de semaine).
 - Les cuisines sont réparties sur la semaine (pas 5 tajines d'affilée).
 - Quand la semaine affichée est passée (ou dès le samedi), un bandeau propose de générer la suivante.
+
+## Régimes (options)
+Deux boutons **Régime** (onglet Semaine et Recettes), cumulables, mémorisés :
+- **Léger** — plat complet peu calorique, peu de matières grasses ajoutées, pas de friture ni de gratin/crème/fromage en quantité (60 recettes).
+- **Faible en cholestérol** — sans beurre, crème, fromage gras, jaunes d'œufs, viande rouge ni lait de coco ; poisson, volaille, légumineuses, huile d'olive (44 recettes).
+
+Activer un régime remplace aussitôt les repas non conformes (sauf verrouillés), restreint les tirages et le catalogue.
+Les étiquettes (`diet: ["leger", "chol"]` dans `recipes.js`) sont une classification de bon sens, pas un avis médical.
 
 ## Nombre de personnes
 Le sélecteur **− / +** de l'en-tête (1 à 8, mémorisé) ajuste toutes les quantités : liste de courses et fiches.

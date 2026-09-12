@@ -35,6 +35,7 @@
           s.excluded = (s.excluded || []).filter(id => BY_ID[id]);
           s.history = s.history || {};
           s.persons = Math.min(PERSONS_MAX, Math.max(PERSONS_MIN, s.persons || BASE_PERSONS));
+          s.diets = (s.diets || []).filter(d => DIETS[d]);
           return s;
         }
       }
@@ -89,19 +90,38 @@
     (extra || []).forEach(id => history.add(id));
     return { current, excluded, history };
   }
+  // Régimes actifs : une recette doit porter toutes les étiquettes sélectionnées.
+  const fitsDiet = r => state.diets.every(d => (r.diet || []).includes(d));
+  const dietsLabel = () => state.diets.map(d => DIETS[d]).join(" + ");
   // En semaine : déjeuner rapide (≤ 25 min), dîner ≤ 60 min. Le week-end, tout est permis (rôti, mijoté…).
   function fits(r, day, slot) {
     if (isWeekend(day)) return true;
     if (!r.slots.includes(slot)) return false;
     return slot === "midi" ? r.time <= 25 : r.time <= 60;
   }
-  // On relâche les contraintes une à une si le vivier est vide : d'abord l'historique, puis les exclusions.
+  // On relâche les contraintes une à une si le vivier est vide : l'historique, puis les exclusions, puis les horaires.
+  // Le régime choisi n'est jamais relâché (sauf si aucune recette ne le respecte).
   function candidates(day, slot, sets) {
-    const base = RECIPES.filter(r => fits(r, day, slot) && !sets.current.has(r.id));
+    const ok = RECIPES.filter(r => fitsDiet(r) && !sets.current.has(r.id));
+    const base = ok.filter(r => fits(r, day, slot));
     let pool = base.filter(r => !sets.excluded.has(r.id) && !sets.history.has(r.id));
     if (!pool.length) pool = base.filter(r => !sets.excluded.has(r.id));
     if (!pool.length) pool = base;
+    if (!pool.length) pool = ok;
+    if (!pool.length) pool = RECIPES.filter(r => fits(r, day, slot) && !sets.current.has(r.id));
     return pool;
+  }
+  // Active/désactive un régime et remplace aussitôt les repas non verrouillés qui ne le respectent pas.
+  function toggleDiet(key) {
+    const i = state.diets.indexOf(key);
+    if (i >= 0) state.diets.splice(i, 1); else state.diets.push(key);
+    let replaced = 0;
+    state.plan.forEach((d, day) => SLOTS.forEach(slot => {
+      const locked = slot === "midi" ? d.lockMidi : d.lockSoir;
+      if (!locked && !fitsDiet(BY_ID[d[slot]])) { swap(day, slot); replaced++; }
+    }));
+    save();
+    return { active: i < 0, replaced };
   }
   // Choix pondéré : familles et cuisines encore peu présentes d'abord, et jamais deux repas de suite de la même famille.
   function pick(day, slot, plan, prevCat, extraAvoid) {
@@ -130,7 +150,7 @@
   }
   function newWeek() {
     const ws = planWeekStart(new Date()).toISOString();
-    if (!state) state = { excluded: [], history: {}, persons: BASE_PERSONS };
+    if (!state) state = { excluded: [], history: {}, persons: BASE_PERSONS, diets: [] };
     let extraAvoid = [];
     if (state.plan) {
       if (state.weekStart !== ws) {
@@ -266,6 +286,16 @@
     renderSheet();
   }
 
+  function renderPrefs() {
+    const desc = { leger: "plats complets peu caloriques, peu de matières grasses, pas de friture ni de gratin", chol: "sans beurre, crème, fromage gras, jaunes d'œufs, viande rouge ni lait de coco" };
+    return `
+      <div class="prefs" role="group" aria-label="Régimes">
+        <span class="prefs-label">Régime</span>
+        ${Object.entries(DIETS).map(([k, v]) => `<button class="filter pref" data-act="toggleDiet" data-diet="${k}" aria-pressed="${state.diets.includes(k)}" title="${esc(desc[k])}">${state.diets.includes(k) ? icon("check") : ""}${esc(v)}</button>`).join("")}
+      </div>
+      ${state.diets.length ? `<p class="hint">${state.diets.map(k => `<strong>${esc(DIETS[k])}</strong> : ${esc(desc[k])}`).join(" · ")}. Seules les recettes conformes sont proposées.</p>` : ""}`;
+  }
+
   function mealRow(day, slot) {
     const d = state.plan[day];
     const r = BY_ID[d[slot]];
@@ -296,6 +326,7 @@
         <button class="btn btn-primary" data-act="newWeek">${icon("sparkle")} Nouvelle semaine</button>
         <button class="btn" data-act="goCourses">${icon("basket")} Voir les courses</button>
       </div>
+      ${renderPrefs()}
       <p class="hint">Touche un plat pour lire la recette complète · coche un ou plusieurs repas pour les remplacer.</p>
       ${state.plan.map((d, i) => `
         <section class="day${i === today ? " today" : ""}">
@@ -360,6 +391,7 @@
     const rows = RECIPES
       .filter(r => ui.cat === "all" || r.cat === ui.cat)
       .filter(r => ui.cui === "all" || r.cui === ui.cui)
+      .filter(fitsDiet)
       .filter(r => !q || r.name.toLowerCase().includes(q) || r.ing.some(([k]) => ING[k][0].toLowerCase().includes(q)))
       .sort((a, b) => a.name.localeCompare(b.name, "fr"));
     const p = ui.picking;
@@ -367,6 +399,7 @@
     return `
       ${p ? `<div class="picking-banner"><span>Choisir pour ${DAYS[p.day]} · ${SLOT_LABEL[p.slot].toLowerCase()}</span><button class="btn btn-ghost" data-act="cancelPick">Annuler</button></div>` : ""}
       <div class="search">${icon("search")}<input type="search" id="searchInput" placeholder="Rechercher un plat ou un ingrédient" value="${esc(ui.search)}" aria-label="Rechercher"></div>
+      ${renderPrefs()}
       <div class="filters" role="group" aria-label="Filtrer par cuisine">
         ${chip("cui", "all", "Toutes cuisines", ui.cui === "all")}
         ${Object.entries(CUISINES).map(([k, v]) => chip("cui", k, v, ui.cui === k)).join("")}
@@ -379,7 +412,7 @@
       <div class="catalog">
         ${rows.length ? rows.map(r => `
           <button class="recipe-row${excluded.has(r.id) ? " excluded" : ""}" data-act="${p ? "pickRecipe" : "openRecipe"}" data-id="${r.id}">
-            <span><span class="meal-name">${esc(r.name)}</span>${used.has(r.id) ? '<span class="tag tag-ok">au menu</span>' : ""}${excluded.has(r.id) ? '<span class="tag">exclue</span>' : ""}<span class="meal-meta">${esc(CATS[r.cat])} · ${esc(CUISINES[r.cui])}</span></span>
+            <span><span class="meal-name">${esc(r.name)}</span>${used.has(r.id) ? '<span class="tag tag-ok">au menu</span>' : ""}${excluded.has(r.id) ? '<span class="tag">exclue</span>' : ""}<span class="meal-meta">${esc(CATS[r.cat])} · ${esc(CUISINES[r.cui])}${(r.diet || []).length ? " · " + r.diet.map(d => esc(DIETS[d]).toLowerCase()).join(", ") : ""}</span></span>
             <span class="recipe-side"><span class="recipe-time">${r.time} min</span>${icon("chevron")}</span>
           </button>`).join("") : `<p class="empty">Aucune recette ne correspond.</p>`}
       </div>`;
@@ -411,7 +444,7 @@
       body = `
         ${ctx ? `<p class="eyebrow ${ctx.slot === "midi" ? "noon" : "night"}">${DAYS[ctx.day]} · ${SLOT_LABEL[ctx.slot]}</p>` : ""}
         <h2 id="sheetTitle">${esc(r.name)}</h2>
-        <div class="chips"><span class="chip">${r.time} min</span><span class="chip">${esc(CATS[r.cat])}</span><span class="chip">${esc(CUISINES[r.cui])}</span><span class="chip chip-ok">${personsLabel()}</span></div>
+        <div class="chips"><span class="chip">${r.time} min</span><span class="chip">${esc(CATS[r.cat])}</span><span class="chip">${esc(CUISINES[r.cui])}</span>${(r.diet || []).map(d => `<span class="chip chip-diet">${esc(DIETS[d])}</span>`).join("")}<span class="chip chip-ok">${personsLabel()}</span></div>
         <h3>Ingrédients</h3>
         <ul class="ing">${r.ing.map(([k, q, u]) => `<li><span>${esc(ING[k][0])}</span><span class="qty">${fmtQty(scaleQty(k, q, u), u)}</span></li>`).join("")}</ul>
         ${r.pantry && r.pantry.length ? `<p class="pantry">Du placard : ${esc(r.pantry.join(", "))}.</p>` : ""}
@@ -461,6 +494,15 @@
         break;
       }
       case "goCourses": ui.tab = "courses"; render(); window.scrollTo(0, 0); break;
+      case "toggleDiet": {
+        const res = toggleDiet(el.dataset.diet);
+        render();
+        const name = DIETS[el.dataset.diet];
+        toast(res.active
+          ? `${name} activé${res.replaced ? ` — ${res.replaced} repas remplacé${res.replaced > 1 ? "s" : ""}` : ""}`
+          : `${name} désactivé`);
+        break;
+      }
       case "personsMinus":
       case "personsPlus": {
         const next = Math.min(PERSONS_MAX, Math.max(PERSONS_MIN, state.persons + (act === "personsPlus" ? 1 : -1)));

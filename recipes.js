@@ -21,6 +21,11 @@ const CUISINES = {
   as: "Asiatique", in: "Indienne", mx: "Mexicaine", us: "Américaine",
 };
 
+/* Régimes sélectionnables : une recette peut porter plusieurs étiquettes.
+   leger : plat complet peu calorique, peu de matières grasses ajoutées, pas de friture ni de gratin/crème/fromage en quantité.
+   chol  : pauvre en graisses saturées et en cholestérol — sans beurre, crème, fromage gras, jaunes d'œufs, viande rouge, lait de coco. */
+const DIETS = { leger: "Léger", chol: "Faible en cholestérol" };
+
 const UNITS = {
   pc: ["", ""], g: ["g", "g"], cl: ["cl", "cl"],
   gousse: ["gousse", "gousses"], botte: ["botte", "bottes"], tranche: ["tranche", "tranches"],
@@ -40,7 +45,7 @@ const ING = {
   chou_rouge: ["Chou rouge", "legumes"], navet: ["Navet", "legumes"], persil: ["Persil", "legumes"], ciboulette: ["Ciboulette", "legumes"],
   coriandre: ["Coriandre", "legumes"], basilic: ["Basilic", "legumes"], menthe: ["Menthe", "legumes"], gingembre: ["Gingembre frais", "legumes"],
   celeri: ["Céleri branche", "legumes"], chou_fleur: ["Chou-fleur", "legumes"], roquette: ["Roquette", "legumes"], radis: ["Radis", "legumes"],
-  aneth: ["Aneth", "legumes"], chou_vert: ["Chou vert (un quart suffit)", "legumes"],
+  aneth: ["Aneth", "legumes"], chou_vert: ["Chou vert (un quart suffit)", "legumes"], patate_douce: ["Patates douces", "legumes"],
   // Boucherie & poissonnerie
   poulet_blanc: ["Blancs de poulet", "boucherie"], poulet_cuisse: ["Cuisses de poulet", "boucherie"], poulet_haut: ["Hauts de cuisse de poulet", "boucherie"],
   poulet_entier: ["Poulet fermier (≈1,3 kg)", "boucherie"], dinde: ["Escalopes de dinde", "boucherie"], boeuf_hache: ["Bœuf haché", "boucherie"],
@@ -111,7 +116,7 @@ const RECIPES = [
       "Servez avec la laitue assaisonnée d'une vinaigrette (1 cuillère de vinaigre, 3 d'huile d'olive, sel, poivre)."
     ] },
 
-  { id: "saumon-four", name: "Saumon au four, légumes rôtis", cat: "poisson", cui: "fr", time: 35, slots: ["soir"],
+  { id: "saumon-four", name: "Saumon au four, légumes rôtis", cat: "poisson", cui: "fr", time: 35, slots: ["soir"], diet: ["leger", "chol"],
     ing: [["saumon", 300, "g"], ["courgette", 1, "pc"], ["poivron", 1, "pc"], ["oignon_rouge", 1, "pc"], ["citron", 1, "pc"]],
     pantry: ["huile d'olive", "herbes de Provence", "sel", "poivre"],
     steps: [
@@ -166,7 +171,7 @@ const RECIPES = [
       "Hors du feu, incorporez les champignons, 30 g de beurre et 50 g de parmesan râpé. Couvrez 2 minutes, poivrez et servez immédiatement."
     ] },
 
-  { id: "omelette", name: "Omelette aux herbes, tomates en salade", cat: "oeufs", cui: "fr", time: 15, slots: ["midi"],
+  { id: "omelette", name: "Omelette aux herbes, tomates en salade", cat: "oeufs", cui: "fr", time: 15, slots: ["midi"], diet: ["leger"],
     ing: [["oeuf", 5, "pc"], ["ciboulette", 1, "botte"], ["beurre", 15, "g"], ["tomate", 3, "pc"], ["echalote", 1, "pc"]],
     pantry: ["huile d'olive", "vinaigre", "sel", "poivre"],
     steps: [
@@ -177,7 +182,7 @@ const RECIPES = [
       "Faites glisser sur les assiettes et servez aussitôt avec la salade de tomates."
     ] },
 
-  { id: "ratatouille", name: "Ratatouille et riz", cat: "vege", cui: "fr", time: 50, slots: ["soir"],
+  { id: "ratatouille", name: "Ratatouille et riz", cat: "vege", cui: "fr", time: 50, slots: ["soir"], diet: ["leger", "chol"],
     ing: [["aubergine", 1, "pc"], ["courgette", 2, "pc"], ["poivron", 2, "pc"], ["tomate", 4, "pc"], ["oignon", 1, "pc"], ["ail", 2, "gousse"], ["riz", 150, "g"]],
     pantry: ["huile d'olive", "thym", "sel", "poivre"],
     steps: [
@@ -199,7 +204,7 @@ const RECIPES = [
       "Épluchez 500 g de carottes et coupez-les en rondelles épaisses. Ajoutez-les et poursuivez 30 minutes. La viande doit se défaire à la fourchette. Servez avec du pain ou des pommes de terre vapeur."
     ] },
 
-  { id: "wok-poulet", name: "Wok de poulet aux légumes", cat: "volaille", cui: "as", time: 25, slots: ["midi", "soir"],
+  { id: "wok-poulet", name: "Wok de poulet aux légumes", cat: "volaille", cui: "as", time: 25, slots: ["midi", "soir"], diet: ["leger", "chol"],
     ing: [["poulet_blanc", 300, "g"], ["brocoli", 1, "pc"], ["carotte", 1, "pc"], ["poivron", 1, "pc"], ["sauce_soja", 4, "cs"], ["gingembre", 20, "g"], ["ail", 1, "gousse"], ["nouilles_riz", 150, "g"], ["sesame", 1, "cs"]],
     pantry: ["huile"],
     steps: [
@@ -221,7 +226,7 @@ const RECIPES = [
       "Dressez la mâche avec les noix, posez les tartines chaudes dessus et servez."
     ] },
 
-  { id: "soupe-potiron", name: "Soupe de potiron, croûtons", cat: "soupe", cui: "fr", time: 35, slots: ["midi", "soir"],
+  { id: "soupe-potiron", name: "Soupe de potiron, croûtons", cat: "soupe", cui: "fr", time: 35, slots: ["midi", "soir"], diet: ["leger"],
     ing: [["potiron", 800, "g"], ["pdt", 200, "g"], ["oignon", 1, "pc"], ["bouillon", 1, "pc"], ["creme", 10, "cl"], ["pain", 2, "tranche"]],
     pantry: ["muscade", "huile d'olive", "sel", "poivre"],
     steps: [
@@ -254,7 +259,7 @@ const RECIPES = [
       "Servez avec la laitue assaisonnée de vinaigrette."
     ] },
 
-  { id: "dahl", name: "Dahl de lentilles corail, riz basmati", cat: "vege", cui: "in", time: 30, slots: ["midi", "soir"],
+  { id: "dahl", name: "Dahl de lentilles corail, riz basmati", cat: "vege", cui: "in", time: 30, slots: ["midi", "soir"], diet: ["leger"],
     ing: [["lentilles_corail", 200, "g"], ["lait_coco", 40, "cl"], ["oignon", 1, "pc"], ["ail", 2, "gousse"], ["gingembre", 15, "g"], ["tomates_concassees", 1, "boite"], ["riz_basmati", 150, "g"], ["coriandre", 1, "botte"]],
     pantry: ["curry", "cumin", "huile", "sel"],
     steps: [
@@ -298,7 +303,7 @@ const RECIPES = [
       "Servez avec les haricots et de la moutarde."
     ] },
 
-  { id: "tajine-poulet", name: "Tajine de poulet aux olives et citron confit", cat: "volaille", cui: "ma", time: 60, slots: ["soir"],
+  { id: "tajine-poulet", name: "Tajine de poulet aux olives et citron confit", cat: "volaille", cui: "ma", time: 60, slots: ["soir"], diet: ["leger", "chol"],
     ing: [["poulet_haut", 4, "pc"], ["oignon", 2, "pc"], ["ail", 2, "gousse"], ["citron_confit", 1, "pc"], ["olives_vertes", 100, "g"], ["coriandre", 1, "botte"], ["semoule", 150, "g"]],
     pantry: ["curcuma", "gingembre moulu", "cumin", "huile d'olive", "sel", "poivre"],
     steps: [
@@ -343,7 +348,7 @@ const RECIPES = [
       "Recommencez pour les autres galettes (2 par personne). Servez avec la salade."
     ] },
 
-  { id: "nicoise", name: "Salade niçoise", cat: "salade", cui: "fr", time: 25, slots: ["midi"],
+  { id: "nicoise", name: "Salade niçoise", cat: "salade", cui: "fr", time: 25, slots: ["midi"], diet: ["leger"],
     ing: [["thon", 1, "boite"], ["oeuf", 2, "pc"], ["tomate", 3, "pc"], ["haricots_verts", 200, "g"], ["pdt", 300, "g"], ["olives_noires", 50, "g"], ["oignon_rouge", 1, "pc"], ["laitue", 1, "pc"]],
     pantry: ["huile d'olive", "vinaigre", "moutarde", "sel", "poivre"],
     steps: [
@@ -376,7 +381,7 @@ const RECIPES = [
       "Enfournez 30 minutes jusqu'à ce que le gratin soit pris et doré. Servez avec une salade verte."
     ] },
 
-  { id: "pad-thai", name: "Pad thaï aux crevettes", cat: "poisson", cui: "as", time: 25, slots: ["midi", "soir"],
+  { id: "pad-thai", name: "Pad thaï aux crevettes", cat: "poisson", cui: "as", time: 25, slots: ["midi", "soir"], diet: ["leger"],
     ing: [["nouilles_riz", 150, "g"], ["crevettes", 200, "g"], ["oeuf", 2, "pc"], ["germes_soja", 100, "g"], ["oignon_nouveau", 2, "pc"], ["cacahuetes", 30, "g"], ["citron_vert", 1, "pc"], ["sauce_soja", 2, "cs"], ["nuoc_mam", 1, "cs"], ["ail", 1, "gousse"]],
     pantry: ["sucre", "huile"],
     steps: [
@@ -388,7 +393,7 @@ const RECIPES = [
       "Servez avec les cacahuètes, les oignons nouveaux et un quartier de citron vert."
     ] },
 
-  { id: "veloute-poireaux", name: "Velouté poireaux–pommes de terre", cat: "soupe", cui: "fr", time: 35, slots: ["midi", "soir"],
+  { id: "veloute-poireaux", name: "Velouté poireaux–pommes de terre", cat: "soupe", cui: "fr", time: 35, slots: ["midi", "soir"], diet: ["leger"],
     ing: [["poireau", 2, "pc"], ["pdt", 400, "g"], ["oignon", 1, "pc"], ["bouillon", 1, "pc"], ["creme", 10, "cl"], ["beurre", 20, "g"]],
     pantry: ["sel", "poivre"],
     steps: [
@@ -410,7 +415,7 @@ const RECIPES = [
       "Enfournez 20 minutes jusqu'à ce que le dessus soit doré. Servez avec une salade verte."
     ] },
 
-  { id: "quinoa-feta", name: "Salade de quinoa, feta et légumes croquants", cat: "vege", cui: "med", time: 25, slots: ["midi"],
+  { id: "quinoa-feta", name: "Salade de quinoa, feta et légumes croquants", cat: "vege", cui: "med", time: 25, slots: ["midi"], diet: ["leger", "chol"],
     ing: [["quinoa", 150, "g"], ["feta", 100, "g"], ["concombre", 1, "pc"], ["tomates_cerises", 200, "g"], ["poivron", 1, "pc"], ["oignon_rouge", 1, "pc"], ["menthe", 1, "botte"], ["citron", 1, "pc"]],
     pantry: ["huile d'olive", "cumin", "sel", "poivre"],
     steps: [
@@ -421,7 +426,7 @@ const RECIPES = [
       "Servez frais. Se prépare la veille sans problème."
     ] },
 
-  { id: "cabillaud-citron", name: "Cabillaud au beurre citronné, riz", cat: "poisson", cui: "fr", time: 25, slots: ["midi", "soir"],
+  { id: "cabillaud-citron", name: "Cabillaud au beurre citronné, riz", cat: "poisson", cui: "fr", time: 25, slots: ["midi", "soir"], diet: ["leger"],
     ing: [["cabillaud", 300, "g"], ["beurre", 40, "g"], ["citron", 1, "pc"], ["persil", 1, "botte"], ["riz", 150, "g"], ["echalote", 1, "pc"]],
     pantry: ["sel", "poivre"],
     steps: [
@@ -454,7 +459,7 @@ const RECIPES = [
       "Servez les escalopes et leur sauce sur les tagliatelles, parsemées de persil ciselé."
     ] },
 
-  { id: "buddha-bowl", name: "Buddha bowl pois chiches, avocat", cat: "vege", cui: "med", time: 30, slots: ["midi"],
+  { id: "buddha-bowl", name: "Buddha bowl pois chiches, avocat", cat: "vege", cui: "med", time: 30, slots: ["midi"], diet: ["leger", "chol"],
     ing: [["riz_complet", 150, "g"], ["pois_chiches", 1, "boite"], ["avocat", 1, "pc"], ["carotte", 1, "pc"], ["chou_rouge", 100, "g"], ["tahini", 2, "cs"], ["citron", 1, "pc"], ["sesame", 1, "cs"]],
     pantry: ["huile d'olive", "cumin", "paprika", "sel"],
     steps: [
@@ -487,7 +492,7 @@ const RECIPES = [
       "Passez sous le gril 5 minutes jusqu'à ce que le fromage soit doré et gratiné. Servez brûlant."
     ] },
 
-  { id: "taboule", name: "Taboulé libanais", cat: "salade", cui: "med", time: 25, slots: ["midi"],
+  { id: "taboule", name: "Taboulé libanais", cat: "salade", cui: "med", time: 25, slots: ["midi"], diet: ["leger", "chol"],
     ing: [["boulgour", 100, "g"], ["persil", 2, "botte"], ["menthe", 1, "botte"], ["tomate", 3, "pc"], ["oignon_nouveau", 2, "pc"], ["citron", 2, "pc"]],
     pantry: ["huile d'olive", "sel", "poivre"],
     steps: [
@@ -554,7 +559,7 @@ const RECIPES = [
       "Parsemez de persil, poivrez, servez aussitôt avec les frites et le jus de cuisson."
     ] },
 
-  { id: "wraps-poulet", name: "Wraps au poulet et crudités", cat: "volaille", cui: "us", time: 20, slots: ["midi"],
+  { id: "wraps-poulet", name: "Wraps au poulet et crudités", cat: "volaille", cui: "us", time: 20, slots: ["midi"], diet: ["leger", "chol"],
     ing: [["tortillas", 4, "pc"], ["poulet_blanc", 250, "g"], ["laitue", 1, "pc"], ["tomate", 1, "pc"], ["concombre", 1, "pc"], ["fromage_frais", 100, "g"]],
     pantry: ["paprika", "huile", "sel"],
     steps: [
@@ -565,7 +570,7 @@ const RECIPES = [
       "Repliez les bords puis roulez serré. Coupez en deux en biais. Se transporte très bien pour un déjeuner au travail."
     ] },
 
-  { id: "aubergines-farcies", name: "Aubergines farcies à la feta", cat: "vege", cui: "med", time: 50, slots: ["soir"],
+  { id: "aubergines-farcies", name: "Aubergines farcies à la feta", cat: "vege", cui: "med", time: 50, slots: ["soir"], diet: ["leger"],
     ing: [["aubergine", 2, "pc"], ["tomate", 2, "pc"], ["oignon", 1, "pc"], ["ail", 1, "gousse"], ["feta", 100, "g"], ["chapelure", 20, "g"], ["riz", 120, "g"]],
     pantry: ["huile d'olive", "origan", "sel", "poivre"],
     steps: [
@@ -612,7 +617,7 @@ const RECIPES = [
       "Servez le tajine parsemé d'amandes et de graines de sésame, avec la semoule."
     ] },
 
-  { id: "harira", name: "Harira", cat: "soupe", cui: "ma", time: 50, slots: ["soir"],
+  { id: "harira", name: "Harira", cat: "soupe", cui: "ma", time: 50, slots: ["soir"], diet: ["leger"],
     ing: [["boeuf_saute", 150, "g"], ["lentilles_vertes", 100, "g"], ["pois_chiches", 1, "boite"], ["tomates_concassees", 1, "boite"], ["oignon", 1, "pc"], ["celeri", 2, "pc"], ["coriandre", 1, "botte"], ["persil", 1, "botte"], ["vermicelles", 40, "g"], ["farine", 30, "g"], ["citron", 1, "pc"]],
     pantry: ["curcuma", "gingembre moulu", "cannelle", "huile d'olive", "sel", "poivre"],
     steps: [
@@ -624,7 +629,7 @@ const RECIPES = [
       "Ajoutez le reste des herbes. Servez avec des quartiers de citron à presser dans le bol."
     ] },
 
-  { id: "tajine-legumes", name: "Tajine de légumes aux olives", cat: "vege", cui: "ma", time: 50, slots: ["soir"],
+  { id: "tajine-legumes", name: "Tajine de légumes aux olives", cat: "vege", cui: "ma", time: 50, slots: ["soir"], diet: ["leger", "chol"],
     ing: [["pdt", 400, "g"], ["carotte", 3, "pc"], ["courgette", 2, "pc"], ["tomate", 3, "pc"], ["oignon", 1, "pc"], ["ail", 2, "gousse"], ["olives_vertes", 80, "g"], ["citron_confit", 1, "pc"], ["coriandre", 1, "botte"], ["pain", 4, "tranche"]],
     pantry: ["ras el hanout", "cumin", "curcuma", "huile d'olive", "sel", "poivre"],
     steps: [
@@ -635,7 +640,7 @@ const RECIPES = [
       "Ajoutez 80 g d'olives vertes et la coriandre ciselée 5 minutes avant la fin. Servez avec du pain pour saucer."
     ] },
 
-  { id: "bissara", name: "Bissara (soupe de pois cassés au cumin)", cat: "soupe", cui: "ma", time: 40, slots: ["midi", "soir"],
+  { id: "bissara", name: "Bissara (soupe de pois cassés au cumin)", cat: "soupe", cui: "ma", time: 40, slots: ["midi", "soir"], diet: ["leger", "chol"],
     ing: [["pois_casses", 250, "g"], ["ail", 3, "gousse"], ["citron", 1, "pc"], ["pain", 4, "tranche"]],
     pantry: ["cumin", "paprika", "huile d'olive", "sel"],
     steps: [
@@ -646,7 +651,7 @@ const RECIPES = [
       "Accompagnez de pain de campagne grillé. Se réchauffe très bien le lendemain avec un peu d'eau."
     ] },
 
-  { id: "zaalouk", name: "Zaalouk, salade de tomates et pain", cat: "vege", cui: "ma", time: 30, slots: ["midi"],
+  { id: "zaalouk", name: "Zaalouk, salade de tomates et pain", cat: "vege", cui: "ma", time: 30, slots: ["midi"], diet: ["leger", "chol"],
     ing: [["aubergine", 2, "pc"], ["tomate", 4, "pc"], ["ail", 3, "gousse"], ["coriandre", 1, "botte"], ["citron", 1, "pc"], ["concombre", 1, "pc"], ["oignon", 1, "pc"], ["pain", 6, "tranche"]],
     pantry: ["cumin", "paprika", "huile d'olive", "sel"],
     steps: [
@@ -657,7 +662,7 @@ const RECIPES = [
       "Servez le zaalouk tiède ou froid avec la salade et du pain de campagne. Il se garde 3 jours au frais."
     ] },
 
-  { id: "brochettes-poulet-marocaines", name: "Brochettes de poulet marinées, salade marocaine", cat: "volaille", cui: "ma", time: 25, slots: ["midi", "soir"],
+  { id: "brochettes-poulet-marocaines", name: "Brochettes de poulet marinées, salade marocaine", cat: "volaille", cui: "ma", time: 25, slots: ["midi", "soir"], diet: ["leger", "chol"],
     ing: [["poulet_blanc", 400, "g"], ["citron", 1, "pc"], ["ail", 2, "gousse"], ["coriandre", 1, "botte"], ["tomate", 3, "pc"], ["concombre", 1, "pc"], ["oignon", 1, "pc"], ["pain", 4, "tranche"]],
     pantry: ["cumin", "paprika", "curcuma", "huile d'olive", "sel", "poivre"],
     steps: [
@@ -668,7 +673,7 @@ const RECIPES = [
       "Servez les brochettes avec la salade et le pain."
     ] },
 
-  { id: "tajine-poisson-chermoula", name: "Tajine de poisson à la chermoula", cat: "poisson", cui: "ma", time: 45, slots: ["soir"],
+  { id: "tajine-poisson-chermoula", name: "Tajine de poisson à la chermoula", cat: "poisson", cui: "ma", time: 45, slots: ["soir"], diet: ["leger", "chol"],
     ing: [["cabillaud", 400, "g"], ["pdt", 400, "g"], ["carotte", 2, "pc"], ["poivron", 1, "pc"], ["tomate", 3, "pc"], ["citron", 1, "pc"], ["ail", 3, "gousse"], ["coriandre", 1, "botte"], ["olives_vertes", 60, "g"]],
     pantry: ["cumin", "paprika", "curcuma", "piment doux", "huile d'olive", "sel"],
     steps: [
@@ -690,7 +695,7 @@ const RECIPES = [
       "Servez chauds avec la laitue assaisonnée au citron."
     ] },
 
-  { id: "loubia", name: "Loubia (haricots blancs en sauce tomate)", cat: "vege", cui: "ma", time: 40, slots: ["soir"],
+  { id: "loubia", name: "Loubia (haricots blancs en sauce tomate)", cat: "vege", cui: "ma", time: 40, slots: ["soir"], diet: ["leger", "chol"],
     ing: [["haricots_blancs", 2, "boite"], ["tomates_concassees", 1, "boite"], ["oignon", 1, "pc"], ["ail", 3, "gousse"], ["coriandre", 1, "botte"], ["persil", 1, "botte"], ["pain", 4, "tranche"]],
     pantry: ["cumin", "paprika", "curcuma", "huile d'olive", "sel", "poivre"],
     steps: [
@@ -701,7 +706,7 @@ const RECIPES = [
       "Ajoutez le reste des herbes et servez avec du pain de campagne. Encore meilleur réchauffé."
     ] },
 
-  { id: "lentilles-marocaines", name: "Lentilles à la marocaine", cat: "vege", cui: "ma", time: 40, slots: ["midi", "soir"],
+  { id: "lentilles-marocaines", name: "Lentilles à la marocaine", cat: "vege", cui: "ma", time: 40, slots: ["midi", "soir"], diet: ["leger", "chol"],
     ing: [["lentilles_vertes", 250, "g"], ["tomate", 3, "pc"], ["oignon", 1, "pc"], ["ail", 3, "gousse"], ["carotte", 1, "pc"], ["coriandre", 1, "botte"], ["pain", 4, "tranche"]],
     pantry: ["cumin", "paprika", "curcuma", "huile d'olive", "sel", "poivre"],
     steps: [
@@ -734,7 +739,7 @@ const RECIPES = [
       "Mélangez le yaourt avec une pincée de cumin et de sel. Servez les kefta avec les tomates grillées, le yaourt et le pain."
     ] },
 
-  { id: "chakchouka", name: "Chakchouka", cat: "oeufs", cui: "ma", time: 25, slots: ["midi", "soir"],
+  { id: "chakchouka", name: "Chakchouka", cat: "oeufs", cui: "ma", time: 25, slots: ["midi", "soir"], diet: ["leger"],
     ing: [["poivron", 3, "pc"], ["tomate", 4, "pc"], ["oignon", 1, "pc"], ["ail", 2, "gousse"], ["oeuf", 4, "pc"], ["coriandre", 1, "botte"], ["pain", 4, "tranche"]],
     pantry: ["cumin", "paprika", "piment doux", "huile d'olive", "sel", "poivre"],
     steps: [
@@ -745,7 +750,7 @@ const RECIPES = [
       "Parsemez de coriandre ciselée et servez dans la poêle, avec du pain pour saucer."
     ] },
 
-  { id: "couscous-legumes", name: "Couscous aux sept légumes", cat: "vege", cui: "ma", time: 50, slots: ["soir"],
+  { id: "couscous-legumes", name: "Couscous aux sept légumes", cat: "vege", cui: "ma", time: 50, slots: ["soir"], diet: ["leger", "chol"],
     ing: [["semoule", 200, "g"], ["carotte", 2, "pc"], ["courgette", 2, "pc"], ["navet", 2, "pc"], ["potiron", 300, "g"], ["chou_vert", 1, "pc"], ["tomate", 2, "pc"], ["oignon", 1, "pc"], ["pois_chiches", 1, "boite"], ["raisins_secs", 40, "g"], ["coriandre", 1, "botte"]],
     pantry: ["ras el hanout", "curcuma", "gingembre moulu", "huile d'olive", "sel", "poivre"],
     steps: [
@@ -758,7 +763,7 @@ const RECIPES = [
     ] },
 
   /* ---------- Italiennes ---------- */
-  { id: "arrabbiata", name: "Penne all'arrabbiata", cat: "pates", cui: "it", time: 20, slots: ["midi", "soir"],
+  { id: "arrabbiata", name: "Penne all'arrabbiata", cat: "pates", cui: "it", time: 20, slots: ["midi", "soir"], diet: ["leger", "chol"],
     ing: [["pates", 200, "g"], ["tomates_concassees", 1, "boite"], ["ail", 3, "gousse"], ["persil", 1, "botte"], ["parmesan", 40, "g"]],
     pantry: ["piment (flocons)", "huile d'olive", "sel", "poivre"],
     steps: [
@@ -780,7 +785,7 @@ const RECIPES = [
       "Servez les escalopes avec la salade et des quartiers de citron à presser dessus."
     ] },
 
-  { id: "minestrone", name: "Minestrone", cat: "soupe", cui: "it", time: 45, slots: ["soir"],
+  { id: "minestrone", name: "Minestrone", cat: "soupe", cui: "it", time: 45, slots: ["soir"], diet: ["leger", "chol"],
     ing: [["carotte", 2, "pc"], ["courgette", 1, "pc"], ["pdt", 200, "g"], ["celeri", 2, "pc"], ["oignon", 1, "pc"], ["haricots_blancs", 1, "boite"], ["tomates_concassees", 1, "boite"], ["pates", 80, "g"], ["parmesan", 40, "g"], ["bouillon", 1, "pc"]],
     pantry: ["huile d'olive", "thym", "sel", "poivre"],
     steps: [
@@ -847,7 +852,7 @@ const RECIPES = [
     ] },
 
   /* ---------- Asiatiques ---------- */
-  { id: "poulet-teriyaki", name: "Poulet teriyaki, riz et brocoli", cat: "volaille", cui: "as", time: 25, slots: ["midi", "soir"],
+  { id: "poulet-teriyaki", name: "Poulet teriyaki, riz et brocoli", cat: "volaille", cui: "as", time: 25, slots: ["midi", "soir"], diet: ["leger", "chol"],
     ing: [["poulet_haut", 4, "pc"], ["sauce_soja", 4, "cs"], ["miel", 2, "cs"], ["gingembre", 15, "g"], ["ail", 2, "gousse"], ["brocoli", 1, "pc"], ["riz", 150, "g"], ["sesame", 1, "cs"]],
     pantry: ["huile", "vinaigre"],
     steps: [
@@ -858,7 +863,7 @@ const RECIPES = [
       "Coupez le poulet en tranches, servez sur le riz avec le brocoli, nappez de sauce et parsemez de sésame."
     ] },
 
-  { id: "boeuf-oignons", name: "Bœuf sauté aux oignons, riz", cat: "viande", cui: "as", time: 25, slots: ["midi", "soir"],
+  { id: "boeuf-oignons", name: "Bœuf sauté aux oignons, riz", cat: "viande", cui: "as", time: 25, slots: ["midi", "soir"], diet: ["leger"],
     ing: [["boeuf_saute", 300, "g"], ["oignon", 3, "pc"], ["sauce_soja", 3, "cs"], ["ail", 2, "gousse"], ["gingembre", 15, "g"], ["riz", 150, "g"], ["coriandre", 1, "botte"]],
     pantry: ["huile", "sucre", "poivre"],
     steps: [
@@ -880,7 +885,7 @@ const RECIPES = [
       "Assaisonnez avec 1 cuillère de nuoc-mâm, une pointe de sucre et le jus d'un demi-citron vert. Ajoutez le basilic effeuillé et servez avec le riz."
     ] },
 
-  { id: "pho", name: "Pho au bœuf (express)", cat: "soupe", cui: "as", time: 40, slots: ["soir"],
+  { id: "pho", name: "Pho au bœuf (express)", cat: "soupe", cui: "as", time: 40, slots: ["soir"], diet: ["leger"],
     ing: [["boeuf_saute", 250, "g"], ["nouilles_riz", 200, "g"], ["oignon", 1, "pc"], ["gingembre", 30, "g"], ["bouillon", 2, "pc"], ["germes_soja", 100, "g"], ["coriandre", 1, "botte"], ["oignon_nouveau", 2, "pc"], ["citron_vert", 1, "pc"], ["nuoc_mam", 2, "cs"]],
     pantry: ["anis étoilé", "cannelle", "piment"],
     steps: [
@@ -891,7 +896,7 @@ const RECIPES = [
       "Répartissez les nouilles dans deux grands bols, posez le bœuf cru dessus, et versez le bouillon bouillant : il cuit la viande instantanément. Ajoutez les garnitures à table."
     ] },
 
-  { id: "riz-saute", name: "Riz sauté aux œufs et petits légumes", cat: "oeufs", cui: "as", time: 15, slots: ["midi"],
+  { id: "riz-saute", name: "Riz sauté aux œufs et petits légumes", cat: "oeufs", cui: "as", time: 15, slots: ["midi"], diet: ["leger"],
     ing: [["riz", 150, "g"], ["oeuf", 3, "pc"], ["petits_pois", 100, "g"], ["carotte", 1, "pc"], ["oignon_nouveau", 3, "pc"], ["sauce_soja", 3, "cs"], ["sesame", 1, "cs"]],
     pantry: ["huile", "poivre"],
     steps: [
@@ -902,7 +907,7 @@ const RECIPES = [
       "Servez avec les graines de sésame. Ajoutez des restes de poulet ou de crevettes si vous en avez."
     ] },
 
-  { id: "bo-bun", name: "Bò bún", cat: "viande", cui: "as", time: 30, slots: ["midi", "soir"],
+  { id: "bo-bun", name: "Bò bún", cat: "viande", cui: "as", time: 30, slots: ["midi", "soir"], diet: ["leger"],
     ing: [["boeuf_saute", 300, "g"], ["vermicelles_riz", 150, "g"], ["carotte", 1, "pc"], ["concombre", 1, "pc"], ["laitue", 1, "pc"], ["germes_soja", 100, "g"], ["cacahuetes", 40, "g"], ["menthe", 1, "botte"], ["nuoc_mam", 3, "cs"], ["citron_vert", 1, "pc"], ["ail", 2, "gousse"]],
     pantry: ["sucre", "huile"],
     steps: [
@@ -913,7 +918,7 @@ const RECIPES = [
       "Dans deux grands bols : laitue au fond, vermicelles, puis le bœuf chaud, la carotte, le concombre, 100 g de germes de soja, la menthe et les cacahuètes. Arrosez de sauce et mélangez à table."
     ] },
 
-  { id: "saumon-sesame", name: "Saumon au sésame, riz et brocoli", cat: "poisson", cui: "as", time: 25, slots: ["midi", "soir"],
+  { id: "saumon-sesame", name: "Saumon au sésame, riz et brocoli", cat: "poisson", cui: "as", time: 25, slots: ["midi", "soir"], diet: ["leger", "chol"],
     ing: [["saumon", 300, "g"], ["sesame", 2, "cs"], ["sauce_soja", 3, "cs"], ["miel", 1, "cs"], ["brocoli", 1, "pc"], ["riz", 150, "g"], ["citron_vert", 1, "pc"]],
     pantry: ["huile", "gingembre moulu"],
     steps: [
@@ -936,7 +941,7 @@ const RECIPES = [
       "Remettez la sauce dans la poêle avec 10 cl de crème et le poulet. Laissez mijoter 8 minutes. Salez. Servez sur le riz avec la coriandre ciselée."
     ] },
 
-  { id: "chana-masala", name: "Chana masala (curry de pois chiches)", cat: "vege", cui: "in", time: 30, slots: ["midi", "soir"],
+  { id: "chana-masala", name: "Chana masala (curry de pois chiches)", cat: "vege", cui: "in", time: 30, slots: ["midi", "soir"], diet: ["leger", "chol"],
     ing: [["pois_chiches", 2, "boite"], ["tomates_concassees", 1, "boite"], ["oignon", 1, "pc"], ["ail", 3, "gousse"], ["gingembre", 20, "g"], ["riz_basmati", 150, "g"], ["coriandre", 1, "botte"], ["citron", 1, "pc"]],
     pantry: ["garam masala", "cumin", "curcuma", "piment", "huile", "sel"],
     steps: [
@@ -947,7 +952,7 @@ const RECIPES = [
       "Terminez avec le jus d'un demi-citron et la coriandre ciselée. Servez avec le riz."
     ] },
 
-  { id: "curry-legumes-coco", name: "Curry de légumes au lait de coco", cat: "vege", cui: "in", time: 35, slots: ["soir"],
+  { id: "curry-legumes-coco", name: "Curry de légumes au lait de coco", cat: "vege", cui: "in", time: 35, slots: ["soir"], diet: ["leger"],
     ing: [["chou_fleur", 1, "pc"], ["pdt", 300, "g"], ["petits_pois", 150, "g"], ["carotte", 2, "pc"], ["oignon", 1, "pc"], ["ail", 2, "gousse"], ["lait_coco", 40, "cl"], ["tomates_concassees", 1, "boite"], ["riz_basmati", 150, "g"], ["coriandre", 1, "botte"]],
     pantry: ["curry", "cumin", "huile", "sel"],
     steps: [
@@ -970,7 +975,7 @@ const RECIPES = [
       "Sauce : mélangez le yaourt avec le jus d'un demi-citron, 1 pointe d'ail et du sel. Servez les falafels dans les pains pita tièdes avec la tomate et le concombre en dés, et la sauce."
     ] },
 
-  { id: "chich-taouk", name: "Chich taouk, riz et salade", cat: "volaille", cui: "med", time: 30, slots: ["midi", "soir"],
+  { id: "chich-taouk", name: "Chich taouk, riz et salade", cat: "volaille", cui: "med", time: 30, slots: ["midi", "soir"], diet: ["leger", "chol"],
     ing: [["poulet_blanc", 400, "g"], ["yaourt", 1, "pot"], ["citron", 1, "pc"], ["ail", 3, "gousse"], ["riz", 150, "g"], ["laitue", 1, "pc"], ["tomate", 2, "pc"], ["pita", 2, "pc"]],
     pantry: ["paprika", "cumin", "origan", "huile d'olive", "sel", "poivre"],
     steps: [
@@ -1003,7 +1008,7 @@ const RECIPES = [
       "Faites griller les 4 pains pita à la poêle ou au grille-pain, coupez-les en triangles et servez."
     ] },
 
-  { id: "poulet-grec-citron", name: "Poulet au citron et pommes de terre à la grecque", cat: "volaille", cui: "med", time: 60, slots: ["soir"],
+  { id: "poulet-grec-citron", name: "Poulet au citron et pommes de terre à la grecque", cat: "volaille", cui: "med", time: 60, slots: ["soir"], diet: ["leger", "chol"],
     ing: [["poulet_haut", 4, "pc"], ["pdt", 700, "g"], ["citron", 2, "pc"], ["ail", 4, "gousse"], ["bouillon", 1, "pc"], ["laitue", 1, "pc"]],
     pantry: ["origan", "huile d'olive", "sel", "poivre"],
     steps: [
@@ -1014,7 +1019,7 @@ const RECIPES = [
       "Servez avec la laitue en vinaigrette. Le jus du plat, citronné et aillé, se verse sur tout."
     ] },
 
-  { id: "paella", name: "Paella express poulet et crevettes", cat: "pates", cui: "med", time: 45, slots: ["soir"],
+  { id: "paella", name: "Paella express poulet et crevettes", cat: "pates", cui: "med", time: 45, slots: ["soir"], diet: ["leger", "chol"],
     ing: [["riz", 200, "g"], ["poulet_haut", 2, "pc"], ["crevettes", 200, "g"], ["poivron", 1, "pc"], ["petits_pois", 100, "g"], ["tomate", 2, "pc"], ["oignon", 1, "pc"], ["ail", 2, "gousse"], ["bouillon", 1, "pc"], ["citron", 1, "pc"]],
     pantry: ["safran (ou curcuma)", "paprika", "huile d'olive", "sel", "poivre"],
     steps: [
@@ -1036,7 +1041,7 @@ const RECIPES = [
       "Servez tiède, avec la laitue et les 2 tomates en salade. Excellente froide le lendemain."
     ] },
 
-  { id: "mezze", name: "Assiette mezze (houmous, crudités, pita)", cat: "vege", cui: "med", time: 20, slots: ["midi"],
+  { id: "mezze", name: "Assiette mezze (houmous, crudités, pita)", cat: "vege", cui: "med", time: 20, slots: ["midi"], diet: ["leger", "chol"],
     ing: [["pois_chiches", 1, "boite"], ["tahini", 3, "cs"], ["citron", 1, "pc"], ["ail", 1, "gousse"], ["concombre", 1, "pc"], ["carotte", 2, "pc"], ["tomates_cerises", 150, "g"], ["feta", 100, "g"], ["olives_noires", 60, "g"], ["pita", 4, "pc"]],
     pantry: ["cumin", "paprika", "huile d'olive", "sel"],
     steps: [
@@ -1047,7 +1052,7 @@ const RECIPES = [
       "Disposez tout sur un plateau : houmous, crudités, feta, 60 g d'olives noires et pita. Chacun se sert."
     ] },
 
-  { id: "fattoush", name: "Fattoush", cat: "salade", cui: "med", time: 25, slots: ["midi"],
+  { id: "fattoush", name: "Fattoush", cat: "salade", cui: "med", time: 25, slots: ["midi"], diet: ["leger", "chol"],
     ing: [["romaine", 1, "pc"], ["tomate", 3, "pc"], ["concombre", 1, "pc"], ["radis", 1, "botte"], ["oignon_nouveau", 2, "pc"], ["menthe", 1, "botte"], ["persil", 1, "botte"], ["pita", 2, "pc"], ["citron", 1, "pc"]],
     pantry: ["sumac", "huile d'olive", "sel", "poivre"],
     steps: [
@@ -1059,7 +1064,7 @@ const RECIPES = [
     ] },
 
   /* ---------- Mexicaines ---------- */
-  { id: "fajitas", name: "Fajitas de poulet", cat: "volaille", cui: "mx", time: 25, slots: ["midi", "soir"],
+  { id: "fajitas", name: "Fajitas de poulet", cat: "volaille", cui: "mx", time: 25, slots: ["midi", "soir"], diet: ["leger", "chol"],
     ing: [["poulet_blanc", 300, "g"], ["poivron", 2, "pc"], ["oignon", 1, "pc"], ["tortillas", 4, "pc"], ["creme", 10, "cl"], ["avocat", 1, "pc"], ["citron_vert", 1, "pc"]],
     pantry: ["paprika", "cumin", "piment", "huile", "sel"],
     steps: [
@@ -1093,7 +1098,7 @@ const RECIPES = [
     ] },
 
   /* ---------- Françaises ---------- */
-  { id: "pot-au-feu", name: "Pot-au-feu", cat: "viande", cui: "fr", time: 150, slots: ["soir"],
+  { id: "pot-au-feu", name: "Pot-au-feu", cat: "viande", cui: "fr", time: 150, slots: ["soir"], diet: ["leger"],
     ing: [["boeuf_braiser", 600, "g"], ["carotte", 3, "pc"], ["poireau", 2, "pc"], ["navet", 2, "pc"], ["pdt", 400, "g"], ["oignon", 1, "pc"], ["celeri", 1, "pc"], ["cornichons", 6, "pc"]],
     pantry: ["laurier", "thym", "clous de girofle", "gros sel", "poivre en grains", "moutarde"],
     steps: [
@@ -1181,7 +1186,7 @@ const RECIPES = [
       "Enfournez 20 minutes jusqu'à ce que le dessus soit doré et gratiné. Servez avec du pain ou une tranche de jambon de bœuf."
     ] },
 
-  { id: "papillote", name: "Cabillaud en papillote, riz", cat: "poisson", cui: "fr", time: 30, slots: ["midi", "soir"],
+  { id: "papillote", name: "Cabillaud en papillote, riz", cat: "poisson", cui: "fr", time: 30, slots: ["midi", "soir"], diet: ["leger", "chol"],
     ing: [["cabillaud", 300, "g"], ["courgette", 1, "pc"], ["tomate", 2, "pc"], ["citron", 1, "pc"], ["riz", 150, "g"], ["echalote", 1, "pc"]],
     pantry: ["huile d'olive", "thym", "sel", "poivre"],
     steps: [
@@ -1213,4 +1218,144 @@ const RECIPES = [
       "Salez, poivrez, saupoudrez de thym et d'herbes de Provence, arrosez d'un filet d'huile d'olive.",
       "Enfournez 25 minutes jusqu'à ce que la pâte soit dorée et croustillante. Servez tiède avec la laitue en vinaigrette."
     ] },
+
+  /* ---------- Légères et pauvres en cholestérol ---------- */
+  { id: "wok-crevettes", name: "Wok de crevettes aux légumes croquants", cat: "poisson", cui: "as", time: 20, slots: ["midi", "soir"], diet: ["leger", "chol"],
+    ing: [["crevettes", 250, "g"], ["brocoli", 1, "pc"], ["poivron", 1, "pc"], ["carotte", 1, "pc"], ["ail", 2, "gousse"], ["gingembre", 15, "g"], ["sauce_soja", 3, "cs"], ["citron_vert", 1, "pc"], ["riz", 150, "g"]],
+    pantry: ["huile", "poivre"],
+    steps: ["Faites cuire 150 g de riz. Détaillez le brocoli en petits bouquets, le poivron en lanières, la carotte en bâtonnets fins. Hachez 2 gousses d'ail, râpez 15 g de gingembre.",
+      "Dans un wok très chaud avec 1 cuillère d'huile, faites sauter le brocoli et la carotte 3 minutes, puis le poivron 2 minutes. Les légumes doivent rester croquants.",
+      "Poussez les légumes sur le côté, ajoutez l'ail, le gingembre et 250 g de crevettes. Saisissez 2 minutes jusqu'à ce qu'elles soient roses.",
+      "Versez 3 cuillères de sauce soja et le jus du citron vert, mélangez 30 secondes à feu vif. Poivrez.",
+      "Servez aussitôt sur le riz."] },
+
+  { id: "salade-lentilles", name: "Salade de lentilles, tomates et herbes", cat: "salade", cui: "fr", time: 30, slots: ["midi", "soir"], diet: ["leger", "chol"],
+    ing: [["lentilles_vertes", 200, "g"], ["tomate", 3, "pc"], ["oignon_rouge", 1, "pc"], ["concombre", 1, "pc"], ["persil", 1, "botte"], ["citron", 1, "pc"]],
+    pantry: ["huile d'olive", "moutarde", "cumin", "sel", "poivre"],
+    steps: ["Rincez 200 g de lentilles vertes, couvrez-les de 3 fois leur volume d'eau froide et faites-les cuire 25 minutes à petits bouillons : elles doivent être tendres mais entières. Salez en fin de cuisson, égouttez.",
+      "Pendant ce temps, coupez les 3 tomates en dés, un demi-concombre en petits dés, l'oignon rouge en fines lamelles. Ciselez le persil.",
+      "Sauce : 1 cuillère à café de moutarde, le jus du citron, 3 cuillères d'huile d'olive, 1 cuillère à café de cumin, sel, poivre.",
+      "Mélangez les lentilles encore tièdes avec la sauce, puis les légumes et le persil.",
+      "Servez tiède ou froid. Se garde 2 jours au frais et se transporte bien."] },
+
+  { id: "soupe-verte", name: "Soupe verte courgette, poireau et épinards", cat: "soupe", cui: "fr", time: 30, slots: ["midi", "soir"], diet: ["leger", "chol"],
+    ing: [["courgette", 2, "pc"], ["poireau", 1, "pc"], ["epinards", 150, "g"], ["pdt", 200, "g"], ["oignon", 1, "pc"], ["bouillon", 1, "pc"], ["citron", 1, "pc"]],
+    pantry: ["huile d'olive", "sel", "poivre"],
+    steps: ["Émincez l'oignon et le poireau (bien lavé). Coupez les 2 courgettes et 200 g de pommes de terre en cubes.",
+      "Dans une casserole, faites suer l'oignon et le poireau 4 minutes dans 1 cuillère d'huile d'olive.",
+      "Ajoutez les courgettes, les pommes de terre, 80 cl d'eau et le cube de bouillon. Portez à ébullition, couvrez et laissez cuire 18 minutes.",
+      "Ajoutez 150 g d'épinards, laissez-les tomber 2 minutes, puis mixez finement. Un trait de citron, sel, poivre.",
+      "Servez avec un filet d'huile d'olive crue et du pain grillé."] },
+
+  { id: "cabillaud-vapeur-vierge", name: "Cabillaud vapeur, sauce vierge, riz", cat: "poisson", cui: "fr", time: 25, slots: ["midi", "soir"], diet: ["leger", "chol"],
+    ing: [["cabillaud", 300, "g"], ["tomate", 2, "pc"], ["citron", 1, "pc"], ["basilic", 1, "botte"], ["echalote", 1, "pc"], ["riz", 150, "g"]],
+    pantry: ["huile d'olive", "sel", "poivre"],
+    steps: ["Faites cuire 150 g de riz dans l'eau bouillante salée.",
+      "Sauce vierge : coupez les 2 tomates en petits dés (retirez les graines), ciselez l'échalote et le basilic. Mélangez avec 3 cuillères d'huile d'olive, le jus du citron, sel et poivre. Laissez reposer.",
+      "Salez et poivrez les 2 morceaux de cabillaud. Faites-les cuire 8 minutes à la vapeur (panier vapeur au-dessus d'une casserole d'eau frémissante, couvert). La chair doit se détacher en feuillets.",
+      "Dressez le riz, posez le poisson dessus et nappez généreusement de sauce vierge à température ambiante."] },
+
+  { id: "poulet-citron-herbes", name: "Poulet grillé au citron et aux herbes, haricots verts", cat: "volaille", cui: "fr", time: 25, slots: ["midi", "soir"], diet: ["leger", "chol"],
+    ing: [["poulet_blanc", 300, "g"], ["citron", 1, "pc"], ["ail", 2, "gousse"], ["persil", 1, "botte"], ["haricots_verts", 400, "g"]],
+    pantry: ["huile d'olive", "thym", "sel", "poivre"],
+    steps: ["Coupez 300 g de blanc de poulet en 2 escalopes fines. Mélangez le jus d'un demi-citron, 1 cuillère d'huile d'olive, 2 gousses d'ail pressées, du thym, sel et poivre. Enrobez le poulet et laissez mariner 10 minutes.",
+      "Équeutez 400 g de haricots verts, faites-les cuire 8 minutes dans l'eau bouillante salée, égouttez.",
+      "Faites griller le poulet 4 minutes par face sur une poêle-gril bien chaude (ou une poêle antiadhésive), sans ajouter de matière grasse.",
+      "Mélangez les haricots avec le persil ciselé, le zeste du citron et une cuillère d'huile d'olive.",
+      "Servez le poulet tranché avec les haricots et le reste du citron en quartiers."] },
+
+  { id: "salade-pois-chiches", name: "Salade de pois chiches, concombre et menthe", cat: "vege", cui: "med", time: 15, slots: ["midi"], diet: ["leger", "chol"],
+    ing: [["pois_chiches", 1, "boite"], ["concombre", 1, "pc"], ["tomates_cerises", 200, "g"], ["oignon_rouge", 1, "pc"], ["menthe", 1, "botte"], ["citron", 1, "pc"]],
+    pantry: ["huile d'olive", "cumin", "sel", "poivre"],
+    steps: ["Égouttez et rincez les pois chiches.",
+      "Coupez le concombre en petits dés, les tomates cerises en deux, l'oignon rouge en fines lamelles. Ciselez la menthe.",
+      "Sauce : le jus du citron, 3 cuillères d'huile d'olive, 1 cuillère à café de cumin, sel, poivre.",
+      "Mélangez tout dans un saladier et laissez reposer 5 minutes pour que les saveurs se mêlent.",
+      "Servez frais, éventuellement avec un pain pita grillé."] },
+
+  { id: "dinde-poivrons", name: "Émincé de dinde aux poivrons, riz", cat: "volaille", cui: "fr", time: 25, slots: ["midi", "soir"], diet: ["leger", "chol"],
+    ing: [["dinde", 300, "g"], ["poivron", 2, "pc"], ["oignon", 1, "pc"], ["ail", 1, "gousse"], ["riz", 150, "g"], ["persil", 1, "botte"]],
+    pantry: ["huile d'olive", "paprika", "sel", "poivre"],
+    steps: ["Faites cuire 150 g de riz. Coupez 300 g d'escalopes de dinde en lanières, les 2 poivrons en lanières, émincez l'oignon, hachez l'ail.",
+      "Dans une poêle avec 1 cuillère d'huile d'olive, faites sauter les poivrons et l'oignon 6 minutes à feu vif. Réservez.",
+      "Saisissez la dinde 4 minutes avec l'ail et 1 cuillère à café de paprika, sel, poivre.",
+      "Remettez les légumes, ajoutez 5 cl d'eau et laissez mijoter 3 minutes. Persil ciselé.",
+      "Servez avec le riz."] },
+
+  { id: "veloute-carottes", name: "Velouté de carottes au cumin", cat: "soupe", cui: "fr", time: 30, slots: ["midi", "soir"], diet: ["leger", "chol"],
+    ing: [["carotte", 6, "pc"], ["oignon", 1, "pc"], ["pdt", 150, "g"], ["bouillon", 1, "pc"], ["coriandre", 1, "botte"], ["citron", 1, "pc"]],
+    pantry: ["cumin", "huile d'olive", "sel", "poivre"],
+    steps: ["Épluchez les 6 carottes et 150 g de pommes de terre, coupez-les en rondelles. Émincez l'oignon.",
+      "Faites suer l'oignon 3 minutes dans 1 cuillère d'huile d'olive avec 1 cuillère à café de cumin.",
+      "Ajoutez les carottes, les pommes de terre, 80 cl d'eau et le cube de bouillon. Couvrez, laissez cuire 22 minutes.",
+      "Mixez finement, ajustez avec un peu d'eau si besoin, sel, poivre, un trait de citron.",
+      "Servez parsemé de coriandre ciselée."] },
+
+  { id: "truite-four-tomates", name: "Truite au four aux tomates et au thym, pommes vapeur", cat: "poisson", cui: "fr", time: 30, slots: ["midi", "soir"], diet: ["leger", "chol"],
+    ing: [["truite", 2, "pc"], ["tomate", 3, "pc"], ["citron", 1, "pc"], ["ail", 2, "gousse"], ["pdt", 400, "g"]],
+    pantry: ["thym", "huile d'olive", "sel", "poivre"],
+    steps: ["Préchauffez le four à 200 °C. Épluchez 400 g de pommes de terre, coupez-les en morceaux et faites-les cuire 20 minutes à la vapeur.",
+      "Posez les 2 truites vidées dans un plat. Salez, poivrez l'intérieur, glissez-y une rondelle de citron, une demi-gousse d'ail et du thym.",
+      "Entourez de rondelles de tomate, ajoutez le reste d'ail émincé, le thym, 1 cuillère d'huile d'olive et le jus du reste de citron.",
+      "Enfournez 18 minutes : la chair doit se détacher facilement de l'arête.",
+      "Servez avec les pommes vapeur et le jus du plat."] },
+
+  { id: "haricots-blancs-epinards", name: "Ragoût de haricots blancs, tomates et épinards", cat: "vege", cui: "med", time: 25, slots: ["midi", "soir"], diet: ["leger", "chol"],
+    ing: [["haricots_blancs", 2, "boite"], ["tomates_concassees", 1, "boite"], ["epinards", 200, "g"], ["oignon", 1, "pc"], ["ail", 2, "gousse"], ["pain", 4, "tranche"]],
+    pantry: ["huile d'olive", "paprika", "origan", "sel", "poivre"],
+    steps: ["Hachez l'oignon et 2 gousses d'ail. Faites-les revenir 4 minutes dans 2 cuillères d'huile d'olive.",
+      "Ajoutez 1 cuillère à café de paprika et 1 d'origan, puis la boîte de tomates concassées. Laissez mijoter 8 minutes.",
+      "Ajoutez les 2 boîtes de haricots blancs égouttés et rincés, 10 cl d'eau, sel, poivre. Poursuivez 8 minutes.",
+      "Ajoutez 200 g d'épinards par poignées et laissez-les tomber 2 minutes.",
+      "Servez avec du pain de campagne grillé et un filet d'huile d'olive."] },
+
+  { id: "salade-poulet-avocat", name: "Salade de poulet à l'avocat et au citron vert", cat: "salade", cui: "mx", time: 20, slots: ["midi"], diet: ["leger", "chol"],
+    ing: [["poulet_blanc", 250, "g"], ["avocat", 1, "pc"], ["laitue", 1, "pc"], ["tomates_cerises", 150, "g"], ["oignon_rouge", 1, "pc"], ["citron_vert", 1, "pc"], ["coriandre", 1, "botte"]],
+    pantry: ["huile d'olive", "cumin", "sel", "poivre"],
+    steps: ["Coupez 250 g de blanc de poulet en lanières, salez, poivrez, saupoudrez de cumin. Faites-les griller 8 minutes dans une poêle antiadhésive avec 1 cuillère d'huile d'olive. Laissez tiédir.",
+      "Coupez la laitue en lanières, les tomates cerises en deux, l'oignon rouge en fines lamelles, l'avocat en dés.",
+      "Sauce : le jus du citron vert, 2 cuillères d'huile d'olive, sel, poivre.",
+      "Réunissez tout dans un saladier avec la coriandre ciselée, versez la sauce, mélangez délicatement."] },
+
+  { id: "brochettes-dinde-yaourt", name: "Brochettes de dinde au yaourt et citron, salade", cat: "volaille", cui: "med", time: 25, slots: ["midi", "soir"], diet: ["leger", "chol"],
+    ing: [["dinde", 300, "g"], ["yaourt", 1, "pot"], ["citron", 1, "pc"], ["ail", 2, "gousse"], ["laitue", 1, "pc"], ["tomate", 2, "pc"], ["concombre", 1, "pc"]],
+    pantry: ["paprika", "cumin", "origan", "huile d'olive", "sel", "poivre"],
+    steps: ["Coupez 300 g d'escalopes de dinde en cubes. Mélangez le yaourt, le jus d'un demi-citron, 2 gousses d'ail pressées, 1 cuillère à café de paprika, 1 de cumin, 1 d'origan, sel et poivre. Enrobez la dinde, laissez mariner 10 minutes.",
+      "Préparez la salade : laitue, 2 tomates en quartiers, un demi-concombre en rondelles, un filet d'huile d'olive et le reste du citron.",
+      "Enfilez la dinde sur des piques. Faites griller 4 minutes par face sur une poêle-gril chaude : la marinade au yaourt forme une croûte dorée.",
+      "Servez les brochettes sur la salade."] },
+
+  { id: "cabillaud-herbes-patate-douce", name: "Cabillaud en croûte d'herbes, patate douce rôtie", cat: "poisson", cui: "fr", time: 35, slots: ["soir"], diet: ["leger", "chol"],
+    ing: [["cabillaud", 300, "g"], ["patate_douce", 2, "pc"], ["persil", 1, "botte"], ["ail", 1, "gousse"], ["citron", 1, "pc"], ["chapelure", 30, "g"]],
+    pantry: ["huile d'olive", "paprika", "sel", "poivre"],
+    steps: ["Préchauffez le four à 200 °C. Épluchez les 2 patates douces, coupez-les en quartiers, mélangez avec 1 cuillère d'huile d'olive, du paprika et du sel. Enfournez 25 minutes.",
+      "Mixez ou hachez finement le persil avec la gousse d'ail, 30 g de chapelure, le zeste du citron, 1 cuillère d'huile d'olive, sel, poivre.",
+      "Posez les 2 morceaux de cabillaud sur une plaque, pressez la croûte d'herbes sur le dessus.",
+      "Enfournez 12 minutes à côté des patates douces (ajoutez le poisson quand il reste 12 minutes de cuisson aux patates).",
+      "Servez avec le jus du citron."] },
+
+  { id: "salade-crevettes-avocat", name: "Salade de crevettes, avocat et concombre", cat: "salade", cui: "fr", time: 15, slots: ["midi"], diet: ["leger", "chol"],
+    ing: [["crevettes", 200, "g"], ["avocat", 1, "pc"], ["concombre", 1, "pc"], ["laitue", 1, "pc"], ["citron_vert", 1, "pc"], ["aneth", 1, "botte"]],
+    pantry: ["huile d'olive", "sel", "poivre"],
+    steps: ["Coupez le concombre en demi-rondelles, l'avocat en dés, la laitue en lanières. Ciselez l'aneth.",
+      "Sauce : le jus du citron vert, 2 cuillères d'huile d'olive, sel, poivre.",
+      "Mélangez les crevettes décortiquées (cuites) avec les légumes, l'aneth et la sauce.",
+      "Servez aussitôt, bien frais."] },
+
+  { id: "chou-fleur-roti-pois-chiches", name: "Chou-fleur rôti au curcuma, pois chiches et yaourt", cat: "vege", cui: "med", time: 40, slots: ["soir"], diet: ["leger", "chol"],
+    ing: [["chou_fleur", 1, "pc"], ["pois_chiches", 1, "boite"], ["yaourt", 1, "pot"], ["citron", 1, "pc"], ["ail", 1, "gousse"], ["coriandre", 1, "botte"], ["pita", 2, "pc"]],
+    pantry: ["curcuma", "cumin", "paprika", "huile d'olive", "sel", "poivre"],
+    steps: ["Préchauffez le four à 210 °C. Détaillez le chou-fleur en bouquets. Égouttez et séchez les pois chiches.",
+      "Sur une plaque, mélangez-les avec 2 cuillères d'huile d'olive, 1 cuillère à café de curcuma, 1 de cumin, 1 de paprika, sel et poivre.",
+      "Enfournez 30 minutes en remuant à mi-cuisson : le chou-fleur doit être doré sur les bords et les pois chiches croustillants.",
+      "Sauce : mélangez le yaourt avec le jus d'un demi-citron, la gousse d'ail pressée et une pincée de sel.",
+      "Servez avec la sauce au yaourt, la coriandre ciselée, le reste du citron et les pains pita tièdes."] },
+
+  { id: "dinde-legumes-rotis", name: "Filet de dinde au four, légumes rôtis", cat: "volaille", cui: "fr", time: 40, slots: ["soir"], diet: ["leger", "chol"],
+    ing: [["dinde", 300, "g"], ["courgette", 1, "pc"], ["poivron", 1, "pc"], ["oignon_rouge", 1, "pc"], ["tomates_cerises", 200, "g"], ["pdt", 400, "g"]],
+    pantry: ["herbes de Provence", "huile d'olive", "sel", "poivre"],
+    steps: ["Préchauffez le four à 200 °C. Coupez 400 g de pommes de terre en petits quartiers, la courgette en demi-rondelles, le poivron en lanières, l'oignon rouge en quartiers.",
+      "Étalez les légumes sur une plaque, arrosez de 2 cuillères d'huile d'olive, herbes de Provence, sel, poivre. Enfournez 25 minutes.",
+      "Salez et poivrez les escalopes de dinde. Posez-les sur les légumes avec les tomates cerises et remettez au four 12 minutes.",
+      "Servez avec le jus de la plaque."] },
 ];
