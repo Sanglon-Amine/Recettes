@@ -103,7 +103,11 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .top h1 { font-size: 26px; font-weight: 800; letter-spacing: -.01em; line-height: 1.05; }
 .top h1 em { font-style: normal; color: var(--accent-ink); }
 .week-label { margin: 4px 0 0; font-size: 13px; color: var(--ink-2); font-variant-numeric: tabular-nums; }
-.serves { display: inline-flex; align-items: center; gap: 6px; padding: 6px 10px; border-radius: 999px; background: var(--surface-2); color: var(--ink-2); font-size: 12px; font-weight: 600; white-space: nowrap; }
+.serves { display: inline-flex; align-items: center; gap: 2px; padding: 3px; border-radius: 999px; background: var(--surface-2); flex: none; }
+.serves-btn { width: 32px; height: 32px; border-radius: 50%; background: var(--surface); color: var(--ink); font-size: 20px; font-weight: 600; line-height: 1; display: inline-flex; align-items: center; justify-content: center; }
+.serves-btn:disabled { opacity: .35; cursor: default; }
+.serves-label { min-width: 78px; text-align: center; font-size: 12px; font-weight: 700; color: var(--ink-2); white-space: nowrap; font-variant-numeric: tabular-nums; }
+.scale-note { margin: 8px 0 0; padding: 8px 12px; border-radius: 10px; background: var(--accent-soft); color: var(--accent-ink); font-size: 13px; }
 main { padding: 4px 14px 104px; }
 
 /* ---------- Boutons ---------- */

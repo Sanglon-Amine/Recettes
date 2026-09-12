@@ -41,7 +41,11 @@
       <h1>Menu de la <em>Semaine</em></h1>
       <p class="week-label" id="weekLabel"></p>
     </div>
-    <span class="serves" title="Toutes les quantités sont prévues pour 2 personnes">2 personnes</span>
+    <div class="serves" role="group" aria-label="Nombre de personnes" title="Les quantités s'ajustent au nombre de personnes">
+      <button class="serves-btn" data-act="personsMinus" aria-label="Une personne de moins">−</button>
+      <span class="serves-label" id="servesLabel">2 personnes</span>
+      <button class="serves-btn" data-act="personsPlus" aria-label="Une personne de plus">+</button>
+    </div>
   </header>
 
   <main id="view" aria-live="polite"></main>

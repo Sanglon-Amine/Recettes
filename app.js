@@ -9,6 +9,11 @@
   const KEY = "menu-semaine-v1";
   const HISTORY_WEEKS = 2; // on évite les plats des 2 semaines précédentes
   const BY_ID = Object.fromEntries(RECIPES.map(r => [r.id, r]));
+  const PERSONS_MIN = 1, PERSONS_MAX = 8, BASE_PERSONS = 2;
+  // Ingrédients qu'on n'achète pas à la moitié : arrondis à l'unité entière.
+  const WHOLE = new Set(["oeuf", "pain_burger", "tortillas", "galettes", "pita", "steak_hache", "pate_brisee", "pate_pizza", "pate_feuilletee",
+    "poulet_entier", "poulet_haut", "poulet_cuisse", "truite", "merguez", "cornichons", "endive", "citron_confit", "bouillon",
+    "laitue", "romaine", "brocoli", "chou_fleur", "chou_vert"]);
 
   const $ = (sel, root) => (root || document).querySelector(sel);
   const esc = s => String(s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
@@ -29,6 +34,7 @@
           s.checked = s.checked || {};
           s.excluded = (s.excluded || []).filter(id => BY_ID[id]);
           s.history = s.history || {};
+          s.persons = Math.min(PERSONS_MAX, Math.max(PERSONS_MIN, s.persons || BASE_PERSONS));
           return s;
         }
       }
@@ -124,7 +130,7 @@
   }
   function newWeek() {
     const ws = planWeekStart(new Date()).toISOString();
-    if (!state) state = { excluded: [], history: {} };
+    if (!state) state = { excluded: [], history: {}, persons: BASE_PERSONS };
     let extraAvoid = [];
     if (state.plan) {
       if (state.weekStart !== ws) {
@@ -184,9 +190,25 @@
   }
 
   /* ---------- Liste de courses ---------- */
-  function fmtNum(n) { return Number.isInteger(n) ? String(n) : n.toLocaleString("fr-FR", { maximumFractionDigits: 2 }); }
+  function fmtNum(n) {
+    if (Number.isInteger(n)) return String(n);
+    if (Math.abs(n * 2 - Math.round(n * 2)) < 1e-9) return (Math.floor(n) || "") + "½";  // 0,5 → ½ ; 1,5 → 1½
+    return n.toLocaleString("fr-FR", { maximumFractionDigits: 2 });
+  }
+  // Quantité pour le nombre de personnes choisi (les recettes sont écrites pour 2), avec des arrondis d'achat.
+  function scaleQty(key, qty, unit) {
+    const f = state.persons / BASE_PERSONS;
+    if (f === 1) return qty;
+    const q = qty * f;
+    if (unit === "g") return Math.max(5, q < 100 ? Math.round(q / 5) * 5 : Math.round(q / 10) * 10);
+    if (unit === "cl") return Math.max(1, Math.round(q));
+    if (unit === "cs") return Math.max(0.5, Math.round(q * 2) / 2);
+    if (WHOLE.has(key) || ["tranche", "feuille", "boite", "pot", "botte"].includes(unit)) return Math.max(1, Math.round(q));
+    return Math.max(0.5, Math.round(q * 2) / 2);  // pièces, gousses : la moitié est possible
+  }
+  const personsLabel = () => `${state.persons} personne${state.persons > 1 ? "s" : ""}`;
   function fmtQty(qty, unit) {
-    if (unit === "g" && qty >= 1000) return fmtNum(qty / 1000) + " kg";
+    if (unit === "g" && qty >= 1000) return fmtNum(Math.round(qty / 100) / 10) + " kg";
     if (unit === "cl" && qty >= 100) return fmtNum(qty / 100) + " L";
     const u = UNITS[unit] || [unit, unit];
     const word = qty > 1 ? u[1] : u[0];
@@ -208,6 +230,7 @@
       (r.pantry || []).forEach(p => pantry.add(p));
     }));
     const all = [...items.values()];
+    all.forEach(it => { it.qty = scaleQty(it.key, it.qty, it.unit); });
     const byAisle = AISLES
       .map(([id, name]) => ({ id, name, items: all.filter(it => it.aisle === id).sort((a, b) => a.label.localeCompare(b.label, "fr")) }))
       .filter(a => a.items.length);
@@ -216,7 +239,7 @@
   }
   function shoppingText() {
     const list = shoppingList();
-    const lines = [`Courses · ${weekLabel()} · 2 personnes`, ""];
+    const lines = [`Courses · ${weekLabel()} · ${personsLabel()}`, ""];
     list.byAisle.forEach(a => {
       lines.push(a.name.toUpperCase());
       a.items.forEach(it => lines.push(`${state.checked[it.k] ? "☑" : "☐"} ${it.label} — ${fmtQty(it.qty, it.unit)}`));
@@ -229,6 +252,9 @@
   /* ---------- Rendu ---------- */
   function render() {
     $("#weekLabel").textContent = weekLabel();
+    $("#servesLabel").textContent = personsLabel();
+    $('[data-act="personsMinus"]').disabled = state.persons <= PERSONS_MIN;
+    $('[data-act="personsPlus"]').disabled = state.persons >= PERSONS_MAX;
     const view = $("#view");
     if (ui.tab === "semaine") view.innerHTML = renderWeek();
     else if (ui.tab === "courses") view.innerHTML = renderCourses();
@@ -280,7 +306,7 @@
           </header>
           ${mealRow(i, "midi")}${mealRow(i, "soir")}
         </section>`).join("")}
-      <p class="hint version">Menu de la Semaine${ui.version ? ` · recettes v${ui.version}` : ""} · 2 personnes · sans porc ni alcool</p>
+      <p class="hint version">Menu de la Semaine${ui.version ? ` · recettes v${ui.version}` : ""} · ${personsLabel()} · sans porc ni alcool</p>
       ${n ? `<div class="select-bar" role="region" aria-label="Sélection">
           <span>${n} repas coché${n > 1 ? "s" : ""}</span>
           <button class="btn btn-ghost" data-act="clearSelection">Annuler</button>
@@ -385,10 +411,11 @@
       body = `
         ${ctx ? `<p class="eyebrow ${ctx.slot === "midi" ? "noon" : "night"}">${DAYS[ctx.day]} · ${SLOT_LABEL[ctx.slot]}</p>` : ""}
         <h2 id="sheetTitle">${esc(r.name)}</h2>
-        <div class="chips"><span class="chip">${r.time} min</span><span class="chip">${esc(CATS[r.cat])}</span><span class="chip">${esc(CUISINES[r.cui])}</span><span class="chip chip-ok">2 personnes</span></div>
+        <div class="chips"><span class="chip">${r.time} min</span><span class="chip">${esc(CATS[r.cat])}</span><span class="chip">${esc(CUISINES[r.cui])}</span><span class="chip chip-ok">${personsLabel()}</span></div>
         <h3>Ingrédients</h3>
-        <ul class="ing">${r.ing.map(([k, q, u]) => `<li><span>${esc(ING[k][0])}</span><span class="qty">${fmtQty(q, u)}</span></li>`).join("")}</ul>
+        <ul class="ing">${r.ing.map(([k, q, u]) => `<li><span>${esc(ING[k][0])}</span><span class="qty">${fmtQty(scaleQty(k, q, u), u)}</span></li>`).join("")}</ul>
         ${r.pantry && r.pantry.length ? `<p class="pantry">Du placard : ${esc(r.pantry.join(", "))}.</p>` : ""}
+        ${state.persons !== BASE_PERSONS ? `<p class="scale-note">Quantités ajustées pour ${personsLabel()}. Les étapes ci-dessous sont rédigées pour 2 personnes : multipliez les quantités qu'elles citent par ${fmtNum(Math.round(state.persons / BASE_PERSONS * 100) / 100)}.</p>` : ""}
         <h3>Préparation · ${r.steps.length} étapes</h3>
         <ol class="steps">${r.steps.map(st => `<li>${esc(st)}</li>`).join("")}</ol>`;
       const excludeBtn = `<button class="btn ${isExcluded ? "" : "btn-ghost"}" data-act="sheetExclude">${icon(isExcluded ? "sparkle" : "ban")} ${isExcluded ? "Proposer à nouveau" : "Ne plus proposer"}</button>`;
@@ -434,6 +461,14 @@
         break;
       }
       case "goCourses": ui.tab = "courses"; render(); window.scrollTo(0, 0); break;
+      case "personsMinus":
+      case "personsPlus": {
+        const next = Math.min(PERSONS_MAX, Math.max(PERSONS_MIN, state.persons + (act === "personsPlus" ? 1 : -1)));
+        if (next === state.persons) break;
+        state.persons = next; save(); render();
+        toast(`Quantités pour ${personsLabel()}`);
+        break;
+      }
       case "open": ui.sheet = { id: state.plan[day][slot], ctx: { day, slot }, mode: "detail" }; renderSheet(); break;
       case "lock": toggleLock(day, slot); render(); break;
       case "clearSelection": ui.selected.clear(); render(); break;

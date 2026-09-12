@@ -28,6 +28,11 @@ En ligne : https://claude.ai/code/artifact/120359d2-2c5f-4867-baa8-35c811dbad6d
 - Les cuisines sont réparties sur la semaine (pas 5 tajines d'affilée).
 - Quand la semaine affichée est passée (ou dès le samedi), un bandeau propose de générer la suivante.
 
+## Nombre de personnes
+Le sélecteur **− / +** de l'en-tête (1 à 8, mémorisé) ajuste toutes les quantités : liste de courses et fiches.
+Les recettes sont écrites pour 2 ; les arrondis sont pensés pour l'achat (grammes par 5 ou 10, œufs/boîtes/pains entiers,
+½ possible pour un poivron ou un citron). Les étapes citent les quantités pour 2 — la fiche l'indique avec le facteur à appliquer.
+
 ## Fiche recette
 Toucher le nom d'un plat (semaine ou catalogue) ouvre sa fiche : ingrédients avec quantités pour 2, « du placard », et la préparation en 5–6 étapes détaillées (températures, temps, gestes).
 
