@@ -1,4 +1,4 @@
-/* Base de recettes — quantités pour 2 personnes. Sans porc (remplacé par du bœuf) et sans alcool.
+/* Base de recettes — quantités pour 2 personnes. Sans porc, sans lardons (remplacés par du bœuf) et sans alcool.
    Ingrédient : [clé, quantité, unité]. Unités : pc (pièce), g, cl, gousse, botte, tranche, boite, cs (c. à soupe), pot, feuille.
    slots : créneaux où la recette est proposée en semaine (le week-end, tout est permis). */
 
@@ -45,7 +45,7 @@ const ING = {
   poulet_blanc: ["Blancs de poulet", "boucherie"], poulet_cuisse: ["Cuisses de poulet", "boucherie"], poulet_haut: ["Hauts de cuisse de poulet", "boucherie"],
   poulet_entier: ["Poulet fermier (≈1,3 kg)", "boucherie"], dinde: ["Escalopes de dinde", "boucherie"], boeuf_hache: ["Bœuf haché", "boucherie"],
   steak_hache: ["Steaks hachés", "boucherie"], boeuf_braiser: ["Bœuf à braiser (paleron)", "boucherie"], veau: ["Épaule de veau", "boucherie"],
-  merguez: ["Merguez de bœuf", "boucherie"], lardons_boeuf: ["Lardons de bœuf (allumettes fumées)", "boucherie"], jambon_boeuf: ["Jambon de bœuf", "boucherie"],
+  merguez: ["Merguez de bœuf", "boucherie"], jambon_boeuf: ["Jambon de bœuf", "boucherie"],
   saumon: ["Pavés de saumon", "boucherie"], cabillaud: ["Filets de cabillaud", "boucherie"], crevettes: ["Crevettes décortiquées", "boucherie"], moules: ["Moules", "boucherie"],
   agneau: ["Épaule d'agneau (morceaux)", "boucherie"], boeuf_saute: ["Bœuf à sauter (émincé)", "boucherie"], roti_boeuf: ["Rôti de bœuf", "boucherie"], truite: ["Truites (vidées)", "boucherie"],
   // Crèmerie & œufs
@@ -88,14 +88,14 @@ const RECIPES = [
       "Goûtez la sauce, rectifiez le sel. Servez le poulet nappé de sa sauce aux poivrons, avec le riz."
     ] },
 
-  { id: "carbonara", name: "Carbonara aux lardons de bœuf", cat: "pates", cui: "it", time: 20, slots: ["midi", "soir"],
-    ing: [["spaghetti", 200, "g"], ["lardons_boeuf", 150, "g"], ["oeuf", 3, "pc"], ["parmesan", 60, "g"]],
-    pantry: ["huile", "sel", "poivre"],
+  { id: "carbonara", name: "Spaghetti au bœuf sauté façon carbonara", cat: "pates", cui: "it", time: 20, slots: ["midi", "soir"],
+    ing: [["spaghetti", 200, "g"], ["boeuf_saute", 200, "g"], ["oeuf", 3, "pc"], ["parmesan", 60, "g"], ["ail", 1, "gousse"]],
+    pantry: ["huile d'olive", "sel", "poivre"],
     steps: [
       "Portez une grande casserole d'eau salée à ébullition et faites cuire 200 g de spaghetti al dente (1 minute de moins que le paquet).",
-      "Pendant ce temps, faites dorer 150 g de lardons de bœuf à la poêle avec un filet d'huile, 4 à 5 minutes à feu moyen. Coupez le feu.",
+      "Coupez 200 g de bœuf en fines lanières, salez, poivrez. Dans une poêle très chaude avec 1 cuillère d'huile d'olive, saisissez-les 2 minutes avec la gousse d'ail écrasée, puis coupez le feu.",
       "Dans un saladier, battez 1 œuf entier et 2 jaunes avec 60 g de parmesan râpé et beaucoup de poivre du moulin.",
-      "Égouttez les pâtes en gardant une louche d'eau de cuisson. Versez-les dans la poêle avec les lardons, hors du feu, puis ajoutez le mélange aux œufs en remuant vivement.",
+      "Égouttez les pâtes en gardant une louche d'eau de cuisson. Versez-les dans la poêle avec le bœuf, hors du feu, puis ajoutez le mélange aux œufs en remuant vivement.",
       "Ajoutez un peu d'eau de cuisson chaude jusqu'à obtenir une sauce crémeuse qui nappe les pâtes, sans les brouiller. Servez aussitôt avec du poivre."
     ] },
 
@@ -122,14 +122,14 @@ const RECIPES = [
       "Servez avec le reste du citron à presser dessus."
     ] },
 
-  { id: "quiche-lorraine", name: "Quiche aux lardons de bœuf", cat: "oeufs", cui: "fr", time: 50, slots: ["midi", "soir"],
-    ing: [["pate_brisee", 1, "pc"], ["lardons_boeuf", 150, "g"], ["oeuf", 3, "pc"], ["creme", 20, "cl"], ["lait", 10, "cl"], ["gruyere", 80, "g"]],
-    pantry: ["muscade", "poivre"],
+  { id: "quiche-lorraine", name: "Quiche au jambon de bœuf et oignons", cat: "oeufs", cui: "fr", time: 50, slots: ["midi", "soir"],
+    ing: [["pate_brisee", 1, "pc"], ["jambon_boeuf", 3, "tranche"], ["oignon", 1, "pc"], ["oeuf", 3, "pc"], ["creme", 20, "cl"], ["lait", 10, "cl"], ["gruyere", 80, "g"], ["beurre", 15, "g"]],
+    pantry: ["muscade", "sel", "poivre"],
     steps: [
       "Préchauffez le four à 180 °C. Déroulez la pâte brisée dans un moule à tarte avec son papier, piquez le fond à la fourchette.",
-      "Faites dorer 150 g de lardons de bœuf à la poêle 4 minutes, puis égouttez-les sur du papier absorbant.",
-      "Dans un saladier, battez 3 œufs avec 20 cl de crème fraîche et 10 cl de lait. Poivrez généreusement, ajoutez une pincée de muscade (peu de sel : les lardons et le fromage en apportent).",
-      "Répartissez les lardons sur la pâte, puis 80 g de gruyère râpé. Versez l'appareil par-dessus.",
+      "Émincez l'oignon et faites-le fondre 8 minutes dans 15 g de beurre à feu doux, sans coloration. Coupez les 3 tranches de jambon de bœuf en lanières.",
+      "Dans un saladier, battez 3 œufs avec 20 cl de crème fraîche et 10 cl de lait. Salez légèrement, poivrez généreusement, ajoutez une pincée de muscade.",
+      "Répartissez l'oignon et le jambon sur la pâte, puis 80 g de gruyère râpé. Versez l'appareil par-dessus.",
       "Enfournez 35 minutes, jusqu'à ce que la quiche soit dorée et prise au centre. Laissez tiédir 5 minutes avant de couper."
     ] },
 
@@ -1148,15 +1148,15 @@ const RECIPES = [
       "Enfournez 15 minutes jusqu'à ce que le dessus soit gratiné."
     ] },
 
-  { id: "salade-lyonnaise", name: "Salade lyonnaise (lardons de bœuf)", cat: "salade", cui: "fr", time: 20, slots: ["midi"],
-    ing: [["laitue", 1, "pc"], ["lardons_boeuf", 150, "g"], ["oeuf", 2, "pc"], ["pain", 2, "tranche"], ["ail", 1, "gousse"], ["echalote", 1, "pc"]],
+  { id: "salade-lyonnaise", name: "Salade tiède au bœuf et œuf poché", cat: "salade", cui: "fr", time: 20, slots: ["midi"],
+    ing: [["laitue", 1, "pc"], ["boeuf_saute", 200, "g"], ["oeuf", 2, "pc"], ["pain", 2, "tranche"], ["ail", 1, "gousse"], ["echalote", 1, "pc"]],
     pantry: ["vinaigre", "moutarde", "huile", "sel", "poivre"],
     steps: [
-      "Lavez et essorez la laitue (ou une frisée, plus traditionnelle). Ciselez l'échalote. Vinaigrette : 1 cuillère à café de moutarde, 1 cuillère de vinaigre, 3 d'huile, l'échalote, sel, poivre.",
+      "Lavez et essorez la laitue. Ciselez l'échalote. Vinaigrette : 1 cuillère à café de moutarde, 1 cuillère de vinaigre, 3 d'huile, l'échalote, sel, poivre.",
       "Coupez 2 tranches de pain en dés, frottez-les d'ail et faites-les dorer 3 minutes à la poêle dans un peu d'huile. Réservez.",
-      "Faites dorer 150 g de lardons de bœuf dans la même poêle 4 minutes.",
+      "Coupez 200 g de bœuf en fines lanières, salez, poivrez. Saisissez-les 2 minutes dans la même poêle très chaude.",
       "Œufs pochés : portez une casserole d'eau à frémissement avec 1 cuillère de vinaigre. Cassez chaque œuf dans une tasse, faites-le glisser dans l'eau et cuisez 3 minutes. Égouttez sur du papier absorbant.",
-      "Mélangez la salade et la vinaigrette, répartissez dans deux assiettes, ajoutez les lardons et les croûtons, posez l'œuf poché dessus. Poivrez et servez aussitôt."
+      "Mélangez la salade et la vinaigrette, répartissez dans deux assiettes, ajoutez le bœuf tiède et les croûtons, posez l'œuf poché dessus. Poivrez et servez aussitôt."
     ] },
 
   { id: "roti-boeuf", name: "Rôti de bœuf, haricots verts", cat: "viande", cui: "fr", time: 40, slots: ["soir"],

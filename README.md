@@ -3,7 +3,7 @@
 Application web installable (PWA) : 14 repas (déjeuner + dîner, lundi → dimanche) pour 2 personnes,
 avec la liste de courses agrégée et classée par rayon.
 
-Toutes les recettes sont **sans porc** (lardons, jambon et chair à saucisse remplacés par du bœuf) et **sans alcool**
+Toutes les recettes sont **sans porc et sans lardons** (jambon de bœuf, bœuf émincé ou haché à la place) et **sans alcool**
 (le vin des mijotés est remplacé par du bouillon, celui des moules par de l'eau citronnée).
 
 En ligne : https://claude.ai/code/artifact/120359d2-2c5f-4867-baa8-35c811dbad6d
