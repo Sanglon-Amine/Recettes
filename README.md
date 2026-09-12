@@ -45,6 +45,18 @@ puis ouvrir http://localhost:8765/
 Dans `recipes.js`, ajouter une entrée dans `RECIPES` (id unique, `cat`, `cui`, `time`, `slots`, `ing`, `pantry`, `steps`).
 Chaque ingrédient utilise une clé de `ING` ; ajouter la clé si elle n'existe pas (libellé + rayon).
 
-## Vers un APK plus tard
-Le dossier peut être empaqueté tel quel avec Capacitor (`npx cap add android`) ou publié via
-PWABuilder (https://www.pwabuilder.com) une fois hébergé sur une URL publique, sans modifier le code.
+## Application Android (APK)
+Dépôt GitHub : https://github.com/Sanglon-Amine/Recettes
+
+À chaque `git push` sur `main`, GitHub Actions (`.github/workflows/build-apk.yml`) compile la coque Android
+(`android/`, WebView Java qui embarque les fichiers web) et publie `menu-semaine.apk` dans les **Releases**.
+
+Sur le téléphone : ouvrir https://github.com/Sanglon-Amine/Recettes/releases/latest, télécharger le `.apk`,
+autoriser l'installation depuis cette source, installer. Pour mettre à jour : réinstaller le nouvel APK par-dessus
+(les données restent).
+
+Compiler en local (si JDK 17 + SDK Android sont installés) :
+```
+python android/sync-assets.py
+cd android && gradle assembleDebug
+```
