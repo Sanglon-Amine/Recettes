@@ -17,8 +17,8 @@ const CATS = {
 };
 
 const CUISINES = {
-  fr: "Française", ma: "Marocaine", it: "Italienne", med: "Méditerranéenne",
-  as: "Asiatique", in: "Indienne", mx: "Mexicaine", us: "Américaine",
+  fr: "Française", ma: "Marocaine", lb: "Libanaise", sy: "Syrienne", it: "Italienne", med: "Méditerranéenne",
+  jp: "Japonaise", cn: "Chinoise", as: "Asie du Sud-Est", in: "Indienne", mx: "Mexicaine", us: "Américaine",
 };
 
 /* Régimes sélectionnables : une recette peut porter plusieurs étiquettes.
@@ -58,7 +58,7 @@ const ING = {
   lait: ["Lait", "cremerie"], gruyere: ["Gruyère râpé", "cremerie"], parmesan: ["Parmesan", "cremerie"], mozzarella: ["Mozzarella", "cremerie"],
   feta: ["Feta", "cremerie"], chevre: ["Bûche de chèvre", "cremerie"], cheddar: ["Cheddar en tranches", "cremerie"], fromage_frais: ["Fromage frais", "cremerie"],
   pate_brisee: ["Pâte brisée", "cremerie"], pate_pizza: ["Pâte à pizza", "cremerie"], galettes: ["Galettes de sarrasin", "cremerie"], gnocchis: ["Gnocchis", "cremerie"],
-  yaourt: ["Yaourt nature", "cremerie"], pate_feuilletee: ["Pâte feuilletée", "cremerie"], brick: ["Feuilles de brick", "cremerie"], cheddar_rape: ["Cheddar râpé", "cremerie"],
+  yaourt: ["Yaourt nature", "cremerie"], tofu: ["Tofu ferme", "cremerie"], pate_feuilletee: ["Pâte feuilletée", "cremerie"], brick: ["Feuilles de brick", "cremerie"], cheddar_rape: ["Cheddar râpé", "cremerie"],
   // Épicerie
   riz: ["Riz", "epicerie"], riz_arborio: ["Riz arborio", "epicerie"], riz_basmati: ["Riz basmati", "epicerie"], riz_complet: ["Riz complet", "epicerie"],
   spaghetti: ["Spaghetti", "epicerie"], pates: ["Pâtes (fusilli, penne…)", "epicerie"], tagliatelles: ["Tagliatelles", "epicerie"], lasagnes: ["Feuilles de lasagne", "epicerie"],
@@ -75,6 +75,8 @@ const ING = {
   vermicelles: ["Vermicelles (cheveux d'ange)", "epicerie"], vermicelles_riz: ["Vermicelles de riz", "epicerie"], pois_casses: ["Pois cassés", "epicerie"],
   haricots_blancs: ["Haricots blancs (boîte 400 g)", "epicerie"], lentilles_vertes: ["Lentilles vertes", "epicerie"], pois_chiches_secs: ["Pois chiches secs", "epicerie"],
   tomates_sechees: ["Tomates séchées", "epicerie"], capres: ["Câpres", "epicerie"], polenta: ["Polenta", "epicerie"], pate_curry_vert: ["Pâte de curry vert", "epicerie"],
+  nouilles_soba: ["Nouilles soba", "epicerie"], udon: ["Nouilles udon", "epicerie"], nouilles_chinoises: ["Nouilles chinoises (blé)", "epicerie"], miso: ["Pâte miso", "epicerie"],
+  cajou: ["Noix de cajou", "epicerie"], feuilles_vigne: ["Feuilles de vigne (bocal)", "epicerie"], melasse_grenade: ["Mélasse de grenade", "epicerie"], feves: ["Fèves cuites (boîte 400 g)", "epicerie"],
   // Surgelés
   petits_pois: ["Petits pois", "surgeles"],
   // Boulangerie
@@ -204,7 +206,7 @@ const RECIPES = [
       "Épluchez 500 g de carottes et coupez-les en rondelles épaisses. Ajoutez-les et poursuivez 30 minutes. La viande doit se défaire à la fourchette. Servez avec du pain ou des pommes de terre vapeur."
     ] },
 
-  { id: "wok-poulet", name: "Wok de poulet aux légumes", cat: "volaille", cui: "as", time: 25, slots: ["midi", "soir"], diet: ["leger", "chol"],
+  { id: "wok-poulet", name: "Wok de poulet aux légumes", cat: "volaille", cui: "cn", time: 25, slots: ["midi", "soir"], diet: ["leger", "chol"],
     ing: [["poulet_blanc", 300, "g"], ["brocoli", 1, "pc"], ["carotte", 1, "pc"], ["poivron", 1, "pc"], ["sauce_soja", 4, "cs"], ["gingembre", 20, "g"], ["ail", 1, "gousse"], ["nouilles_riz", 150, "g"], ["sesame", 1, "cs"]],
     pantry: ["huile"],
     steps: [
@@ -492,7 +494,7 @@ const RECIPES = [
       "Passez sous le gril 5 minutes jusqu'à ce que le fromage soit doré et gratiné. Servez brûlant."
     ] },
 
-  { id: "taboule", name: "Taboulé libanais", cat: "salade", cui: "med", time: 25, slots: ["midi"], diet: ["leger", "chol"],
+  { id: "taboule", name: "Taboulé libanais", cat: "salade", cui: "lb", time: 25, slots: ["midi"], diet: ["leger", "chol"],
     ing: [["boulgour", 100, "g"], ["persil", 2, "botte"], ["menthe", 1, "botte"], ["tomate", 3, "pc"], ["oignon_nouveau", 2, "pc"], ["citron", 2, "pc"]],
     pantry: ["huile d'olive", "sel", "poivre"],
     steps: [
@@ -852,7 +854,7 @@ const RECIPES = [
     ] },
 
   /* ---------- Asiatiques ---------- */
-  { id: "poulet-teriyaki", name: "Poulet teriyaki, riz et brocoli", cat: "volaille", cui: "as", time: 25, slots: ["midi", "soir"], diet: ["leger", "chol"],
+  { id: "poulet-teriyaki", name: "Poulet teriyaki, riz et brocoli", cat: "volaille", cui: "jp", time: 25, slots: ["midi", "soir"], diet: ["leger", "chol"],
     ing: [["poulet_haut", 4, "pc"], ["sauce_soja", 4, "cs"], ["miel", 2, "cs"], ["gingembre", 15, "g"], ["ail", 2, "gousse"], ["brocoli", 1, "pc"], ["riz", 150, "g"], ["sesame", 1, "cs"]],
     pantry: ["huile", "vinaigre"],
     steps: [
@@ -863,7 +865,7 @@ const RECIPES = [
       "Coupez le poulet en tranches, servez sur le riz avec le brocoli, nappez de sauce et parsemez de sésame."
     ] },
 
-  { id: "boeuf-oignons", name: "Bœuf sauté aux oignons, riz", cat: "viande", cui: "as", time: 25, slots: ["midi", "soir"], diet: ["leger"],
+  { id: "boeuf-oignons", name: "Bœuf sauté aux oignons, riz", cat: "viande", cui: "cn", time: 25, slots: ["midi", "soir"], diet: ["leger"],
     ing: [["boeuf_saute", 300, "g"], ["oignon", 3, "pc"], ["sauce_soja", 3, "cs"], ["ail", 2, "gousse"], ["gingembre", 15, "g"], ["riz", 150, "g"], ["coriandre", 1, "botte"]],
     pantry: ["huile", "sucre", "poivre"],
     steps: [
@@ -896,7 +898,7 @@ const RECIPES = [
       "Répartissez les nouilles dans deux grands bols, posez le bœuf cru dessus, et versez le bouillon bouillant : il cuit la viande instantanément. Ajoutez les garnitures à table."
     ] },
 
-  { id: "riz-saute", name: "Riz sauté aux œufs et petits légumes", cat: "oeufs", cui: "as", time: 15, slots: ["midi"], diet: ["leger"],
+  { id: "riz-saute", name: "Riz sauté aux œufs et petits légumes", cat: "oeufs", cui: "cn", time: 15, slots: ["midi"], diet: ["leger"],
     ing: [["riz", 150, "g"], ["oeuf", 3, "pc"], ["petits_pois", 100, "g"], ["carotte", 1, "pc"], ["oignon_nouveau", 3, "pc"], ["sauce_soja", 3, "cs"], ["sesame", 1, "cs"]],
     pantry: ["huile", "poivre"],
     steps: [
@@ -918,7 +920,7 @@ const RECIPES = [
       "Dans deux grands bols : laitue au fond, vermicelles, puis le bœuf chaud, la carotte, le concombre, 100 g de germes de soja, la menthe et les cacahuètes. Arrosez de sauce et mélangez à table."
     ] },
 
-  { id: "saumon-sesame", name: "Saumon au sésame, riz et brocoli", cat: "poisson", cui: "as", time: 25, slots: ["midi", "soir"], diet: ["leger", "chol"],
+  { id: "saumon-sesame", name: "Saumon au sésame, riz et brocoli", cat: "poisson", cui: "jp", time: 25, slots: ["midi", "soir"], diet: ["leger", "chol"],
     ing: [["saumon", 300, "g"], ["sesame", 2, "cs"], ["sauce_soja", 3, "cs"], ["miel", 1, "cs"], ["brocoli", 1, "pc"], ["riz", 150, "g"], ["citron_vert", 1, "pc"]],
     pantry: ["huile", "gingembre moulu"],
     steps: [
@@ -964,7 +966,7 @@ const RECIPES = [
     ] },
 
   /* ---------- Méditerranéennes & orientales ---------- */
-  { id: "falafels", name: "Falafels, sauce au yaourt, pita", cat: "vege", cui: "med", time: 40, slots: ["midi", "soir"],
+  { id: "falafels", name: "Falafels, sauce au yaourt, pita", cat: "vege", cui: "lb", time: 40, slots: ["midi", "soir"],
     ing: [["pois_chiches_secs", 200, "g"], ["oignon", 1, "pc"], ["ail", 3, "gousse"], ["persil", 1, "botte"], ["coriandre", 1, "botte"], ["farine", 20, "g"], ["yaourt", 1, "pot"], ["citron", 1, "pc"], ["pita", 4, "pc"], ["tomate", 2, "pc"], ["concombre", 1, "pc"]],
     pantry: ["cumin", "coriandre moulue", "bicarbonate", "huile", "sel"],
     steps: [
@@ -975,7 +977,7 @@ const RECIPES = [
       "Sauce : mélangez le yaourt avec le jus d'un demi-citron, 1 pointe d'ail et du sel. Servez les falafels dans les pains pita tièdes avec la tomate et le concombre en dés, et la sauce."
     ] },
 
-  { id: "chich-taouk", name: "Chich taouk, riz et salade", cat: "volaille", cui: "med", time: 30, slots: ["midi", "soir"], diet: ["leger", "chol"],
+  { id: "chich-taouk", name: "Chich taouk, riz et salade", cat: "volaille", cui: "lb", time: 30, slots: ["midi", "soir"], diet: ["leger", "chol"],
     ing: [["poulet_blanc", 400, "g"], ["yaourt", 1, "pot"], ["citron", 1, "pc"], ["ail", 3, "gousse"], ["riz", 150, "g"], ["laitue", 1, "pc"], ["tomate", 2, "pc"], ["pita", 2, "pc"]],
     pantry: ["paprika", "cumin", "origan", "huile d'olive", "sel", "poivre"],
     steps: [
@@ -1041,7 +1043,7 @@ const RECIPES = [
       "Servez tiède, avec la laitue et les 2 tomates en salade. Excellente froide le lendemain."
     ] },
 
-  { id: "mezze", name: "Assiette mezze (houmous, crudités, pita)", cat: "vege", cui: "med", time: 20, slots: ["midi"], diet: ["leger", "chol"],
+  { id: "mezze", name: "Assiette mezze (houmous, crudités, pita)", cat: "vege", cui: "lb", time: 20, slots: ["midi"], diet: ["leger", "chol"],
     ing: [["pois_chiches", 1, "boite"], ["tahini", 3, "cs"], ["citron", 1, "pc"], ["ail", 1, "gousse"], ["concombre", 1, "pc"], ["carotte", 2, "pc"], ["tomates_cerises", 150, "g"], ["feta", 100, "g"], ["olives_noires", 60, "g"], ["pita", 4, "pc"]],
     pantry: ["cumin", "paprika", "huile d'olive", "sel"],
     steps: [
@@ -1052,7 +1054,7 @@ const RECIPES = [
       "Disposez tout sur un plateau : houmous, crudités, feta, 60 g d'olives noires et pita. Chacun se sert."
     ] },
 
-  { id: "fattoush", name: "Fattoush", cat: "salade", cui: "med", time: 25, slots: ["midi"], diet: ["leger", "chol"],
+  { id: "fattoush", name: "Fattoush", cat: "salade", cui: "lb", time: 25, slots: ["midi"], diet: ["leger", "chol"],
     ing: [["romaine", 1, "pc"], ["tomate", 3, "pc"], ["concombre", 1, "pc"], ["radis", 1, "botte"], ["oignon_nouveau", 2, "pc"], ["menthe", 1, "botte"], ["persil", 1, "botte"], ["pita", 2, "pc"], ["citron", 1, "pc"]],
     pantry: ["sumac", "huile d'olive", "sel", "poivre"],
     steps: [
@@ -1220,7 +1222,7 @@ const RECIPES = [
     ] },
 
   /* ---------- Légères et pauvres en cholestérol ---------- */
-  { id: "wok-crevettes", name: "Wok de crevettes aux légumes croquants", cat: "poisson", cui: "as", time: 20, slots: ["midi", "soir"], diet: ["leger", "chol"],
+  { id: "wok-crevettes", name: "Wok de crevettes aux légumes croquants", cat: "poisson", cui: "cn", time: 20, slots: ["midi", "soir"], diet: ["leger", "chol"],
     ing: [["crevettes", 250, "g"], ["brocoli", 1, "pc"], ["poivron", 1, "pc"], ["carotte", 1, "pc"], ["ail", 2, "gousse"], ["gingembre", 15, "g"], ["sauce_soja", 3, "cs"], ["citron_vert", 1, "pc"], ["riz", 150, "g"]],
     pantry: ["huile", "poivre"],
     steps: ["Faites cuire 150 g de riz. Détaillez le brocoli en petits bouquets, le poivron en lanières, la carotte en bâtonnets fins. Hachez 2 gousses d'ail, râpez 15 g de gingembre.",
@@ -1358,4 +1360,264 @@ const RECIPES = [
       "Étalez les légumes sur une plaque, arrosez de 2 cuillères d'huile d'olive, herbes de Provence, sel, poivre. Enfournez 25 minutes.",
       "Salez et poivrez les escalopes de dinde. Posez-les sur les légumes avec les tomates cerises et remettez au four 12 minutes.",
       "Servez avec le jus de la plaque."] },
+
+  /* ---------- Japonaises ---------- */
+  { id: "oyakodon", name: "Oyakodon (bol de riz au poulet et à l'œuf)", cat: "volaille", cui: "jp", time: 25, slots: ["midi", "soir"], diet: ["leger"],
+    ing: [["poulet_haut", 3, "pc"], ["oignon", 1, "pc"], ["oeuf", 4, "pc"], ["sauce_soja", 4, "cs"], ["bouillon", 1, "pc"], ["oignon_nouveau", 2, "pc"], ["riz", 150, "g"]],
+    pantry: ["sucre", "vinaigre de riz"],
+    steps: ["Faites cuire 150 g de riz. Désossez les hauts de cuisse et coupez-les en morceaux de 2 cm. Émincez l'oignon, ciselez les oignons nouveaux.",
+      "Dans une petite poêle, portez à frémissement 15 cl de bouillon avec 4 cuillères de sauce soja, 1 cuillère à soupe de sucre et 1 cuillère de vinaigre de riz.",
+      "Ajoutez l'oignon, 3 minutes, puis le poulet. Laissez mijoter 8 minutes à couvert jusqu'à ce qu'il soit cuit.",
+      "Battez légèrement 4 œufs (juste pour mélanger blancs et jaunes). Versez-les en spirale sur le poulet, couvrez 1 à 2 minutes : l'œuf doit être juste pris, encore crémeux.",
+      "Faites glisser le tout sur le riz dans deux bols, parsemez d'oignons nouveaux."] },
+
+  { id: "yakitori", name: "Yakitori de poulet, riz et concombre au sésame", cat: "volaille", cui: "jp", time: 25, slots: ["midi", "soir"], diet: ["leger", "chol"],
+    ing: [["poulet_blanc", 350, "g"], ["oignon_nouveau", 4, "pc"], ["sauce_soja", 4, "cs"], ["miel", 2, "cs"], ["gingembre", 15, "g"], ["concombre", 1, "pc"], ["sesame", 1, "cs"], ["riz", 150, "g"]],
+    pantry: ["vinaigre de riz", "sucre", "huile", "sel"],
+    steps: ["Faites cuire 150 g de riz. Sauce : faites réduire 3 minutes à feu doux 4 cuillères de sauce soja, 2 de miel, 2 d'eau, 1 de vinaigre de riz et le gingembre râpé, jusqu'à consistance sirupeuse.",
+      "Coupez le poulet en cubes de 3 cm et les blancs des oignons nouveaux en tronçons de 3 cm. Enfilez-les en alternance sur des piques (trempées 10 minutes si elles sont en bois).",
+      "Concombre : coupez-le en fines rondelles, salez, laissez dégorger 5 minutes, pressez, ajoutez 1 cuillère de vinaigre de riz, une pincée de sucre et le sésame.",
+      "Faites griller les brochettes 3 minutes par face sur une poêle-gril huilée, puis badigeonnez de sauce et laissez laquer 1 minute de chaque côté.",
+      "Servez sur le riz avec le concombre et le reste de sauce."] },
+
+  { id: "soba-sesame", name: "Nouilles soba froides au sésame et légumes croquants", cat: "vege", cui: "jp", time: 20, slots: ["midi"], diet: ["leger", "chol"],
+    ing: [["nouilles_soba", 200, "g"], ["concombre", 1, "pc"], ["carotte", 1, "pc"], ["oignon_nouveau", 2, "pc"], ["tahini", 2, "cs"], ["sauce_soja", 3, "cs"], ["miel", 1, "cs"], ["sesame", 1, "cs"], ["citron_vert", 1, "pc"]],
+    pantry: ["vinaigre de riz", "huile de sésame (facultatif)"],
+    steps: ["Faites cuire 200 g de soba selon le paquet (4 à 5 minutes), égouttez et rincez longuement à l'eau froide en frottant pour retirer l'amidon. Égouttez bien.",
+      "Sauce : fouettez 2 cuillères de tahini, 3 de sauce soja, 1 de miel, 1 de vinaigre de riz, le jus du citron vert et 3 cuillères d'eau jusqu'à obtenir une sauce lisse.",
+      "Coupez le concombre et la carotte en julienne fine, émincez les oignons nouveaux.",
+      "Mélangez les nouilles avec la sauce, ajoutez les légumes et le sésame. Servez frais."] },
+
+  { id: "curry-japonais", name: "Curry japonais au poulet et aux légumes", cat: "volaille", cui: "jp", time: 40, slots: ["soir"], diet: ["leger", "chol"],
+    ing: [["poulet_blanc", 300, "g"], ["pdt", 300, "g"], ["carotte", 2, "pc"], ["oignon", 2, "pc"], ["ail", 2, "gousse"], ["gingembre", 10, "g"], ["farine", 30, "g"], ["bouillon", 1, "pc"], ["sauce_soja", 1, "cs"], ["miel", 1, "cs"], ["riz", 150, "g"]],
+    pantry: ["curry", "garam masala", "huile", "ketchup", "sel", "poivre"],
+    steps: ["Faites cuire 150 g de riz. Émincez les 2 oignons, coupez les carottes en rondelles épaisses, 300 g de pommes de terre en gros cubes et le poulet en morceaux.",
+      "Dans une cocotte, faites fondre les oignons 8 minutes dans 1 cuillère d'huile jusqu'à ce qu'ils soient dorés. Ajoutez l'ail et le gingembre hachés, puis le poulet, 3 minutes.",
+      "Saupoudrez de 30 g de farine, 1 cuillère à soupe de curry et 1 cuillère à café de garam masala, remuez 1 minute. Versez 60 cl de bouillon en mélangeant.",
+      "Ajoutez carottes et pommes de terre, couvrez, mijotez 20 minutes. Terminez avec 1 cuillère de sauce soja, 1 de miel et 1 de ketchup : la sauce doit être épaisse et brillante.",
+      "Servez sur le riz."] },
+
+  { id: "soupe-miso-udon", name: "Soupe miso aux nouilles udon, champignons et épinards", cat: "soupe", cui: "jp", time: 20, slots: ["midi", "soir"], diet: ["leger", "chol"],
+    ing: [["udon", 300, "g"], ["miso", 3, "cs"], ["champignons", 200, "g"], ["epinards", 100, "g"], ["oignon_nouveau", 3, "pc"], ["gingembre", 10, "g"], ["bouillon", 1, "pc"], ["sauce_soja", 1, "cs"]],
+    pantry: ["sésame", "huile de sésame (facultatif)"],
+    steps: ["Portez 1 litre d'eau à ébullition avec le cube de bouillon et le gingembre en fines lamelles. Émincez les champignons, les oignons nouveaux ; lavez les épinards.",
+      "Ajoutez les champignons dans le bouillon, 4 minutes, puis les nouilles udon (3 minutes pour des udon précuits, selon le paquet sinon) et les épinards 1 minute.",
+      "Hors du feu, délayez 3 cuillères de miso dans une louche de bouillon puis reversez dans la casserole (le miso ne doit pas bouillir). Ajoutez 1 cuillère de sauce soja.",
+      "Servez dans de grands bols avec les oignons nouveaux, du sésame et quelques gouttes d'huile de sésame."] },
+
+  { id: "katsu-poulet", name: "Katsu de poulet, chou émincé et riz", cat: "volaille", cui: "jp", time: 30, slots: ["soir"],
+    ing: [["poulet_blanc", 300, "g"], ["chapelure", 80, "g"], ["farine", 30, "g"], ["oeuf", 1, "pc"], ["chou_vert", 1, "pc"], ["citron", 1, "pc"], ["sauce_soja", 2, "cs"], ["riz", 150, "g"]],
+    pantry: ["ketchup", "sucre", "huile", "sel", "poivre"],
+    steps: ["Faites cuire 150 g de riz. Émincez un quart de chou vert très finement, laissez-le tremper 10 minutes dans l'eau froide, égouttez : il sera croquant.",
+      "Sauce tonkatsu maison : mélangez 3 cuillères de ketchup, 2 de sauce soja et 1 cuillère à café de sucre.",
+      "Aplatissez les blancs en 2 escalopes de 1 cm, salez, poivrez. Panez : farine, œuf battu, chapelure en pressant bien.",
+      "Faites frire dans 1 cm d'huile chaude 3 à 4 minutes par face jusqu'à ce que la panure soit bien dorée. Égouttez sur du papier absorbant, coupez en lanières.",
+      "Servez avec le chou, le riz, la sauce et un quartier de citron."] },
+
+  { id: "gyudon", name: "Gyudon (bol de riz au bœuf et aux oignons)", cat: "viande", cui: "jp", time: 20, slots: ["midi", "soir"], diet: ["leger"],
+    ing: [["boeuf_saute", 300, "g"], ["oignon", 2, "pc"], ["sauce_soja", 4, "cs"], ["gingembre", 15, "g"], ["bouillon", 1, "pc"], ["oignon_nouveau", 2, "pc"], ["riz", 150, "g"]],
+    pantry: ["sucre", "vinaigre de riz"],
+    steps: ["Faites cuire 150 g de riz. Émincez les 2 oignons, coupez le bœuf en tranches très fines, râpez le gingembre.",
+      "Dans une poêle, portez à frémissement 20 cl de bouillon avec 4 cuillères de sauce soja, 1 cuillère à soupe de sucre, 1 de vinaigre de riz et le gingembre.",
+      "Ajoutez les oignons, laissez-les fondre 6 minutes à couvert.",
+      "Ajoutez le bœuf en le séparant, 2 à 3 minutes : il doit juste changer de couleur.",
+      "Versez sur le riz avec un peu de bouillon, parsemez d'oignons nouveaux."] },
+
+  /* ---------- Chinoises ---------- */
+  { id: "poulet-cajou", name: "Poulet sauté aux noix de cajou", cat: "volaille", cui: "cn", time: 25, slots: ["midi", "soir"], diet: ["leger", "chol"],
+    ing: [["poulet_blanc", 300, "g"], ["cajou", 60, "g"], ["poivron", 1, "pc"], ["oignon_nouveau", 3, "pc"], ["ail", 2, "gousse"], ["gingembre", 15, "g"], ["sauce_soja", 3, "cs"], ["miel", 1, "cs"], ["farine", 1, "cs"], ["riz", 150, "g"]],
+    pantry: ["vinaigre de riz", "huile", "poivre"],
+    steps: ["Faites cuire 150 g de riz. Coupez le poulet en dés, enrobez-les de 1 cuillère de farine et 1 de sauce soja. Coupez le poivron en dés, émincez les oignons nouveaux, hachez l'ail et le gingembre.",
+      "Faites griller 60 g de noix de cajou à sec dans le wok 2 minutes, réservez.",
+      "Dans le wok très chaud avec 1 cuillère d'huile, saisissez le poulet 4 minutes, réservez. Faites sauter le poivron 2 minutes, puis l'ail et le gingembre 30 secondes.",
+      "Remettez le poulet, ajoutez 2 cuillères de sauce soja, 1 de miel, 1 de vinaigre de riz et 3 d'eau. Mélangez 1 minute pour que la sauce nappe.",
+      "Ajoutez les noix de cajou et les oignons nouveaux. Servez sur le riz."] },
+
+  { id: "boeuf-brocoli", name: "Bœuf au brocoli, sauce soja-gingembre", cat: "viande", cui: "cn", time: 25, slots: ["midi", "soir"], diet: ["leger"],
+    ing: [["boeuf_saute", 300, "g"], ["brocoli", 1, "pc"], ["ail", 2, "gousse"], ["gingembre", 20, "g"], ["sauce_soja", 4, "cs"], ["farine", 1, "cs"], ["riz", 150, "g"], ["sesame", 1, "cs"]],
+    pantry: ["sucre", "huile", "poivre"],
+    steps: ["Faites cuire 150 g de riz. Coupez le bœuf en lanières fines, mélangez-le avec 1 cuillère de sauce soja et 1 de farine. Détaillez le brocoli en bouquets, hachez l'ail, râpez le gingembre.",
+      "Faites blanchir le brocoli 2 minutes dans l'eau bouillante, égouttez.",
+      "Dans un wok très chaud avec 1 cuillère d'huile, saisissez le bœuf 2 minutes en remuant, réservez.",
+      "Faites sauter l'ail et le gingembre 30 secondes, ajoutez le brocoli, 3 cuillères de sauce soja, 1 cuillère à café de sucre et 5 cl d'eau. 2 minutes.",
+      "Remettez le bœuf, mélangez 1 minute. Sésame, poivre, sur le riz."] },
+
+  { id: "chow-mein", name: "Nouilles sautées aux légumes (chow mein)", cat: "vege", cui: "cn", time: 20, slots: ["midi", "soir"], diet: ["leger", "chol"],
+    ing: [["nouilles_chinoises", 200, "g"], ["chou_vert", 1, "pc"], ["carotte", 1, "pc"], ["poivron", 1, "pc"], ["germes_soja", 100, "g"], ["oignon_nouveau", 3, "pc"], ["ail", 2, "gousse"], ["sauce_soja", 3, "cs"], ["sesame", 1, "cs"]],
+    pantry: ["huile", "vinaigre de riz", "sucre", "poivre"],
+    steps: ["Faites cuire 200 g de nouilles chinoises selon le paquet, égouttez, rincez et mélangez avec quelques gouttes d'huile pour qu'elles ne collent pas.",
+      "Émincez finement un quart de chou, la carotte en bâtonnets, le poivron en lanières, les oignons nouveaux ; hachez l'ail.",
+      "Dans un wok très chaud avec 1 cuillère d'huile, faites sauter carotte et chou 3 minutes, poivron 2 minutes, ail 30 secondes.",
+      "Ajoutez les nouilles, 3 cuillères de sauce soja, 1 de vinaigre de riz, une pincée de sucre. Sautez 2 minutes à feu vif en mélangeant.",
+      "Germes de soja et oignons nouveaux 30 secondes. Sésame, poivre, servez."] },
+
+  { id: "kung-pao", name: "Poulet kung pao aux cacahuètes", cat: "volaille", cui: "cn", time: 25, slots: ["midi", "soir"], diet: ["leger", "chol"],
+    ing: [["poulet_blanc", 300, "g"], ["cacahuetes", 50, "g"], ["poivron", 1, "pc"], ["oignon_nouveau", 3, "pc"], ["ail", 3, "gousse"], ["gingembre", 15, "g"], ["sauce_soja", 3, "cs"], ["farine", 1, "cs"], ["riz", 150, "g"]],
+    pantry: ["vinaigre de riz", "sucre", "piment (flocons)", "huile"],
+    steps: ["Faites cuire 150 g de riz. Coupez le poulet en dés, mélangez avec 1 cuillère de sauce soja et 1 de farine. Poivron en dés, oignons nouveaux en tronçons, ail et gingembre hachés.",
+      "Sauce : 2 cuillères de sauce soja, 1 de vinaigre de riz, 1 cuillère à café de sucre, 4 cuillères d'eau.",
+      "Faites griller les cacahuètes à sec dans le wok 2 minutes, réservez.",
+      "Dans le wok très chaud avec 1 cuillère d'huile, saisissez le poulet 4 minutes, réservez. Faites revenir une pincée de piment, l'ail, le gingembre 30 secondes, puis le poivron 2 minutes.",
+      "Remettez le poulet, versez la sauce, 1 minute. Cacahuètes et oignons nouveaux. Servez sur le riz."] },
+
+  { id: "soupe-poulet-mais", name: "Soupe chinoise au poulet et au maïs", cat: "soupe", cui: "cn", time: 25, slots: ["midi", "soir"], diet: ["leger"],
+    ing: [["poulet_blanc", 200, "g"], ["mais", 2, "boite"], ["oeuf", 1, "pc"], ["oignon_nouveau", 3, "pc"], ["gingembre", 15, "g"], ["bouillon", 2, "pc"], ["farine", 2, "cs"], ["sauce_soja", 1, "cs"]],
+    pantry: ["huile de sésame (facultatif)", "poivre"],
+    steps: ["Portez 1 litre d'eau à ébullition avec les 2 cubes de bouillon et le gingembre râpé. Ajoutez le poulet entier, laissez frémir 12 minutes, retirez-le et effilochez-le à la fourchette.",
+      "Mixez grossièrement une boîte de maïs égoutté, gardez l'autre entière. Versez les deux dans le bouillon avec le poulet effiloché, 3 minutes.",
+      "Délayez 2 cuillères de farine dans un verre d'eau froide, versez en filet en remuant, laissez épaissir 2 minutes. Sauce soja, poivre.",
+      "Battez l'œuf et versez-le en filet dans la soupe en tournant avec une fourchette : il forme des rubans.",
+      "Servez avec les oignons nouveaux ciselés et quelques gouttes d'huile de sésame."] },
+
+  { id: "aubergines-ail-soja", name: "Aubergines sautées à l'ail et à la sauce soja, riz", cat: "vege", cui: "cn", time: 30, slots: ["soir"], diet: ["leger", "chol"],
+    ing: [["aubergine", 2, "pc"], ["ail", 4, "gousse"], ["gingembre", 15, "g"], ["oignon_nouveau", 3, "pc"], ["sauce_soja", 3, "cs"], ["miel", 1, "cs"], ["farine", 1, "cs"], ["riz", 150, "g"]],
+    pantry: ["vinaigre de riz", "huile", "piment (flocons)"],
+    steps: ["Faites cuire 150 g de riz. Coupez les aubergines en bâtonnets de 5 cm, salez-les et laissez dégorger 10 minutes, épongez.",
+      "Sauce : 3 cuillères de sauce soja, 1 de miel, 1 de vinaigre de riz, 1 de farine délayée dans 8 cl d'eau.",
+      "Dans un wok bien chaud avec 2 cuillères d'huile, faites sauter les aubergines 8 minutes jusqu'à ce qu'elles soient dorées et fondantes. Réservez.",
+      "Faites revenir l'ail et le gingembre hachés avec une pincée de piment 30 secondes, versez la sauce, laissez épaissir 1 minute.",
+      "Remettez les aubergines, enrobez, ajoutez les oignons nouveaux. Servez sur le riz."] },
+
+  { id: "mapo-tofu", name: "Mapo tofu au bœuf", cat: "vege", cui: "cn", time: 25, slots: ["midi", "soir"], diet: ["leger"],
+    ing: [["tofu", 400, "g"], ["boeuf_hache", 150, "g"], ["ail", 3, "gousse"], ["gingembre", 15, "g"], ["oignon_nouveau", 3, "pc"], ["sauce_soja", 2, "cs"], ["bouillon", 1, "pc"], ["farine", 1, "cs"], ["riz", 150, "g"]],
+    pantry: ["sauce pimentée (sriracha ou pâte de piment)", "huile", "poivre", "sucre"],
+    steps: ["Faites cuire 150 g de riz. Coupez le tofu en cubes de 2 cm et plongez-le 2 minutes dans l'eau frémissante salée, égouttez délicatement.",
+      "Dans un wok avec 1 cuillère d'huile, faites revenir 150 g de bœuf haché 3 minutes en l'émiettant. Ajoutez l'ail, le gingembre hachés et 1 à 2 cuillères de sauce pimentée, 1 minute.",
+      "Versez 20 cl de bouillon, 2 cuillères de sauce soja, une pincée de sucre. Ajoutez le tofu, laissez mijoter 5 minutes sans trop remuer.",
+      "Délayez 1 cuillère de farine dans un peu d'eau, versez, laissez épaissir 1 minute. Poivrez généreusement.",
+      "Oignons nouveaux ciselés, servez sur le riz."] },
+
+  /* ---------- Libanaises ---------- */
+  { id: "kafta-libanaise", name: "Kafta libanaise grillée, riz aux vermicelles", cat: "viande", cui: "lb", time: 30, slots: ["soir"],
+    ing: [["boeuf_hache", 400, "g"], ["oignon", 1, "pc"], ["persil", 1, "botte"], ["riz", 150, "g"], ["vermicelles", 40, "g"], ["tomate", 3, "pc"], ["yaourt", 1, "pot"]],
+    pantry: ["sept-épices libanais (ou cannelle + quatre-épices)", "cumin", "huile d'olive", "sel", "poivre"],
+    steps: ["Riz aux vermicelles : faites dorer 40 g de vermicelles dans 1 cuillère d'huile, ajoutez 150 g de riz rincé, remuez 1 minute, versez 30 cl d'eau chaude salée, couvrez, 15 minutes à feu doux.",
+      "Mélangez 400 g de bœuf haché avec l'oignon râpé et pressé, le persil ciselé, 1 cuillère à café de sept-épices, 1/2 de cumin, sel et poivre. Pétrissez bien.",
+      "Formez 6 boudins allongés (autour de piques ou non).",
+      "Faites griller 4 minutes par face sur une poêle-gril chaude avec les tomates coupées en deux.",
+      "Servez avec le riz aux vermicelles et le yaourt salé."] },
+
+  { id: "moujaddara", name: "Moujaddara (lentilles, riz et oignons caramélisés)", cat: "vege", cui: "lb", time: 40, slots: ["soir"], diet: ["leger", "chol"],
+    ing: [["lentilles_vertes", 200, "g"], ["riz", 120, "g"], ["oignon", 4, "pc"], ["yaourt", 1, "pot"], ["concombre", 1, "pc"], ["tomate", 2, "pc"], ["citron", 1, "pc"]],
+    pantry: ["cumin", "huile d'olive", "sel", "poivre"],
+    steps: ["Rincez 200 g de lentilles vertes, couvrez-les de 60 cl d'eau et faites-les cuire 15 minutes.",
+      "Ajoutez 120 g de riz rincé, 1 cuillère à café de cumin, du sel et 15 cl d'eau. Couvrez et laissez cuire 18 minutes à feu doux, jusqu'à absorption. Laissez reposer 5 minutes.",
+      "Pendant ce temps, émincez finement les 4 oignons et faites-les dorer 15 minutes dans 3 cuillères d'huile d'olive à feu moyen, en remuant, jusqu'à ce qu'ils soient bruns et croustillants sur les bords.",
+      "Mélangez la moitié des oignons aux lentilles-riz. Salade : concombre et tomates en dés, citron, huile, sel.",
+      "Servez avec le reste des oignons sur le dessus, le yaourt et la salade."] },
+
+  { id: "fatteh-pois-chiches", name: "Fatteh aux pois chiches, yaourt et pita croustillant", cat: "vege", cui: "lb", time: 20, slots: ["midi"], diet: ["leger"],
+    ing: [["pois_chiches", 1, "boite"], ["pita", 2, "pc"], ["yaourt", 2, "pot"], ["tahini", 2, "cs"], ["ail", 1, "gousse"], ["citron", 1, "pc"], ["pignons", 20, "g"], ["persil", 1, "botte"]],
+    pantry: ["cumin", "huile d'olive", "paprika", "sel"],
+    steps: ["Coupez les pains pita en petits triangles, badigeonnez-les d'huile d'olive et faites-les griller au four à 200 °C 8 minutes (ou à la poêle sèche) jusqu'à ce qu'ils soient croustillants.",
+      "Faites chauffer les pois chiches égouttés dans une casserole avec 10 cl d'eau, 1 cuillère à café de cumin et du sel, 5 minutes.",
+      "Sauce : mélangez 2 yaourts, 2 cuillères de tahini, la gousse d'ail pressée, le jus d'un demi-citron, sel.",
+      "Faites dorer 20 g de pignons dans une petite poêle avec quelques gouttes d'huile.",
+      "Dans un plat : pita croustillant, pois chiches chauds avec un peu de leur eau, sauce au yaourt, pignons, persil ciselé, paprika. Servez tout de suite."] },
+
+  { id: "shawarma-poulet", name: "Shawarma de poulet maison en pita, sauce à l'ail", cat: "volaille", cui: "lb", time: 30, slots: ["midi", "soir"], diet: ["leger", "chol"],
+    ing: [["poulet_haut", 4, "pc"], ["yaourt", 2, "pot"], ["citron", 1, "pc"], ["ail", 4, "gousse"], ["pita", 4, "pc"], ["tomate", 2, "pc"], ["cornichons", 4, "pc"], ["laitue", 1, "pc"]],
+    pantry: ["cumin", "coriandre moulue", "paprika", "cannelle", "curcuma", "huile d'olive", "sel", "poivre"],
+    steps: ["Désossez les hauts de cuisse (ou demandez-le au boucher) et coupez-les en lanières. Marinade : 1 yaourt, le jus d'un demi-citron, 2 gousses d'ail pressées, 1 cuillère à café de cumin, 1 de coriandre, 1 de paprika, 1/2 de cannelle, 1/2 de curcuma, 1 cuillère d'huile, sel, poivre. Laissez mariner 15 minutes minimum.",
+      "Sauce à l'ail : mélangez l'autre yaourt avec 2 gousses d'ail pressées, le reste de citron et du sel.",
+      "Faites cuire le poulet égoutté dans une poêle très chaude 8 à 10 minutes en remuant, jusqu'à ce qu'il soit bien doré sur les bords.",
+      "Réchauffez les pains pita. Garnissez de laitue, tomate en dés, cornichons en lamelles, poulet et sauce à l'ail. Roulez serré."] },
+
+  { id: "loubieh-bi-zeit", name: "Loubieh bi zeit (haricots verts à la tomate), riz", cat: "vege", cui: "lb", time: 35, slots: ["soir"], diet: ["leger", "chol"],
+    ing: [["haricots_verts", 500, "g"], ["tomate", 4, "pc"], ["oignon", 1, "pc"], ["ail", 4, "gousse"], ["riz", 150, "g"], ["citron", 1, "pc"]],
+    pantry: ["huile d'olive", "sel", "poivre"],
+    steps: ["Équeutez 500 g de haricots verts et coupez-les en deux. Émincez l'oignon, hachez 4 gousses d'ail, coupez les tomates en dés.",
+      "Dans une sauteuse, faites fondre l'oignon 5 minutes dans 3 cuillères d'huile d'olive, puis l'ail 1 minute.",
+      "Ajoutez les haricots, enrobez-les 3 minutes, puis les tomates, sel, poivre et 10 cl d'eau. Couvrez et laissez mijoter 25 minutes : les haricots doivent être très fondants.",
+      "Faites cuire 150 g de riz. Servez les haricots tièdes ou à température ambiante avec le riz, un filet d'huile d'olive et du citron."] },
+
+  { id: "kibbeh-four", name: "Kibbeh au four (bœuf et boulgour), salade au yaourt", cat: "viande", cui: "lb", time: 60, slots: ["soir"],
+    ing: [["boeuf_hache", 500, "g"], ["boulgour", 200, "g"], ["oignon", 2, "pc"], ["pignons", 30, "g"], ["yaourt", 1, "pot"], ["concombre", 1, "pc"], ["menthe", 1, "botte"]],
+    pantry: ["sept-épices libanais (ou cannelle + quatre-épices)", "cumin", "huile d'olive", "sel", "poivre"],
+    steps: ["Rincez 200 g de boulgour fin, couvrez-le d'eau 10 minutes, pressez-le bien. Mixez-le avec 350 g de bœuf haché, 1 oignon, 1 cuillère à café de sept-épices, sel et poivre, jusqu'à obtenir une pâte lisse (ajoutez un peu d'eau glacée si besoin).",
+      "Farce : faites revenir l'autre oignon haché dans 1 cuillère d'huile, ajoutez 150 g de bœuf haché, les pignons, 1/2 cuillère à café de cumin, sel, poivre. 8 minutes.",
+      "Préchauffez le four à 200 °C. Huilez un plat, étalez la moitié de la pâte au boulgour avec les mains mouillées, la farce, puis le reste de pâte. Lissez, tracez des losanges au couteau, arrosez d'huile d'olive.",
+      "Enfournez 35 minutes jusqu'à ce que le dessus soit bien doré.",
+      "Salade : yaourt, concombre en dés, menthe ciselée, sel. Servez avec le kibbeh."] },
+
+  { id: "poulet-zaatar-batata-harra", name: "Poulet au zaatar, batata harra (pommes de terre épicées)", cat: "volaille", cui: "lb", time: 40, slots: ["soir"], diet: ["leger", "chol"],
+    ing: [["poulet_blanc", 350, "g"], ["pdt", 600, "g"], ["coriandre", 1, "botte"], ["ail", 4, "gousse"], ["citron", 2, "pc"], ["poivron", 1, "pc"]],
+    pantry: ["zaatar", "paprika", "piment (flocons)", "huile d'olive", "sel", "poivre"],
+    steps: ["Préchauffez le four à 210 °C. Coupez 600 g de pommes de terre en petits cubes, huilez, salez, enfournez 25 minutes jusqu'à ce qu'ils soient dorés.",
+      "Poulet : coupez les blancs en 2 escalopes, enrobez-les du jus d'un citron, 1 cuillère d'huile d'olive, 2 cuillères à soupe de zaatar, sel. Laissez mariner pendant la cuisson des pommes de terre.",
+      "Batata harra : dans une poêle, faites revenir 4 gousses d'ail hachées et le poivron en petits dés dans 2 cuillères d'huile 2 minutes, avec 1 cuillère à café de paprika et une pincée de piment. Ajoutez les pommes de terre rôties, la coriandre ciselée et le jus d'un demi-citron. Mélangez.",
+      "Faites griller le poulet 4 minutes par face sur une poêle-gril chaude.",
+      "Servez avec le reste du citron."] },
+
+  /* ---------- Syriennes ---------- */
+  { id: "kabsa-poulet", name: "Kabsa au poulet (riz épicé aux raisins et amandes)", cat: "volaille", cui: "sy", time: 60, slots: ["soir"], diet: ["chol"],
+    ing: [["poulet_haut", 4, "pc"], ["riz_basmati", 200, "g"], ["oignon", 2, "pc"], ["tomate", 3, "pc"], ["ail", 3, "gousse"], ["carotte", 1, "pc"], ["raisins_secs", 40, "g"], ["amandes", 30, "g"], ["citron", 1, "pc"]],
+    pantry: ["cardamome", "cannelle", "clous de girofle", "curcuma", "laurier", "cumin", "huile d'olive", "sel", "poivre"],
+    steps: ["Dans une cocotte, faites dorer les 4 hauts de cuisse salés et poivrés dans 2 cuillères d'huile, 4 minutes par face. Réservez.",
+      "Faites fondre les 2 oignons émincés 5 minutes, ajoutez l'ail haché, la carotte râpée, les tomates en dés, 4 gousses de cardamome, 1 bâton de cannelle, 3 clous de girofle, 1 cuillère à café de curcuma, 1 de cumin, 2 feuilles de laurier. 5 minutes.",
+      "Remettez le poulet, couvrez de 60 cl d'eau, laissez mijoter 20 minutes à couvert. Retirez le poulet, gardez-le au chaud.",
+      "Rincez 200 g de riz basmati, versez-le dans le bouillon (il doit y en avoir environ 45 cl : ajustez), ajoutez les raisins secs. Couvrez, 15 minutes à feu doux, puis 5 minutes de repos.",
+      "Faites dorer les amandes à sec. Dressez le riz, le poulet dessus (passez-le 5 minutes sous le gril pour le croustillant), les amandes et des quartiers de citron."] },
+
+  { id: "shakriyeh", name: "Shakriyeh (agneau mijoté au yaourt), riz", cat: "viande", cui: "sy", time: 75, slots: ["soir"],
+    ing: [["agneau", 500, "g"], ["yaourt", 4, "pot"], ["oignon", 1, "pc"], ["ail", 2, "gousse"], ["farine", 20, "g"], ["riz", 150, "g"], ["pignons", 20, "g"], ["bouillon", 1, "pc"]],
+    pantry: ["menthe séchée", "laurier", "huile d'olive", "sel", "poivre"],
+    steps: ["Coupez 500 g d'agneau en cubes. Couvrez-les d'eau froide avec l'oignon entier, le laurier et le cube de bouillon, portez à ébullition, écumez, puis laissez frémir 45 minutes à couvert. Réservez la viande et 20 cl de bouillon.",
+      "Faites cuire 150 g de riz.",
+      "Dans une casserole, fouettez 4 yaourts avec 20 g de farine et 20 cl de bouillon. Chauffez à feu doux en remuant sans arrêt dans le même sens jusqu'à frémissement : la sauce épaissit sans trancher.",
+      "Ajoutez la viande, 2 gousses d'ail écrasées, 1 cuillère à café de menthe séchée, sel, poivre. Laissez mijoter 10 minutes.",
+      "Faites dorer les pignons dans un peu d'huile d'olive. Servez la shakriyeh sur le riz, pignons dessus."] },
+
+  { id: "yalanji", name: "Yalanji (feuilles de vigne farcies au riz, à l'huile d'olive)", cat: "vege", cui: "sy", time: 80, slots: ["soir"], diet: ["leger", "chol"],
+    ing: [["feuilles_vigne", 40, "pc"], ["riz", 200, "g"], ["tomate", 3, "pc"], ["oignon", 2, "pc"], ["persil", 1, "botte"], ["menthe", 1, "botte"], ["citron", 2, "pc"], ["pdt", 300, "g"]],
+    pantry: ["huile d'olive", "mélasse de grenade (facultatif)", "cumin", "sel", "poivre"],
+    steps: ["Rincez les feuilles de vigne à l'eau chaude, égouttez. Farce : mélangez 200 g de riz rincé (cru), les 2 oignons hachés très fin, 2 tomates en petits dés, le persil et la menthe ciselés, 4 cuillères d'huile d'olive, le jus d'un citron, 1 cuillère à café de cumin, sel, poivre.",
+      "Posez une feuille nervures vers vous, 1 cuillère à café de farce à la base, rabattez les côtés et roulez serré. Répétez.",
+      "Tapissez le fond d'une casserole de rondelles de pommes de terre et de la tomate restante. Rangez les rouleaux bien serrés, en couches.",
+      "Couvrez d'eau à hauteur avec le jus du second citron, 3 cuillères d'huile d'olive, 1 de mélasse de grenade et du sel. Posez une assiette dessus pour les maintenir, couvrez et laissez cuire 50 minutes à feu doux.",
+      "Laissez tiédir dans la casserole. Servez tiède ou froid avec du citron. Se garde 3 jours au frais."] },
+
+  { id: "sheikh-el-mahshi", name: "Sheikh el mahshi (courgettes farcies au bœuf, sauce yaourt), riz", cat: "viande", cui: "sy", time: 50, slots: ["soir"],
+    ing: [["courgette", 4, "pc"], ["boeuf_hache", 300, "g"], ["oignon", 1, "pc"], ["pignons", 30, "g"], ["yaourt", 3, "pot"], ["farine", 20, "g"], ["ail", 2, "gousse"], ["riz", 150, "g"], ["bouillon", 1, "pc"]],
+    pantry: ["sept-épices libanais (ou cannelle + quatre-épices)", "menthe séchée", "huile d'olive", "sel", "poivre"],
+    steps: ["Coupez les 4 courgettes en deux dans la longueur et évidez-les à la petite cuillère en gardant 1 cm de chair. Faites-les dorer 3 minutes côté chair dans 1 cuillère d'huile.",
+      "Farce : faites revenir l'oignon haché, ajoutez 300 g de bœuf haché, les pignons, 1 cuillère à café de sept-épices, sel, poivre. 8 minutes. Garnissez les courgettes.",
+      "Sauce : fouettez 3 yaourts avec 20 g de farine et 20 cl de bouillon. Chauffez à feu doux en remuant sans arrêt jusqu'à frémissement. Ajoutez l'ail écrasé et 1 cuillère à café de menthe séchée.",
+      "Rangez les courgettes dans un plat, nappez de sauce au yaourt, couvrez d'aluminium et enfournez 25 minutes à 190 °C.",
+      "Faites cuire 150 g de riz et servez ensemble."] },
+
+  { id: "harak-osbao", name: "Harak osbao (lentilles, pâtes et oignons frits à la mélasse de grenade)", cat: "vege", cui: "sy", time: 45, slots: ["soir"], diet: ["leger", "chol"],
+    ing: [["lentilles_vertes", 250, "g"], ["pates", 100, "g"], ["oignon", 3, "pc"], ["ail", 4, "gousse"], ["coriandre", 1, "botte"], ["melasse_grenade", 3, "cs"], ["citron", 1, "pc"], ["pita", 2, "pc"]],
+    pantry: ["cumin", "huile d'olive", "sel", "poivre"],
+    steps: ["Rincez 250 g de lentilles, couvrez de 1 litre d'eau et faites-les cuire 20 minutes.",
+      "Pendant ce temps, émincez les 3 oignons et faites-les dorer 15 minutes dans 3 cuillères d'huile d'olive jusqu'à ce qu'ils soient bruns et croustillants. Réservez-en la moitié, remettez l'autre dans la poêle avec l'ail et la coriandre hachés, 2 minutes.",
+      "Ajoutez 100 g de petites pâtes aux lentilles avec leur eau, cuisez 10 minutes. Il doit rester un peu de liquide, comme un ragoût épais.",
+      "Incorporez l'ail-coriandre, 3 cuillères de mélasse de grenade, le jus du citron, 1 cuillère à café de cumin, sel, poivre.",
+      "Servez avec les oignons croustillants et des morceaux de pita grillés sur le dessus."] },
+
+  { id: "kebab-halabi", name: "Kebab halabi (kefta d'Alep à la sauce tomate-poivron), pita", cat: "viande", cui: "sy", time: 40, slots: ["soir"],
+    ing: [["boeuf_hache", 450, "g"], ["poivron", 2, "pc"], ["tomate", 4, "pc"], ["oignon", 2, "pc"], ["ail", 3, "gousse"], ["persil", 1, "botte"], ["pita", 4, "pc"], ["pignons", 20, "g"]],
+    pantry: ["piment d'Alep (ou paprika + piment)", "sept-épices libanais (ou cannelle + quatre-épices)", "huile d'olive", "sel", "poivre"],
+    steps: ["Préchauffez le four à 220 °C. Mélangez 450 g de bœuf haché avec 1 oignon râpé et pressé, la moitié du persil ciselé, 1 cuillère à café de sept-épices, 1 de piment d'Alep, sel, poivre. Formez 8 boudins aplatis.",
+      "Coupez les poivrons en lanières et 2 tomates en quartiers. Étalez le tout sur une plaque huilée avec les kefta et enfournez 15 minutes.",
+      "Sauce : faites revenir l'autre oignon et l'ail hachés dans 1 cuillère d'huile, ajoutez les 2 tomates restantes râpées et 1 cuillère à café de piment d'Alep, 10 minutes.",
+      "Versez la sauce sur les kefta et les légumes, remettez au four 8 minutes.",
+      "Servez avec le reste du persil, les pignons dorés et les pains pita chauds."] },
+
+  { id: "foul-mdammas", name: "Foul mdammas (fèves à l'huile d'olive, citron et cumin)", cat: "vege", cui: "sy", time: 15, slots: ["midi"], diet: ["leger", "chol"],
+    ing: [["feves", 2, "boite"], ["ail", 2, "gousse"], ["citron", 2, "pc"], ["tomate", 2, "pc"], ["persil", 1, "botte"], ["oignon_nouveau", 2, "pc"], ["pita", 4, "pc"]],
+    pantry: ["cumin", "huile d'olive", "sel", "poivre"],
+    steps: ["Versez les 2 boîtes de fèves avec leur jus dans une casserole, chauffez 5 minutes à feu doux.",
+      "Égouttez en partie, écrasez grossièrement à la fourchette avec 2 gousses d'ail pressées, le jus d'un citron et demi, 1 cuillère à café de cumin, sel et poivre.",
+      "Versez dans un plat creux, arrosez généreusement d'huile d'olive.",
+      "Garnissez de tomates en dés, oignons nouveaux émincés, persil ciselé et quartiers du citron restant.",
+      "Servez chaud avec les pains pita, pour saucer."] },
+
+  { id: "muhammara", name: "Muhammara (dip poivrons-noix), crudités et pita", cat: "vege", cui: "sy", time: 30, slots: ["midi"], diet: ["leger", "chol"],
+    ing: [["poivron", 3, "pc"], ["noix", 80, "g"], ["chapelure", 40, "g"], ["ail", 1, "gousse"], ["melasse_grenade", 2, "cs"], ["citron", 1, "pc"], ["concombre", 1, "pc"], ["carotte", 2, "pc"], ["pita", 4, "pc"]],
+    pantry: ["cumin", "piment d'Alep (ou paprika + piment)", "huile d'olive", "sel"],
+    steps: ["Faites griller les 3 poivrons entiers sous le gril du four 20 minutes en les tournant, jusqu'à ce que la peau noircisse. Enfermez-les 10 minutes dans un sac ou sous un bol, pelez-les et épépinez-les.",
+      "Faites griller 80 g de noix à sec 3 minutes.",
+      "Mixez les poivrons, les noix, 40 g de chapelure, la gousse d'ail, 2 cuillères de mélasse de grenade, le jus d'un demi-citron, 1 cuillère à café de cumin, 1 de piment d'Alep, 3 cuillères d'huile d'olive et du sel, jusqu'à obtenir une pâte épaisse encore un peu granuleuse.",
+      "Servez dans un plat avec un filet d'huile, accompagné de bâtonnets de concombre et de carotte et de pains pita tièdes."] },
 ];
