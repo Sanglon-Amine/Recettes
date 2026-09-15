@@ -16,7 +16,7 @@ En ligne : https://claude.ai/code/artifact/120359d2-2c5f-4867-baa8-35c811dbad6d
 ## Fichiers
 - `index.html` — coque de l'app, icônes SVG
 - `styles.css` — thème clair/sombre, mise en page mobile
-- `recipes.js` — 147 recettes (quantités pour 2) de 12 cuisines (française, marocaine, libanaise, syrienne, italienne, méditerranéenne, japonaise, chinoise, Asie du Sud-Est, indienne, mexicaine, américaine), dictionnaire des ingrédients et rayons
+- `recipes.js` — 177 recettes (quantités pour 2) de 12 cuisines (française, marocaine, libanaise, syrienne, italienne, méditerranéenne, japonaise, chinoise, Asie du Sud-Est, indienne, mexicaine, américaine), dictionnaire des ingrédients et rayons
 - `app.js` — génération de la semaine, rotation, liste de courses, fiche recette, sauvegarde locale
 - `manifest.json`, `sw.js`, `icon-*.png` — installation PWA et mode hors ligne
 
@@ -30,8 +30,8 @@ En ligne : https://claude.ai/code/artifact/120359d2-2c5f-4867-baa8-35c811dbad6d
 
 ## Régimes (options)
 Deux boutons **Régime** (onglet Semaine et Recettes), cumulables, mémorisés :
-- **Léger** — plat complet peu calorique, peu de matières grasses ajoutées, pas de friture ni de gratin/crème/fromage en quantité (82 recettes).
-- **Faible en cholestérol** — sans beurre, crème, fromage gras, jaunes d'œufs, viande rouge ni lait de coco ; poisson, volaille, légumineuses, huile d'olive (61 recettes).
+- **Léger** — plat complet peu calorique, peu de matières grasses ajoutées, pas de friture ni de gratin/crème/fromage en quantité (96 recettes).
+- **Faible en cholestérol** — sans beurre, crème, fromage gras, jaunes d'œufs, viande rouge ni lait de coco ; poisson, volaille, légumineuses, huile d'olive (73 recettes).
 
 Activer un régime remplace aussitôt les repas non conformes (sauf verrouillés), restreint les tirages et le catalogue.
 Les étiquettes (`diet: ["leger", "chol"]` dans `recipes.js`) sont une classification de bon sens, pas un avis médical.
@@ -61,7 +61,7 @@ Les recettes sont écrites pour 2 ; les arrondis sont pensés pour l'achat (gram
 ½ possible pour un poivron ou un citron). Les étapes citent les quantités pour 2 — la fiche l'indique avec le facteur à appliquer.
 
 ## Photos des plats
-- Recettes de la base : 124 sur 147 portent une illustration (`img`, `imgPage`) — vignette 500 px issue de l'article Wikipédia du plat
+- Recettes de la base : 143 sur 177 portent une illustration (`img`, `imgPage`) — vignette 500 px issue de l'article Wikipédia du plat
   (Wikimedia Commons, créditée dans la fiche). Choisies après vérification ; les plats sans article fidèle n'en ont pas.
 - Recettes importées : la photo publiée par le site (`image` de la fiche schema.org) est enregistrée avec la recette.
 - Chargées à la demande à l'ouverture de la fiche, masquées si l'image ne répond pas.
