@@ -440,7 +440,7 @@
       actions = `<button class="btn" data-act="cancelForm">Annuler</button><button class="btn btn-primary" data-act="saveRecipe">${icon("check")} Enregistrer</button>`;
     } else if (s.mode === "web") {
       body = renderWebResults();
-      actions = `<button class="btn" data-act="closeSheet">Fermer</button><button class="btn" data-act="newRecipe">${icon("book")} Coller un lien</button>`;
+      actions = `<button class="btn" data-act="webSearch">${icon("search")} Réessayer</button><button class="btn" data-act="newRecipe">${icon("book")} Coller un lien</button>`;
     } else if (s.mode === "slots") {
       body = `
         <p class="eyebrow">Mettre au menu</p>
@@ -660,6 +660,51 @@
       if (ui.sheet && ui.sheet.mode === "form") renderSheet();
     });
   }
+  // Moteurs essayés dans l'ordre jusqu'à obtenir des résultats (chacun peut bloquer ponctuellement).
+  const SEARCH_ENGINES = [
+    { name: "DuckDuckGo", url: q => "https://html.duckduckgo.com/html/?kl=fr-fr&q=" + encodeURIComponent("recette " + q), parse: parseSearchResults },
+    { name: "DuckDuckGo", url: q => "https://lite.duckduckgo.com/lite/?kl=fr-fr&q=" + encodeURIComponent("recette " + q), parse: parseSearchResults },
+    { name: "Brave", url: q => "https://search.brave.com/search?source=web&q=" + encodeURIComponent("recette " + q), parse: parseBraveResults },
+  ];
+  function runSearch(qs) {
+    const token = ui.web;
+    const errors = [];
+    const tryEngine = i => {
+      if (ui.web !== token) return;
+      if (i >= SEARCH_ENGINES.length) {
+        ui.web.status = "Aucun résultat pour le moment" + (errors.length ? ` (${errors.join(" · ")})` : "") + ". Réessaie dans quelques minutes, essaie d'autres mots, ou colle un lien.";
+        renderSheet(); return;
+      }
+      const eng = SEARCH_ENGINES[i];
+      fetchPage(eng.url(qs)).then(html => {
+        if (ui.web !== token) return;
+        const results = eng.parse(html);
+        if (!results.length) { errors.push(eng.name + (/anomaly|challenge|captcha|bots use/i.test(html) ? " : bloqué" : " : 0 résultat")); return tryEngine(i + 1); }
+        ui.web.results = results; ui.web.engine = eng.name;
+        ui.web.status = `${results.length} résultat${results.length > 1 ? "s" : ""} — touche une recette pour l'importer.`;
+        renderSheet();
+      }).catch(err => { errors.push(eng.name + " : " + (err && err.message ? err.message : "erreur")); tryEngine(i + 1); });
+    };
+    tryEngine(0);
+  }
+  function parseBraveResults(html) {
+    const doc = new DOMParser().parseFromString(html, "text/html");
+    const out = [];
+    doc.querySelectorAll('.snippet[data-type="web"]').forEach(el => {
+      const a = el.querySelector("a[href^='http']");
+      if (!a) return;
+      const href = a.getAttribute("href");
+      const host = hostOf(href);
+      if (BLOCKED_HOSTS.some(b => host.includes(b)) || host.includes("brave.com") || out.some(r => r.url === href)) return;
+      const t = el.querySelector(".title");
+      const sn = el.querySelector(".content, .snippet-description");
+      const title = (t ? t.textContent : a.textContent).replace(/\s+/g, " ").trim();
+      if (!title) return;
+      out.push({ url: href, title, host, snippet: sn ? sn.textContent.replace(/\s+/g, " ").replace(/^\d{1,2} \S+ \d{4} -\s*/, "").trim() : "", known: KNOWN_SITES.some(s => host === s || host.endsWith("." + s)) });
+    });
+    out.sort((x, y) => (y.known ? 1 : 0) - (x.known ? 1 : 0));
+    return out.slice(0, 12);
+  }
   // Sites de recettes qui publient des fiches lisibles : affichés en premier.
   const KNOWN_SITES = ["marmiton.org", "750g.com", "cuisineaz.com", "journaldesfemmes.fr", "ptitchef.com", "cuisineactuelle.fr", "femmeactuelle.fr", "academiedugout.fr", "atelierdeschefs.fr", "chefsimon.com", "regal.fr", "papillesetpupilles.fr", "elle.fr", "cuisine-libre.org", "lacuisinedannie.20minutes.fr", "ricardocuisine.com", "recettes.de"];
   const BLOCKED_HOSTS = ["youtube.com", "youtu.be", "pinterest.", "facebook.com", "instagram.com", "tiktok.com", "amazon.", "wikipedia.org", "twitter.com", "x.com", "duckduckgo.com"];
@@ -697,7 +742,7 @@
           <span><span class="meal-name">${esc(r.title)}</span><span class="meal-meta"><strong>${esc(r.host)}</strong>${r.known ? " · import direct" : ""}${r.snippet ? " · " + esc(r.snippet) : ""}</span></span>
           <span class="recipe-side">${icon("chevron")}</span>
         </button>`).join("")}</div>` : ""}
-      <p class="hint">Résultats DuckDuckGo. Les sites marqués « import direct » publient des fiches lisibles : la recette arrive pré-remplie, avec les quantités converties pour ton nombre de personnes. Porc, lardons et alcool sont signalés avant l'enregistrement.</p>`;
+      <p class="hint">${w.engine ? `Résultats ${esc(w.engine)}. ` : ""}Les sites marqués « import direct » publient des fiches lisibles : la recette arrive pré-remplie, avec les quantités converties pour ton nombre de personnes. Porc, lardons et alcool sont signalés avant l'enregistrement.</p>`;
   }
   function readForm() {
     const f = Object.assign({}, ui.form || {});
@@ -769,20 +814,18 @@
       case "newRecipe": ui.form = { ingText: "", stepsText: "", pantryText: "", slots: ["midi", "soir"], diets: [], cat: "vege", cui: "fr" }; ui.sheet = { mode: "form" }; renderSheet(); break;
       case "cancelForm": ui.sheet = null; ui.form = null; renderSheet(); break;
       case "webSearch": {
-        const qs = ui.search.trim();
+        const qs = ui.search.trim() || (ui.web && ui.web.q) || "";
         if (qs.length < 3) break;
-        ui.web = { q: qs, status: "Recherche sur internet…", results: [] };
+        if (!window.Android || typeof window.Android.fetchUrl !== "function") {
+          const inWebView = /; wv\)/.test(navigator.userAgent);
+          ui.web = { q: qs, status: inWebView
+            ? "Cette version de l'application ne sait pas encore chercher sur internet : installe la nouvelle version (build 7 ou plus) quand elle t'est proposée à l'ouverture, ou depuis la page des Releases."
+            : "La recherche sur internet fonctionne dans l'application Android. Ici, colle un lien ou saisis la recette à la main.", results: [], engine: "" };
+          ui.sheet = { mode: "web" }; renderSheet(); break;
+        }
+        ui.web = { q: qs, status: "Recherche sur internet…", results: [], engine: "" };
         ui.sheet = { mode: "web" }; renderSheet();
-        fetchPage("https://html.duckduckgo.com/html/?kl=fr-fr&q=" + encodeURIComponent("recette " + qs)).then(html => {
-          const results = parseSearchResults(html);
-          ui.web.results = results;
-          ui.web.status = results.length ? `${results.length} résultat${results.length > 1 ? "s" : ""} — touche une recette pour l'importer.`
-            : (/anomaly|challenge|captcha|bot/i.test(html) ? "Le moteur de recherche bloque temporairement les requêtes. Réessaie dans quelques minutes, ou colle un lien." : "Aucun résultat. Essaie d'autres mots.");
-          renderSheet();
-        }).catch(() => {
-          ui.web.status = window.Android ? "Recherche impossible pour le moment (pas de réseau ou moteur injoignable)." : "La recherche sur internet fonctionne dans l'application Android. Ici, colle un lien ou saisis la recette à la main.";
-          renderSheet();
-        });
+        runSearch(qs);
         break;
       }
       case "webImport": {

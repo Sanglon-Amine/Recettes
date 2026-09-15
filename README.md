@@ -38,7 +38,7 @@ Les étiquettes (`diet: ["leger", "chol"]` dans `recipes.js`) sont une classific
 
 ## Recettes personnelles : recherche sur internet, import depuis un lien, saisie
 Onglet Recettes. Dès qu'on tape 3 lettres dans la recherche, un bouton **« Chercher « … » sur internet »** apparaît :
-l'app interroge DuckDuckGo (`html.duckduckgo.com/html/?q=recette …`, via le pont Android, sans clé ni compte), filtre
+l'app interroge DuckDuckGo (`html.duckduckgo.com/html/`, puis `lite.duckduckgo.com/lite/`, puis Brave Search en secours ; via le pont Android, sans clé ni compte), filtre
 les publicités et réseaux sociaux, affiche les résultats (sites de recettes connus en premier, marqués « import direct »)
 et un tap sur un résultat lance l'import automatique ci-dessous. Si le moteur bloque temporairement, l'app le dit.
 
