@@ -86,6 +86,7 @@ const ING = {
 
 const RECIPES = [
   { id: "poulet-basquaise", name: "Poulet basquaise", cat: "volaille", cui: "fr", time: 45, slots: ["soir"],
+    img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/98/Poulet_basquaise_01.jpg/500px-Poulet_basquaise_01.jpg", imgPage: "https://fr.wikipedia.org/wiki/Poulet_basquaise",
     ing: [["poulet_haut", 4, "pc"], ["poivron", 2, "pc"], ["oignon", 1, "pc"], ["ail", 2, "gousse"], ["tomates_concassees", 1, "boite"], ["riz", 150, "g"]],
     pantry: ["huile d'olive", "piment d'Espelette", "thym", "sel", "poivre"],
     steps: [
@@ -97,6 +98,7 @@ const RECIPES = [
     ] },
 
   { id: "carbonara", name: "Spaghetti au bœuf sauté façon carbonara", cat: "pates", cui: "it", time: 20, slots: ["midi", "soir"],
+    img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2d/Spaghetti_alla_Carbonara_%28Madrid%29.JPG/500px-Spaghetti_alla_Carbonara_%28Madrid%29.JPG", imgPage: "https://fr.wikipedia.org/wiki/P%C3%A2tes_%C3%A0_la_carbonara",
     ing: [["spaghetti", 200, "g"], ["boeuf_saute", 200, "g"], ["oeuf", 3, "pc"], ["parmesan", 60, "g"], ["ail", 1, "gousse"]],
     pantry: ["huile d'olive", "sel", "poivre"],
     steps: [
@@ -108,6 +110,7 @@ const RECIPES = [
     ] },
 
   { id: "gratin-dauphinois", name: "Gratin dauphinois, salade verte", cat: "vege", cui: "fr", time: 80, slots: ["soir"],
+    img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2a/Gratin_dauphinois.jpg/500px-Gratin_dauphinois.jpg", imgPage: "https://fr.wikipedia.org/wiki/Gratin_dauphinois",
     ing: [["pdt", 800, "g"], ["creme_liquide", 20, "cl"], ["lait", 20, "cl"], ["ail", 1, "gousse"], ["beurre", 20, "g"], ["laitue", 1, "pc"]],
     pantry: ["muscade", "sel", "poivre", "huile d'olive", "vinaigre"],
     steps: [
@@ -131,6 +134,7 @@ const RECIPES = [
     ] },
 
   { id: "quiche-lorraine", name: "Quiche au jambon de bœuf et oignons", cat: "oeufs", cui: "fr", time: 50, slots: ["midi", "soir"],
+    img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7e/Quiche_Lorraine.jpg/500px-Quiche_Lorraine.jpg", imgPage: "https://fr.wikipedia.org/wiki/Quiche",
     ing: [["pate_brisee", 1, "pc"], ["jambon_boeuf", 3, "tranche"], ["oignon", 1, "pc"], ["oeuf", 3, "pc"], ["creme", 20, "cl"], ["lait", 10, "cl"], ["gruyere", 80, "g"], ["beurre", 15, "g"]],
     pantry: ["muscade", "sel", "poivre"],
     steps: [
@@ -142,6 +146,7 @@ const RECIPES = [
     ] },
 
   { id: "chili", name: "Chili con carne", cat: "viande", cui: "mx", time: 45, slots: ["soir"],
+    img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/50/Bowl_of_chili.jpg/500px-Bowl_of_chili.jpg", imgPage: "https://fr.wikipedia.org/wiki/Chili_con_carne",
     ing: [["boeuf_hache", 300, "g"], ["haricots_rouges", 1, "boite"], ["tomates_concassees", 1, "boite"], ["oignon", 1, "pc"], ["ail", 2, "gousse"], ["poivron", 1, "pc"], ["riz", 150, "g"]],
     pantry: ["cumin", "paprika", "huile", "sel", "poivre"],
     steps: [
@@ -153,6 +158,7 @@ const RECIPES = [
     ] },
 
   { id: "cesar", name: "Salade César au poulet", cat: "salade", cui: "us", time: 20, slots: ["midi"],
+    img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0c/Ceasar_salad_%286814864465%29.jpg/500px-Ceasar_salad_%286814864465%29.jpg", imgPage: "https://fr.wikipedia.org/wiki/Salade_C%C3%A9sar",
     ing: [["poulet_blanc", 250, "g"], ["romaine", 1, "pc"], ["parmesan", 40, "g"], ["pain", 2, "tranche"], ["oeuf", 1, "pc"], ["citron", 1, "pc"], ["ail", 1, "gousse"]],
     pantry: ["moutarde", "huile d'olive", "sel", "poivre"],
     steps: [
@@ -164,6 +170,7 @@ const RECIPES = [
     ] },
 
   { id: "risotto", name: "Risotto aux champignons", cat: "pates", cui: "it", time: 35, slots: ["soir"],
+    img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/cc/Flickr_-_cyclonebill_-_Risotto_med_citron_og_gr%C3%B8nne_b%C3%B8nner.jpg/500px-Flickr_-_cyclonebill_-_Risotto_med_citron_og_gr%C3%B8nne_b%C3%B8nner.jpg", imgPage: "https://fr.wikipedia.org/wiki/Risotto",
     ing: [["riz_arborio", 180, "g"], ["champignons", 250, "g"], ["oignon", 1, "pc"], ["bouillon", 1, "pc"], ["parmesan", 50, "g"], ["beurre", 30, "g"]],
     pantry: ["huile d'olive", "sel", "poivre"],
     steps: [
@@ -175,6 +182,7 @@ const RECIPES = [
     ] },
 
   { id: "omelette", name: "Omelette aux herbes, tomates en salade", cat: "oeufs", cui: "fr", time: 15, slots: ["midi"], diet: ["leger"],
+    img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/ed/Omelette-Plate.jpg/500px-Omelette-Plate.jpg", imgPage: "https://fr.wikipedia.org/wiki/Omelette",
     ing: [["oeuf", 5, "pc"], ["ciboulette", 1, "botte"], ["beurre", 15, "g"], ["tomate", 3, "pc"], ["echalote", 1, "pc"]],
     pantry: ["huile d'olive", "vinaigre", "sel", "poivre"],
     steps: [
@@ -186,6 +194,7 @@ const RECIPES = [
     ] },
 
   { id: "ratatouille", name: "Ratatouille et riz", cat: "vege", cui: "fr", time: 50, slots: ["soir"], diet: ["leger", "chol"],
+    img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/15/Ratatouille_001.jpg/500px-Ratatouille_001.jpg", imgPage: "https://fr.wikipedia.org/wiki/Ratatouille",
     ing: [["aubergine", 1, "pc"], ["courgette", 2, "pc"], ["poivron", 2, "pc"], ["tomate", 4, "pc"], ["oignon", 1, "pc"], ["ail", 2, "gousse"], ["riz", 150, "g"]],
     pantry: ["huile d'olive", "thym", "sel", "poivre"],
     steps: [
@@ -208,6 +217,7 @@ const RECIPES = [
     ] },
 
   { id: "wok-poulet", name: "Wok de poulet aux légumes", cat: "volaille", cui: "cn", time: 25, slots: ["midi", "soir"], diet: ["leger", "chol"],
+    img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/62/Making_Stir-Fry_%283286445383%29.jpg/500px-Making_Stir-Fry_%283286445383%29.jpg", imgPage: "https://en.wikipedia.org/wiki/Stir_frying",
     ing: [["poulet_blanc", 300, "g"], ["brocoli", 1, "pc"], ["carotte", 1, "pc"], ["poivron", 1, "pc"], ["sauce_soja", 4, "cs"], ["gingembre", 20, "g"], ["ail", 1, "gousse"], ["nouilles_riz", 150, "g"], ["sesame", 1, "cs"]],
     pantry: ["huile"],
     steps: [
@@ -219,6 +229,7 @@ const RECIPES = [
     ] },
 
   { id: "chevre-chaud", name: "Tartines de chèvre chaud, mâche aux noix", cat: "oeufs", cui: "fr", time: 15, slots: ["midi"],
+    img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/ea/Salade_de_ch%C3%A8vre_chaud_002.jpg/500px-Salade_de_ch%C3%A8vre_chaud_002.jpg", imgPage: "https://fr.wikipedia.org/wiki/Salade_de_ch%C3%A8vre_chaud",
     ing: [["pain", 4, "tranche"], ["chevre", 150, "g"], ["miel", 1, "cs"], ["mache", 100, "g"], ["noix", 30, "g"]],
     pantry: ["vinaigre balsamique", "huile d'olive", "poivre"],
     steps: [
@@ -230,6 +241,7 @@ const RECIPES = [
     ] },
 
   { id: "soupe-potiron", name: "Soupe de potiron, croûtons", cat: "soupe", cui: "fr", time: 35, slots: ["midi", "soir"], diet: ["leger"],
+    img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/fa/Pumpkin_Cream_Soup.jpg/500px-Pumpkin_Cream_Soup.jpg", imgPage: "https://fr.wikipedia.org/wiki/Soupe_de_potiron",
     ing: [["potiron", 800, "g"], ["pdt", 200, "g"], ["oignon", 1, "pc"], ["bouillon", 1, "pc"], ["creme", 10, "cl"], ["pain", 2, "tranche"]],
     pantry: ["muscade", "huile d'olive", "sel", "poivre"],
     steps: [
@@ -241,6 +253,7 @@ const RECIPES = [
     ] },
 
   { id: "lasagnes", name: "Lasagnes à la bolognaise", cat: "pates", cui: "it", time: 70, slots: ["soir"],
+    img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/ba/Lasagne_-_stonesoup.jpg/500px-Lasagne_-_stonesoup.jpg", imgPage: "https://fr.wikipedia.org/wiki/Lasagnes",
     ing: [["lasagnes", 8, "feuille"], ["boeuf_hache", 300, "g"], ["tomates_concassees", 1, "boite"], ["oignon", 1, "pc"], ["ail", 2, "gousse"], ["carotte", 1, "pc"], ["lait", 40, "cl"], ["beurre", 30, "g"], ["farine", 30, "g"], ["gruyere", 80, "g"]],
     pantry: ["muscade", "origan", "huile", "sel", "poivre"],
     steps: [
@@ -252,6 +265,7 @@ const RECIPES = [
     ] },
 
   { id: "croque", name: "Croque-monsieur au jambon de bœuf, salade", cat: "oeufs", cui: "fr", time: 15, slots: ["midi"],
+    img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/db/Sandwich-Mixto.jpg/500px-Sandwich-Mixto.jpg", imgPage: "https://fr.wikipedia.org/wiki/Croque-monsieur",
     ing: [["pain_mie", 8, "tranche"], ["jambon_boeuf", 4, "tranche"], ["gruyere", 120, "g"], ["beurre", 30, "g"], ["creme", 10, "cl"], ["laitue", 1, "pc"]],
     pantry: ["moutarde", "muscade", "vinaigre", "huile"],
     steps: [
@@ -263,6 +277,7 @@ const RECIPES = [
     ] },
 
   { id: "dahl", name: "Dahl de lentilles corail, riz basmati", cat: "vege", cui: "in", time: 30, slots: ["midi", "soir"], diet: ["leger"],
+    img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f5/3_types_of_lentil.png/500px-3_types_of_lentil.png", imgPage: "https://en.wikipedia.org/wiki/Dal",
     ing: [["lentilles_corail", 200, "g"], ["lait_coco", 40, "cl"], ["oignon", 1, "pc"], ["ail", 2, "gousse"], ["gingembre", 15, "g"], ["tomates_concassees", 1, "boite"], ["riz_basmati", 150, "g"], ["coriandre", 1, "botte"]],
     pantry: ["curry", "cumin", "huile", "sel"],
     steps: [
@@ -274,6 +289,7 @@ const RECIPES = [
     ] },
 
   { id: "cabillaud-pane", name: "Cabillaud pané maison, purée", cat: "poisson", cui: "fr", time: 35, slots: ["soir"],
+    img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/64/Fishfinger_classic_fried_2.jpg/500px-Fishfinger_classic_fried_2.jpg", imgPage: "https://fr.wikipedia.org/wiki/Poisson_pan%C3%A9",
     ing: [["cabillaud", 300, "g"], ["chapelure", 60, "g"], ["farine", 30, "g"], ["oeuf", 1, "pc"], ["pdt", 600, "g"], ["lait", 10, "cl"], ["beurre", 40, "g"], ["citron", 1, "pc"]],
     pantry: ["huile", "sel", "poivre", "muscade"],
     steps: [
@@ -285,6 +301,7 @@ const RECIPES = [
     ] },
 
   { id: "salade-pates-thon", name: "Salade de pâtes au thon", cat: "salade", cui: "it", time: 20, slots: ["midi"],
+    img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e1/Pasta_salad_closeup.JPG/500px-Pasta_salad_closeup.JPG", imgPage: "https://fr.wikipedia.org/wiki/Salade_de_p%C3%A2tes",
     ing: [["pates", 200, "g"], ["thon", 1, "boite"], ["tomates_cerises", 200, "g"], ["mais", 1, "boite"], ["concombre", 1, "pc"], ["mozzarella", 125, "g"], ["basilic", 1, "botte"]],
     pantry: ["huile d'olive", "vinaigre", "sel", "poivre"],
     steps: [
@@ -307,6 +324,7 @@ const RECIPES = [
     ] },
 
   { id: "tajine-poulet", name: "Tajine de poulet aux olives et citron confit", cat: "volaille", cui: "ma", time: 60, slots: ["soir"], diet: ["leger", "chol"],
+    img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6d/Tajine_008.JPG/500px-Tajine_008.JPG", imgPage: "https://fr.wikipedia.org/wiki/Tajine",
     ing: [["poulet_haut", 4, "pc"], ["oignon", 2, "pc"], ["ail", 2, "gousse"], ["citron_confit", 1, "pc"], ["olives_vertes", 100, "g"], ["coriandre", 1, "botte"], ["semoule", 150, "g"]],
     pantry: ["curcuma", "gingembre moulu", "cumin", "huile d'olive", "sel", "poivre"],
     steps: [
@@ -319,6 +337,7 @@ const RECIPES = [
     ] },
 
   { id: "tomates-farcies", name: "Tomates farcies au bœuf, riz", cat: "viande", cui: "fr", time: 60, slots: ["soir"],
+    img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6d/Tomates_farcies_maison_de_Mina_Biennier.jpg/500px-Tomates_farcies_maison_de_Mina_Biennier.jpg", imgPage: "https://fr.wikipedia.org/wiki/Tomates_farcies",
     ing: [["tomate", 4, "pc"], ["boeuf_hache", 300, "g"], ["oignon", 1, "pc"], ["ail", 1, "gousse"], ["persil", 1, "botte"], ["pain", 1, "tranche"], ["riz", 120, "g"]],
     pantry: ["huile d'olive", "sel", "poivre"],
     steps: [
@@ -330,6 +349,7 @@ const RECIPES = [
     ] },
 
   { id: "pizza", name: "Pizza margherita maison", cat: "vege", cui: "it", time: 30, slots: ["soir"],
+    img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/57/Neapolitan_pizza_at_Trappica_%2848701940197%29.jpg/500px-Neapolitan_pizza_at_Trappica_%2848701940197%29.jpg", imgPage: "https://fr.wikipedia.org/wiki/Pizza_Margherita",
     ing: [["pate_pizza", 1, "pc"], ["coulis", 200, "g"], ["mozzarella", 250, "g"], ["basilic", 1, "botte"]],
     pantry: ["huile d'olive", "origan", "sel"],
     steps: [
@@ -341,6 +361,7 @@ const RECIPES = [
     ] },
 
   { id: "galettes", name: "Galettes complètes", cat: "oeufs", cui: "fr", time: 20, slots: ["midi"],
+    img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/08/Galette_de_sarrasin_compl%C3%A8te_bretonne.jpg/500px-Galette_de_sarrasin_compl%C3%A8te_bretonne.jpg", imgPage: "https://fr.wikipedia.org/wiki/Galette_de_sarrasin_(Haute-Bretagne)",
     ing: [["galettes", 4, "pc"], ["jambon_boeuf", 2, "tranche"], ["oeuf", 2, "pc"], ["gruyere", 100, "g"], ["beurre", 20, "g"], ["laitue", 1, "pc"]],
     pantry: ["vinaigre", "huile", "sel", "poivre"],
     steps: [
@@ -352,6 +373,7 @@ const RECIPES = [
     ] },
 
   { id: "nicoise", name: "Salade niçoise", cat: "salade", cui: "fr", time: 25, slots: ["midi"], diet: ["leger"],
+    img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/ca/Salade_ni%C3%A7oise_001.jpg/500px-Salade_ni%C3%A7oise_001.jpg", imgPage: "https://fr.wikipedia.org/wiki/Salade_ni%C3%A7oise",
     ing: [["thon", 1, "boite"], ["oeuf", 2, "pc"], ["tomate", 3, "pc"], ["haricots_verts", 200, "g"], ["pdt", 300, "g"], ["olives_noires", 50, "g"], ["oignon_rouge", 1, "pc"], ["laitue", 1, "pc"]],
     pantry: ["huile d'olive", "vinaigre", "moutarde", "sel", "poivre"],
     steps: [
@@ -363,6 +385,7 @@ const RECIPES = [
     ] },
 
   { id: "blanquette", name: "Blanquette de veau, riz", cat: "viande", cui: "fr", time: 75, slots: ["soir"],
+    img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c3/Blanquette_de_veau_%C3%A0_l%27ancienne_04.jpg/500px-Blanquette_de_veau_%C3%A0_l%27ancienne_04.jpg", imgPage: "https://fr.wikipedia.org/wiki/Blanquette_de_veau",
     ing: [["veau", 500, "g"], ["carotte", 2, "pc"], ["poireau", 1, "pc"], ["oignon", 1, "pc"], ["champignons", 150, "g"], ["creme", 15, "cl"], ["oeuf", 1, "pc"], ["bouillon", 1, "pc"], ["farine", 20, "g"], ["beurre", 20, "g"], ["citron", 1, "pc"], ["riz", 150, "g"]],
     pantry: ["laurier", "thym", "sel", "poivre"],
     steps: [
@@ -374,6 +397,7 @@ const RECIPES = [
     ] },
 
   { id: "gratin-courgettes", name: "Gratin de courgettes", cat: "vege", cui: "fr", time: 45, slots: ["soir"],
+    img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2e/Cheese_and_potato_casserole_from_Poznan_%282%29.JPG/500px-Cheese_and_potato_casserole_from_Poznan_%282%29.JPG", imgPage: "https://fr.wikipedia.org/wiki/Gratin",
     ing: [["courgette", 3, "pc"], ["oeuf", 3, "pc"], ["creme", 20, "cl"], ["gruyere", 80, "g"], ["oignon", 1, "pc"], ["ail", 1, "gousse"]],
     pantry: ["muscade", "huile d'olive", "sel", "poivre"],
     steps: [
@@ -385,6 +409,7 @@ const RECIPES = [
     ] },
 
   { id: "pad-thai", name: "Pad thaï aux crevettes", cat: "poisson", cui: "as", time: 25, slots: ["midi", "soir"], diet: ["leger"],
+    img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/39/Phat_Thai_kung_Chang_Khien_street_stall.jpg/500px-Phat_Thai_kung_Chang_Khien_street_stall.jpg", imgPage: "https://fr.wikipedia.org/wiki/Phat_thai",
     ing: [["nouilles_riz", 150, "g"], ["crevettes", 200, "g"], ["oeuf", 2, "pc"], ["germes_soja", 100, "g"], ["oignon_nouveau", 2, "pc"], ["cacahuetes", 30, "g"], ["citron_vert", 1, "pc"], ["sauce_soja", 2, "cs"], ["nuoc_mam", 1, "cs"], ["ail", 1, "gousse"]],
     pantry: ["sucre", "huile"],
     steps: [
@@ -397,6 +422,7 @@ const RECIPES = [
     ] },
 
   { id: "veloute-poireaux", name: "Velouté poireaux–pommes de terre", cat: "soupe", cui: "fr", time: 35, slots: ["midi", "soir"], diet: ["leger"],
+    img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/89/Mon_Plaisir%2C_Covent_Garden%2C_London_%283717184145%29.jpg/500px-Mon_Plaisir%2C_Covent_Garden%2C_London_%283717184145%29.jpg", imgPage: "https://fr.wikipedia.org/wiki/Soupe_de_poireaux",
     ing: [["poireau", 2, "pc"], ["pdt", 400, "g"], ["oignon", 1, "pc"], ["bouillon", 1, "pc"], ["creme", 10, "cl"], ["beurre", 20, "g"]],
     pantry: ["sel", "poivre"],
     steps: [
@@ -408,6 +434,7 @@ const RECIPES = [
     ] },
 
   { id: "hachis", name: "Hachis parmentier", cat: "viande", cui: "fr", time: 50, slots: ["soir"],
+    img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/5b/Hachis_parmentier_01.jpg/500px-Hachis_parmentier_01.jpg", imgPage: "https://fr.wikipedia.org/wiki/Hachis_parmentier",
     ing: [["boeuf_hache", 300, "g"], ["pdt", 700, "g"], ["oignon", 1, "pc"], ["ail", 1, "gousse"], ["lait", 15, "cl"], ["beurre", 40, "g"], ["gruyere", 60, "g"], ["persil", 1, "botte"]],
     pantry: ["muscade", "huile", "sel", "poivre"],
     steps: [
@@ -441,6 +468,7 @@ const RECIPES = [
     ] },
 
   { id: "pesto", name: "Pâtes au pesto, tomates cerises", cat: "pates", cui: "it", time: 15, slots: ["midi"],
+    img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c9/BasilPesto.JPG/500px-BasilPesto.JPG", imgPage: "https://fr.wikipedia.org/wiki/Pesto",
     ing: [["pates", 200, "g"], ["pesto", 1, "pot"], ["tomates_cerises", 150, "g"], ["parmesan", 30, "g"], ["pignons", 20, "g"]],
     pantry: ["sel", "poivre"],
     steps: [
@@ -463,6 +491,7 @@ const RECIPES = [
     ] },
 
   { id: "buddha-bowl", name: "Buddha bowl pois chiches, avocat", cat: "vege", cui: "med", time: 30, slots: ["midi"], diet: ["leger", "chol"],
+    img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/53/BuddhaBowlLot.jpg/500px-BuddhaBowlLot.jpg", imgPage: "https://fr.wikipedia.org/wiki/Buddha_bowl",
     ing: [["riz_complet", 150, "g"], ["pois_chiches", 1, "boite"], ["avocat", 1, "pc"], ["carotte", 1, "pc"], ["chou_rouge", 100, "g"], ["tahini", 2, "cs"], ["citron", 1, "pc"], ["sesame", 1, "cs"]],
     pantry: ["huile d'olive", "cumin", "paprika", "sel"],
     steps: [
@@ -474,6 +503,7 @@ const RECIPES = [
     ] },
 
   { id: "endives-jambon", name: "Endives au jambon de bœuf", cat: "viande", cui: "fr", time: 50, slots: ["soir"],
+    img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e8/Jielbeaumadier_chicon_au_jambon_maroilles_2010.jpg/500px-Jielbeaumadier_chicon_au_jambon_maroilles_2010.jpg", imgPage: "https://fr.wikipedia.org/wiki/Endive_au_jambon",
     ing: [["endive", 4, "pc"], ["jambon_boeuf", 4, "tranche"], ["lait", 40, "cl"], ["beurre", 30, "g"], ["farine", 30, "g"], ["gruyere", 80, "g"]],
     pantry: ["muscade", "sel", "poivre"],
     steps: [
@@ -485,6 +515,7 @@ const RECIPES = [
     ] },
 
   { id: "soupe-oignon", name: "Soupe à l'oignon gratinée", cat: "soupe", cui: "fr", time: 45, slots: ["soir"],
+    img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8a/Soupe_%C3%A0_l%27oignon_01.JPG/500px-Soupe_%C3%A0_l%27oignon_01.JPG", imgPage: "https://fr.wikipedia.org/wiki/Soupe_%C3%A0_l'oignon",
     ing: [["oignon", 5, "pc"], ["beurre", 30, "g"], ["farine", 20, "g"], ["bouillon", 1, "pc"], ["pain", 4, "tranche"], ["gruyere", 100, "g"]],
     pantry: ["thym", "sel", "poivre"],
     steps: [
@@ -496,6 +527,7 @@ const RECIPES = [
     ] },
 
   { id: "taboule", name: "Taboulé libanais", cat: "salade", cui: "lb", time: 25, slots: ["midi"], diet: ["leger", "chol"],
+    img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/ac/Tabouleh_1.JPG/500px-Tabouleh_1.JPG", imgPage: "https://fr.wikipedia.org/wiki/Taboul%C3%A9",
     ing: [["boulgour", 100, "g"], ["persil", 2, "botte"], ["menthe", 1, "botte"], ["tomate", 3, "pc"], ["oignon_nouveau", 2, "pc"], ["citron", 2, "pc"]],
     pantry: ["huile d'olive", "sel", "poivre"],
     steps: [
@@ -507,6 +539,7 @@ const RECIPES = [
     ] },
 
   { id: "couscous", name: "Couscous royal poulet–merguez", cat: "volaille", cui: "ma", time: 50, slots: ["soir"],
+    img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0c/Moroccan_cuscus%2C_from_Casablanca%2C_September_2018.jpg/500px-Moroccan_cuscus%2C_from_Casablanca%2C_September_2018.jpg", imgPage: "https://fr.wikipedia.org/wiki/Couscous",
     ing: [["poulet_cuisse", 2, "pc"], ["merguez", 4, "pc"], ["semoule", 200, "g"], ["carotte", 2, "pc"], ["courgette", 2, "pc"], ["navet", 1, "pc"], ["pois_chiches", 1, "boite"], ["tomates_concassees", 1, "boite"], ["oignon", 1, "pc"], ["bouillon", 1, "pc"]],
     pantry: ["ras el hanout", "huile d'olive", "sel", "poivre"],
     steps: [
@@ -519,6 +552,7 @@ const RECIPES = [
     ] },
 
   { id: "burger", name: "Burgers maison, frites au four", cat: "viande", cui: "us", time: 35, slots: ["soir"],
+    img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0b/RedDot_Burger.jpg/500px-RedDot_Burger.jpg", imgPage: "https://fr.wikipedia.org/wiki/Hamburger",
     ing: [["steak_hache", 2, "pc"], ["pain_burger", 2, "pc"], ["cheddar", 2, "tranche"], ["tomate", 1, "pc"], ["laitue", 1, "pc"], ["oignon_rouge", 1, "pc"], ["cornichons", 4, "pc"], ["pdt", 500, "g"]],
     pantry: ["ketchup", "moutarde", "huile", "paprika", "sel"],
     steps: [
@@ -530,6 +564,7 @@ const RECIPES = [
     ] },
 
   { id: "oeufs-cocotte", name: "Œufs cocotte, mouillettes", cat: "oeufs", cui: "fr", time: 15, slots: ["midi"],
+    img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/24/Oeuf_cocotte.jpg/500px-Oeuf_cocotte.jpg", imgPage: "https://fr.wikipedia.org/wiki/%C5%92ufs_cocotte",
     ing: [["oeuf", 4, "pc"], ["creme", 10, "cl"], ["jambon_boeuf", 1, "tranche"], ["ciboulette", 1, "botte"], ["pain", 4, "tranche"], ["mache", 100, "g"]],
     pantry: ["sel", "poivre", "huile", "vinaigre"],
     steps: [
@@ -541,6 +576,7 @@ const RECIPES = [
     ] },
 
   { id: "gnocchis-epinards", name: "Poêlée de gnocchis aux épinards", cat: "pates", cui: "it", time: 15, slots: ["midi", "soir"],
+    img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/86/Gnocchi_di_ricotta_burro_e_salvia.jpg/500px-Gnocchi_di_ricotta_burro_e_salvia.jpg", imgPage: "https://fr.wikipedia.org/wiki/Gnocchi",
     ing: [["gnocchis", 400, "g"], ["epinards", 200, "g"], ["creme", 15, "cl"], ["ail", 1, "gousse"], ["parmesan", 30, "g"], ["beurre", 20, "g"]],
     pantry: ["muscade", "sel", "poivre"],
     steps: [
@@ -552,6 +588,7 @@ const RECIPES = [
     ] },
 
   { id: "moules-frites", name: "Moules marinières, frites", cat: "poisson", cui: "fr", time: 30, slots: ["soir"],
+    img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/5c/Moules_marini%C3%A8res_01.jpg/500px-Moules_marini%C3%A8res_01.jpg", imgPage: "https://fr.wikipedia.org/wiki/Moules-frites",
     ing: [["moules", 1500, "g"], ["echalote", 2, "pc"], ["citron", 1, "pc"], ["persil", 1, "botte"], ["beurre", 30, "g"], ["pdt", 600, "g"]],
     pantry: ["huile", "sel", "poivre"],
     steps: [
@@ -563,6 +600,7 @@ const RECIPES = [
     ] },
 
   { id: "wraps-poulet", name: "Wraps au poulet et crudités", cat: "volaille", cui: "us", time: 20, slots: ["midi"], diet: ["leger", "chol"],
+    img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4e/Wrapped_Snacks_%284612762075%29.jpg/500px-Wrapped_Snacks_%284612762075%29.jpg", imgPage: "https://fr.wikipedia.org/wiki/Wrap",
     ing: [["tortillas", 4, "pc"], ["poulet_blanc", 250, "g"], ["laitue", 1, "pc"], ["tomate", 1, "pc"], ["concombre", 1, "pc"], ["fromage_frais", 100, "g"]],
     pantry: ["paprika", "huile", "sel"],
     steps: [
@@ -574,6 +612,7 @@ const RECIPES = [
     ] },
 
   { id: "aubergines-farcies", name: "Aubergines farcies à la feta", cat: "vege", cui: "med", time: 50, slots: ["soir"], diet: ["leger"],
+    img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/fe/Azerbaijani_Bad%C4%B1mcan_dolmas%C4%B1_1.JPG/500px-Azerbaijani_Bad%C4%B1mcan_dolmas%C4%B1_1.JPG", imgPage: "https://en.wikipedia.org/wiki/Stuffed_eggplant",
     ing: [["aubergine", 2, "pc"], ["tomate", 2, "pc"], ["oignon", 1, "pc"], ["ail", 1, "gousse"], ["feta", 100, "g"], ["chapelure", 20, "g"], ["riz", 120, "g"]],
     pantry: ["huile d'olive", "origan", "sel", "poivre"],
     steps: [
@@ -585,6 +624,7 @@ const RECIPES = [
     ] },
 
   { id: "poulet-roti", name: "Poulet rôti, pommes de terre", cat: "volaille", cui: "fr", time: 90, slots: ["midi", "soir"],
+    img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d9/Max%27s_Roasted_Chicken_-_Evan_Swigart.jpg/500px-Max%27s_Roasted_Chicken_-_Evan_Swigart.jpg", imgPage: "https://fr.wikipedia.org/wiki/Poulet_r%C3%B4ti",
     ing: [["poulet_entier", 1, "pc"], ["pdt", 800, "g"], ["ail", 4, "gousse"], ["beurre", 30, "g"]],
     pantry: ["thym", "huile", "sel", "poivre"],
     steps: [
@@ -597,6 +637,7 @@ const RECIPES = [
 
   /* ---------- Marocaines ---------- */
   { id: "tajine-kefta", name: "Tajine de kefta aux œufs", cat: "viande", cui: "ma", time: 40, slots: ["soir"],
+    img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a2/Sultanahmet_K%C3%B6ftesi.jpg/500px-Sultanahmet_K%C3%B6ftesi.jpg", imgPage: "https://fr.wikipedia.org/wiki/Kefta",
     ing: [["boeuf_hache", 400, "g"], ["oignon", 1, "pc"], ["ail", 2, "gousse"], ["tomates_concassees", 1, "boite"], ["oeuf", 3, "pc"], ["persil", 1, "botte"], ["coriandre", 1, "botte"], ["pain", 4, "tranche"]],
     pantry: ["cumin", "paprika", "piment doux", "huile d'olive", "sel", "poivre"],
     steps: [
@@ -609,6 +650,7 @@ const RECIPES = [
     ] },
 
   { id: "tajine-agneau-pruneaux", name: "Tajine d'agneau aux pruneaux et amandes", cat: "viande", cui: "ma", time: 90, slots: ["soir"],
+    img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6d/Tajine_008.JPG/500px-Tajine_008.JPG", imgPage: "https://fr.wikipedia.org/wiki/Tajine",
     ing: [["agneau", 600, "g"], ["oignon", 2, "pc"], ["ail", 2, "gousse"], ["pruneaux", 200, "g"], ["amandes", 40, "g"], ["miel", 2, "cs"], ["sesame", 1, "cs"], ["semoule", 150, "g"]],
     pantry: ["cannelle", "gingembre moulu", "safran (ou curcuma)", "huile d'olive", "sel", "poivre"],
     steps: [
@@ -621,6 +663,7 @@ const RECIPES = [
     ] },
 
   { id: "harira", name: "Harira", cat: "soupe", cui: "ma", time: 50, slots: ["soir"], diet: ["leger"],
+    img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3f/Harira_vegetarisch.jpg/500px-Harira_vegetarisch.jpg", imgPage: "https://fr.wikipedia.org/wiki/Harira",
     ing: [["boeuf_saute", 150, "g"], ["lentilles_vertes", 100, "g"], ["pois_chiches", 1, "boite"], ["tomates_concassees", 1, "boite"], ["oignon", 1, "pc"], ["celeri", 2, "pc"], ["coriandre", 1, "botte"], ["persil", 1, "botte"], ["vermicelles", 40, "g"], ["farine", 30, "g"], ["citron", 1, "pc"]],
     pantry: ["curcuma", "gingembre moulu", "cannelle", "huile d'olive", "sel", "poivre"],
     steps: [
@@ -633,6 +676,7 @@ const RECIPES = [
     ] },
 
   { id: "tajine-legumes", name: "Tajine de légumes aux olives", cat: "vege", cui: "ma", time: 50, slots: ["soir"], diet: ["leger", "chol"],
+    img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6d/Tajine_008.JPG/500px-Tajine_008.JPG", imgPage: "https://fr.wikipedia.org/wiki/Tajine",
     ing: [["pdt", 400, "g"], ["carotte", 3, "pc"], ["courgette", 2, "pc"], ["tomate", 3, "pc"], ["oignon", 1, "pc"], ["ail", 2, "gousse"], ["olives_vertes", 80, "g"], ["citron_confit", 1, "pc"], ["coriandre", 1, "botte"], ["pain", 4, "tranche"]],
     pantry: ["ras el hanout", "cumin", "curcuma", "huile d'olive", "sel", "poivre"],
     steps: [
@@ -644,6 +688,7 @@ const RECIPES = [
     ] },
 
   { id: "bissara", name: "Bissara (soupe de pois cassés au cumin)", cat: "soupe", cui: "ma", time: 40, slots: ["midi", "soir"], diet: ["leger", "chol"],
+    img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/67/Thamarakt%2C_pur%C3%A9e_de_pois_cass%C3%A9s_%C3%A0_servir_avec_un_bon_filet_d%27huile_d%27olive..jpg/500px-Thamarakt%2C_pur%C3%A9e_de_pois_cass%C3%A9s_%C3%A0_servir_avec_un_bon_filet_d%27huile_d%27olive..jpg", imgPage: "https://fr.wikipedia.org/wiki/Bissara",
     ing: [["pois_casses", 250, "g"], ["ail", 3, "gousse"], ["citron", 1, "pc"], ["pain", 4, "tranche"]],
     pantry: ["cumin", "paprika", "huile d'olive", "sel"],
     steps: [
@@ -655,6 +700,7 @@ const RECIPES = [
     ] },
 
   { id: "zaalouk", name: "Zaalouk, salade de tomates et pain", cat: "vege", cui: "ma", time: 30, slots: ["midi"], diet: ["leger", "chol"],
+    img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/45/Zaalouk_03.jpg/500px-Zaalouk_03.jpg", imgPage: "https://fr.wikipedia.org/wiki/Zaalouk",
     ing: [["aubergine", 2, "pc"], ["tomate", 4, "pc"], ["ail", 3, "gousse"], ["coriandre", 1, "botte"], ["citron", 1, "pc"], ["concombre", 1, "pc"], ["oignon", 1, "pc"], ["pain", 6, "tranche"]],
     pantry: ["cumin", "paprika", "huile d'olive", "sel"],
     steps: [
@@ -666,6 +712,7 @@ const RECIPES = [
     ] },
 
   { id: "brochettes-poulet-marocaines", name: "Brochettes de poulet marinées, salade marocaine", cat: "volaille", cui: "ma", time: 25, slots: ["midi", "soir"], diet: ["leger", "chol"],
+    img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/11/PinchosAmericanos.jpg/500px-PinchosAmericanos.jpg", imgPage: "https://fr.wikipedia.org/wiki/Brochette",
     ing: [["poulet_blanc", 400, "g"], ["citron", 1, "pc"], ["ail", 2, "gousse"], ["coriandre", 1, "botte"], ["tomate", 3, "pc"], ["concombre", 1, "pc"], ["oignon", 1, "pc"], ["pain", 4, "tranche"]],
     pantry: ["cumin", "paprika", "curcuma", "huile d'olive", "sel", "poivre"],
     steps: [
@@ -677,6 +724,7 @@ const RECIPES = [
     ] },
 
   { id: "tajine-poisson-chermoula", name: "Tajine de poisson à la chermoula", cat: "poisson", cui: "ma", time: 45, slots: ["soir"], diet: ["leger", "chol"],
+    img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/23/Chermoula_tagine.jpg/500px-Chermoula_tagine.jpg", imgPage: "https://en.wikipedia.org/wiki/Chermoula",
     ing: [["cabillaud", 400, "g"], ["pdt", 400, "g"], ["carotte", 2, "pc"], ["poivron", 1, "pc"], ["tomate", 3, "pc"], ["citron", 1, "pc"], ["ail", 3, "gousse"], ["coriandre", 1, "botte"], ["olives_vertes", 60, "g"]],
     pantry: ["cumin", "paprika", "curcuma", "piment doux", "huile d'olive", "sel"],
     steps: [
@@ -688,6 +736,7 @@ const RECIPES = [
     ] },
 
   { id: "briouates-poulet", name: "Briouates au poulet, salade", cat: "volaille", cui: "ma", time: 45, slots: ["midi", "soir"],
+    img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6d/Briouat_%28cropped%29.jpg/500px-Briouat_%28cropped%29.jpg", imgPage: "https://fr.wikipedia.org/wiki/Briouate",
     ing: [["brick", 8, "feuille"], ["poulet_blanc", 300, "g"], ["oignon", 1, "pc"], ["vermicelles", 50, "g"], ["oeuf", 1, "pc"], ["persil", 1, "botte"], ["laitue", 1, "pc"], ["citron", 1, "pc"]],
     pantry: ["cannelle", "gingembre moulu", "curcuma", "huile", "sel", "poivre"],
     steps: [
@@ -699,6 +748,7 @@ const RECIPES = [
     ] },
 
   { id: "loubia", name: "Loubia (haricots blancs en sauce tomate)", cat: "vege", cui: "ma", time: 40, slots: ["soir"], diet: ["leger", "chol"],
+    img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d0/%D9%85%D8%B1%D9%82%D8%A9_%D9%84%D9%88%D8%A8%D9%8A%D8%A7.JPG/500px-%D9%85%D8%B1%D9%82%D8%A9_%D9%84%D9%88%D8%A8%D9%8A%D8%A7.JPG", imgPage: "https://fr.wikipedia.org/wiki/Loubia",
     ing: [["haricots_blancs", 2, "boite"], ["tomates_concassees", 1, "boite"], ["oignon", 1, "pc"], ["ail", 3, "gousse"], ["coriandre", 1, "botte"], ["persil", 1, "botte"], ["pain", 4, "tranche"]],
     pantry: ["cumin", "paprika", "curcuma", "huile d'olive", "sel", "poivre"],
     steps: [
@@ -710,6 +760,7 @@ const RECIPES = [
     ] },
 
   { id: "lentilles-marocaines", name: "Lentilles à la marocaine", cat: "vege", cui: "ma", time: 40, slots: ["midi", "soir"], diet: ["leger", "chol"],
+    img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/61/EgFoodLentilSoup.jpg/500px-EgFoodLentilSoup.jpg", imgPage: "https://en.wikipedia.org/wiki/Lentil_soup",
     ing: [["lentilles_vertes", 250, "g"], ["tomate", 3, "pc"], ["oignon", 1, "pc"], ["ail", 3, "gousse"], ["carotte", 1, "pc"], ["coriandre", 1, "botte"], ["pain", 4, "tranche"]],
     pantry: ["cumin", "paprika", "curcuma", "huile d'olive", "sel", "poivre"],
     steps: [
@@ -721,6 +772,7 @@ const RECIPES = [
     ] },
 
   { id: "poulet-mhammer", name: "Poulet mhammer (rôti aux épices et oignons)", cat: "volaille", cui: "ma", time: 80, slots: ["soir"],
+    img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d9/Max%27s_Roasted_Chicken_-_Evan_Swigart.jpg/500px-Max%27s_Roasted_Chicken_-_Evan_Swigart.jpg", imgPage: "https://fr.wikipedia.org/wiki/Poulet_r%C3%B4ti",
     ing: [["poulet_entier", 1, "pc"], ["oignon", 3, "pc"], ["ail", 4, "gousse"], ["citron_confit", 1, "pc"], ["olives_vertes", 80, "g"], ["coriandre", 1, "botte"], ["beurre", 30, "g"], ["pdt", 600, "g"]],
     pantry: ["curcuma", "gingembre moulu", "paprika", "safran (ou curcuma)", "huile d'olive", "sel", "poivre"],
     steps: [
@@ -732,6 +784,7 @@ const RECIPES = [
     ] },
 
   { id: "brochettes-kefta", name: "Brochettes de kefta, tomates grillées", cat: "viande", cui: "ma", time: 25, slots: ["midi", "soir"],
+    img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a2/Sultanahmet_K%C3%B6ftesi.jpg/500px-Sultanahmet_K%C3%B6ftesi.jpg", imgPage: "https://fr.wikipedia.org/wiki/Kefta",
     ing: [["boeuf_hache", 400, "g"], ["oignon", 1, "pc"], ["persil", 1, "botte"], ["coriandre", 1, "botte"], ["tomate", 4, "pc"], ["pain", 4, "tranche"], ["yaourt", 1, "pot"]],
     pantry: ["cumin", "paprika", "menthe séchée", "huile d'olive", "sel", "poivre"],
     steps: [
@@ -743,6 +796,7 @@ const RECIPES = [
     ] },
 
   { id: "chakchouka", name: "Chakchouka", cat: "oeufs", cui: "ma", time: 25, slots: ["midi", "soir"], diet: ["leger"],
+    img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/18/Shakshuka_by_Calliopejen1.jpg/500px-Shakshuka_by_Calliopejen1.jpg", imgPage: "https://fr.wikipedia.org/wiki/Chakchouka",
     ing: [["poivron", 3, "pc"], ["tomate", 4, "pc"], ["oignon", 1, "pc"], ["ail", 2, "gousse"], ["oeuf", 4, "pc"], ["coriandre", 1, "botte"], ["pain", 4, "tranche"]],
     pantry: ["cumin", "paprika", "piment doux", "huile d'olive", "sel", "poivre"],
     steps: [
@@ -754,6 +808,7 @@ const RECIPES = [
     ] },
 
   { id: "couscous-legumes", name: "Couscous aux sept légumes", cat: "vege", cui: "ma", time: 50, slots: ["soir"], diet: ["leger", "chol"],
+    img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0c/Moroccan_cuscus%2C_from_Casablanca%2C_September_2018.jpg/500px-Moroccan_cuscus%2C_from_Casablanca%2C_September_2018.jpg", imgPage: "https://fr.wikipedia.org/wiki/Couscous",
     ing: [["semoule", 200, "g"], ["carotte", 2, "pc"], ["courgette", 2, "pc"], ["navet", 2, "pc"], ["potiron", 300, "g"], ["chou_vert", 1, "pc"], ["tomate", 2, "pc"], ["oignon", 1, "pc"], ["pois_chiches", 1, "boite"], ["raisins_secs", 40, "g"], ["coriandre", 1, "botte"]],
     pantry: ["ras el hanout", "curcuma", "gingembre moulu", "huile d'olive", "sel", "poivre"],
     steps: [
@@ -767,6 +822,7 @@ const RECIPES = [
 
   /* ---------- Italiennes ---------- */
   { id: "arrabbiata", name: "Penne all'arrabbiata", cat: "pates", cui: "it", time: 20, slots: ["midi", "soir"], diet: ["leger", "chol"],
+    img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/04/Penne_all%27arrabbiata_-_Pizzeria_Bella_Italia_%28Cr%C3%A9pieux-la-Pape%29_-_2.jpg/500px-Penne_all%27arrabbiata_-_Pizzeria_Bella_Italia_%28Cr%C3%A9pieux-la-Pape%29_-_2.jpg", imgPage: "https://fr.wikipedia.org/wiki/Sauce_arrabbiata",
     ing: [["pates", 200, "g"], ["tomates_concassees", 1, "boite"], ["ail", 3, "gousse"], ["persil", 1, "botte"], ["parmesan", 40, "g"]],
     pantry: ["piment (flocons)", "huile d'olive", "sel", "poivre"],
     steps: [
@@ -778,6 +834,7 @@ const RECIPES = [
     ] },
 
   { id: "milanaise", name: "Escalopes à la milanaise, roquette", cat: "volaille", cui: "it", time: 25, slots: ["midi", "soir"],
+    img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a7/Cotoletta_e_patate_al_forno.jpg/500px-Cotoletta_e_patate_al_forno.jpg", imgPage: "https://fr.wikipedia.org/wiki/Escalope_%C3%A0_la_milanaise",
     ing: [["poulet_blanc", 300, "g"], ["chapelure", 80, "g"], ["farine", 30, "g"], ["oeuf", 1, "pc"], ["parmesan", 30, "g"], ["roquette", 100, "g"], ["tomates_cerises", 150, "g"], ["citron", 1, "pc"]],
     pantry: ["huile", "huile d'olive", "sel", "poivre"],
     steps: [
@@ -789,6 +846,7 @@ const RECIPES = [
     ] },
 
   { id: "minestrone", name: "Minestrone", cat: "soupe", cui: "it", time: 45, slots: ["soir"], diet: ["leger", "chol"],
+    img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/32/Minestrone_soup.jpg/500px-Minestrone_soup.jpg", imgPage: "https://fr.wikipedia.org/wiki/Minestrone",
     ing: [["carotte", 2, "pc"], ["courgette", 1, "pc"], ["pdt", 200, "g"], ["celeri", 2, "pc"], ["oignon", 1, "pc"], ["haricots_blancs", 1, "boite"], ["tomates_concassees", 1, "boite"], ["pates", 80, "g"], ["parmesan", 40, "g"], ["bouillon", 1, "pc"]],
     pantry: ["huile d'olive", "thym", "sel", "poivre"],
     steps: [
@@ -800,6 +858,7 @@ const RECIPES = [
     ] },
 
   { id: "sorrentina", name: "Gnocchis à la sorrentina", cat: "pates", cui: "it", time: 25, slots: ["midi", "soir"],
+    img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/86/Gnocchi_di_ricotta_burro_e_salvia.jpg/500px-Gnocchi_di_ricotta_burro_e_salvia.jpg", imgPage: "https://fr.wikipedia.org/wiki/Gnocchi",
     ing: [["gnocchis", 400, "g"], ["coulis", 300, "g"], ["mozzarella", 125, "g"], ["basilic", 1, "botte"], ["parmesan", 30, "g"], ["ail", 1, "gousse"]],
     pantry: ["huile d'olive", "sel", "poivre"],
     steps: [
@@ -811,6 +870,7 @@ const RECIPES = [
     ] },
 
   { id: "piccata", name: "Piccata de poulet au citron, tagliatelles", cat: "volaille", cui: "it", time: 25, slots: ["midi", "soir"],
+    img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/5b/Chicken_piccata_made_with_fresh_lemons_and_jarred_capers.jpg/500px-Chicken_piccata_made_with_fresh_lemons_and_jarred_capers.jpg", imgPage: "https://fr.wikipedia.org/wiki/Piccata",
     ing: [["poulet_blanc", 300, "g"], ["farine", 30, "g"], ["beurre", 40, "g"], ["citron", 1, "pc"], ["capres", 2, "cs"], ["persil", 1, "botte"], ["tagliatelles", 200, "g"], ["bouillon", 1, "pc"]],
     pantry: ["huile d'olive", "sel", "poivre"],
     steps: [
@@ -822,6 +882,7 @@ const RECIPES = [
     ] },
 
   { id: "tagliatelles-saumon", name: "Tagliatelles au saumon et à l'aneth", cat: "poisson", cui: "it", time: 20, slots: ["midi", "soir"],
+    img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d9/Making_a_better_homemade_pasta_-_16670047286.jpg/500px-Making_a_better_homemade_pasta_-_16670047286.jpg", imgPage: "https://fr.wikipedia.org/wiki/Tagliatelle",
     ing: [["tagliatelles", 200, "g"], ["saumon", 250, "g"], ["creme", 20, "cl"], ["echalote", 1, "pc"], ["aneth", 1, "botte"], ["citron", 1, "pc"]],
     pantry: ["huile d'olive", "sel", "poivre"],
     steps: [
@@ -833,6 +894,7 @@ const RECIPES = [
     ] },
 
   { id: "polenta-champignons", name: "Polenta crémeuse aux champignons", cat: "vege", cui: "it", time: 30, slots: ["soir"],
+    img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a2/Polenta_Trentina.jpg/500px-Polenta_Trentina.jpg", imgPage: "https://fr.wikipedia.org/wiki/Polenta",
     ing: [["polenta", 150, "g"], ["champignons", 400, "g"], ["parmesan", 50, "g"], ["beurre", 30, "g"], ["ail", 2, "gousse"], ["persil", 1, "botte"], ["lait", 25, "cl"]],
     pantry: ["huile d'olive", "thym", "sel", "poivre"],
     steps: [
@@ -856,6 +918,7 @@ const RECIPES = [
 
   /* ---------- Asiatiques ---------- */
   { id: "poulet-teriyaki", name: "Poulet teriyaki, riz et brocoli", cat: "volaille", cui: "jp", time: 25, slots: ["midi", "soir"], diet: ["leger", "chol"],
+    img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c3/Chicken_teriyaki.jpg/500px-Chicken_teriyaki.jpg", imgPage: "https://fr.wikipedia.org/wiki/Teriyaki",
     ing: [["poulet_haut", 4, "pc"], ["sauce_soja", 4, "cs"], ["miel", 2, "cs"], ["gingembre", 15, "g"], ["ail", 2, "gousse"], ["brocoli", 1, "pc"], ["riz", 150, "g"], ["sesame", 1, "cs"]],
     pantry: ["huile", "vinaigre"],
     steps: [
@@ -867,6 +930,7 @@ const RECIPES = [
     ] },
 
   { id: "boeuf-oignons", name: "Bœuf sauté aux oignons, riz", cat: "viande", cui: "cn", time: 25, slots: ["midi", "soir"], diet: ["leger"],
+    img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/58/Beef_and_broccoli_stir_fry.jpg/500px-Beef_and_broccoli_stir_fry.jpg", imgPage: "https://en.wikipedia.org/wiki/Beef_and_broccoli",
     ing: [["boeuf_saute", 300, "g"], ["oignon", 3, "pc"], ["sauce_soja", 3, "cs"], ["ail", 2, "gousse"], ["gingembre", 15, "g"], ["riz", 150, "g"], ["coriandre", 1, "botte"]],
     pantry: ["huile", "sucre", "poivre"],
     steps: [
@@ -878,6 +942,7 @@ const RECIPES = [
     ] },
 
   { id: "curry-vert", name: "Curry vert thaï au poulet", cat: "volaille", cui: "as", time: 30, slots: ["soir"],
+    img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e5/Thai_green_chicken_curry_and_roti.jpg/500px-Thai_green_chicken_curry_and_roti.jpg", imgPage: "https://fr.wikipedia.org/wiki/Curry_vert",
     ing: [["poulet_blanc", 300, "g"], ["pate_curry_vert", 2, "cs"], ["lait_coco", 40, "cl"], ["poivron", 1, "pc"], ["haricots_verts", 150, "g"], ["basilic", 1, "botte"], ["citron_vert", 1, "pc"], ["nuoc_mam", 1, "cs"], ["riz", 150, "g"]],
     pantry: ["huile", "sucre"],
     steps: [
@@ -889,6 +954,7 @@ const RECIPES = [
     ] },
 
   { id: "pho", name: "Pho au bœuf (express)", cat: "soupe", cui: "as", time: 40, slots: ["soir"], diet: ["leger"],
+    img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/99/Ph%E1%BB%9F_b%C3%B2%2C_C%E1%BA%A7u_Gi%E1%BA%A5y%2C_H%C3%A0_N%E1%BB%99i.jpg/500px-Ph%E1%BB%9F_b%C3%B2%2C_C%E1%BA%A7u_Gi%E1%BA%A5y%2C_H%C3%A0_N%E1%BB%99i.jpg", imgPage: "https://fr.wikipedia.org/wiki/Ph%E1%BB%9F",
     ing: [["boeuf_saute", 250, "g"], ["nouilles_riz", 200, "g"], ["oignon", 1, "pc"], ["gingembre", 30, "g"], ["bouillon", 2, "pc"], ["germes_soja", 100, "g"], ["coriandre", 1, "botte"], ["oignon_nouveau", 2, "pc"], ["citron_vert", 1, "pc"], ["nuoc_mam", 2, "cs"]],
     pantry: ["anis étoilé", "cannelle", "piment"],
     steps: [
@@ -900,6 +966,7 @@ const RECIPES = [
     ] },
 
   { id: "riz-saute", name: "Riz sauté aux œufs et petits légumes", cat: "oeufs", cui: "cn", time: 15, slots: ["midi"], diet: ["leger"],
+    img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b5/Nasi_goreng_Solaria_Kuta.JPG/500px-Nasi_goreng_Solaria_Kuta.JPG", imgPage: "https://fr.wikipedia.org/wiki/Riz_frit",
     ing: [["riz", 150, "g"], ["oeuf", 3, "pc"], ["petits_pois", 100, "g"], ["carotte", 1, "pc"], ["oignon_nouveau", 3, "pc"], ["sauce_soja", 3, "cs"], ["sesame", 1, "cs"]],
     pantry: ["huile", "poivre"],
     steps: [
@@ -911,6 +978,7 @@ const RECIPES = [
     ] },
 
   { id: "bo-bun", name: "Bò bún", cat: "viande", cui: "as", time: 30, slots: ["midi", "soir"], diet: ["leger"],
+    img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/81/Bo_Bun_Tha%C3%AF.jpg/500px-Bo_Bun_Tha%C3%AF.jpg", imgPage: "https://fr.wikipedia.org/wiki/B%C3%B2_b%C3%BAn",
     ing: [["boeuf_saute", 300, "g"], ["vermicelles_riz", 150, "g"], ["carotte", 1, "pc"], ["concombre", 1, "pc"], ["laitue", 1, "pc"], ["germes_soja", 100, "g"], ["cacahuetes", 40, "g"], ["menthe", 1, "botte"], ["nuoc_mam", 3, "cs"], ["citron_vert", 1, "pc"], ["ail", 2, "gousse"]],
     pantry: ["sucre", "huile"],
     steps: [
@@ -934,6 +1002,7 @@ const RECIPES = [
 
   /* ---------- Indiennes ---------- */
   { id: "tikka-masala", name: "Poulet tikka masala", cat: "volaille", cui: "in", time: 40, slots: ["soir"],
+    img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e0/Chicken_Tikka_Masala.jpg/500px-Chicken_Tikka_Masala.jpg", imgPage: "https://fr.wikipedia.org/wiki/Poulet_tikka_masala",
     ing: [["poulet_blanc", 400, "g"], ["yaourt", 1, "pot"], ["tomates_concassees", 1, "boite"], ["creme", 10, "cl"], ["oignon", 1, "pc"], ["ail", 3, "gousse"], ["gingembre", 20, "g"], ["riz_basmati", 150, "g"], ["coriandre", 1, "botte"]],
     pantry: ["garam masala", "curcuma", "paprika", "cumin", "huile", "sel"],
     steps: [
@@ -945,6 +1014,7 @@ const RECIPES = [
     ] },
 
   { id: "chana-masala", name: "Chana masala (curry de pois chiches)", cat: "vege", cui: "in", time: 30, slots: ["midi", "soir"], diet: ["leger", "chol"],
+    img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/02/Choleindia.jpg/500px-Choleindia.jpg", imgPage: "https://fr.wikipedia.org/wiki/Chana_masala",
     ing: [["pois_chiches", 2, "boite"], ["tomates_concassees", 1, "boite"], ["oignon", 1, "pc"], ["ail", 3, "gousse"], ["gingembre", 20, "g"], ["riz_basmati", 150, "g"], ["coriandre", 1, "botte"], ["citron", 1, "pc"]],
     pantry: ["garam masala", "cumin", "curcuma", "piment", "huile", "sel"],
     steps: [
@@ -968,6 +1038,7 @@ const RECIPES = [
 
   /* ---------- Méditerranéennes & orientales ---------- */
   { id: "falafels", name: "Falafels, sauce au yaourt, pita", cat: "vege", cui: "lb", time: 40, slots: ["midi", "soir"],
+    img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/57/Falafels_2.jpg/500px-Falafels_2.jpg", imgPage: "https://fr.wikipedia.org/wiki/Falafel",
     ing: [["pois_chiches_secs", 200, "g"], ["oignon", 1, "pc"], ["ail", 3, "gousse"], ["persil", 1, "botte"], ["coriandre", 1, "botte"], ["farine", 20, "g"], ["yaourt", 1, "pot"], ["citron", 1, "pc"], ["pita", 4, "pc"], ["tomate", 2, "pc"], ["concombre", 1, "pc"]],
     pantry: ["cumin", "coriandre moulue", "bicarbonate", "huile", "sel"],
     steps: [
@@ -979,6 +1050,7 @@ const RECIPES = [
     ] },
 
   { id: "chich-taouk", name: "Chich taouk, riz et salade", cat: "volaille", cui: "lb", time: 30, slots: ["midi", "soir"], diet: ["leger", "chol"],
+    img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e4/Shoarma_Carrefour_Laval.jpg/500px-Shoarma_Carrefour_Laval.jpg", imgPage: "https://fr.wikipedia.org/wiki/Shish_taouk",
     ing: [["poulet_blanc", 400, "g"], ["yaourt", 1, "pot"], ["citron", 1, "pc"], ["ail", 3, "gousse"], ["riz", 150, "g"], ["laitue", 1, "pc"], ["tomate", 2, "pc"], ["pita", 2, "pc"]],
     pantry: ["paprika", "cumin", "origan", "huile d'olive", "sel", "poivre"],
     steps: [
@@ -990,6 +1062,7 @@ const RECIPES = [
     ] },
 
   { id: "moussaka", name: "Moussaka au bœuf", cat: "viande", cui: "med", time: 80, slots: ["soir"],
+    img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d7/Mousakas.jpg/500px-Mousakas.jpg", imgPage: "https://fr.wikipedia.org/wiki/Moussaka",
     ing: [["aubergine", 3, "pc"], ["boeuf_hache", 400, "g"], ["tomates_concassees", 1, "boite"], ["oignon", 1, "pc"], ["ail", 2, "gousse"], ["lait", 40, "cl"], ["beurre", 30, "g"], ["farine", 30, "g"], ["gruyere", 60, "g"], ["oeuf", 1, "pc"]],
     pantry: ["cannelle", "origan", "muscade", "huile d'olive", "sel", "poivre"],
     steps: [
@@ -1001,6 +1074,7 @@ const RECIPES = [
     ] },
 
   { id: "salade-grecque", name: "Salade grecque, pita", cat: "salade", cui: "med", time: 15, slots: ["midi"],
+    img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a3/Oia%2C_Santorini%2C_Greece_-_panoramio_%2818%29.jpg/500px-Oia%2C_Santorini%2C_Greece_-_panoramio_%2818%29.jpg", imgPage: "https://fr.wikipedia.org/wiki/Salade_grecque",
     ing: [["tomate", 4, "pc"], ["concombre", 1, "pc"], ["poivron", 1, "pc"], ["oignon_rouge", 1, "pc"], ["feta", 200, "g"], ["olives_noires", 80, "g"], ["pita", 4, "pc"]],
     pantry: ["origan", "huile d'olive", "vinaigre", "sel", "poivre"],
     steps: [
@@ -1012,6 +1086,7 @@ const RECIPES = [
     ] },
 
   { id: "poulet-grec-citron", name: "Poulet au citron et pommes de terre à la grecque", cat: "volaille", cui: "med", time: 60, slots: ["soir"], diet: ["leger", "chol"],
+    img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d9/Max%27s_Roasted_Chicken_-_Evan_Swigart.jpg/500px-Max%27s_Roasted_Chicken_-_Evan_Swigart.jpg", imgPage: "https://en.wikipedia.org/wiki/Roast_chicken",
     ing: [["poulet_haut", 4, "pc"], ["pdt", 700, "g"], ["citron", 2, "pc"], ["ail", 4, "gousse"], ["bouillon", 1, "pc"], ["laitue", 1, "pc"]],
     pantry: ["origan", "huile d'olive", "sel", "poivre"],
     steps: [
@@ -1023,6 +1098,7 @@ const RECIPES = [
     ] },
 
   { id: "paella", name: "Paella express poulet et crevettes", cat: "pates", cui: "med", time: 45, slots: ["soir"], diet: ["leger", "chol"],
+    img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d3/Paella_amb_caragols_a_un_restaurant_de_la_Patacona%2C_Alboraia.jpg/500px-Paella_amb_caragols_a_un_restaurant_de_la_Patacona%2C_Alboraia.jpg", imgPage: "https://fr.wikipedia.org/wiki/Paella",
     ing: [["riz", 200, "g"], ["poulet_haut", 2, "pc"], ["crevettes", 200, "g"], ["poivron", 1, "pc"], ["petits_pois", 100, "g"], ["tomate", 2, "pc"], ["oignon", 1, "pc"], ["ail", 2, "gousse"], ["bouillon", 1, "pc"], ["citron", 1, "pc"]],
     pantry: ["safran (ou curcuma)", "paprika", "huile d'olive", "sel", "poivre"],
     steps: [
@@ -1034,6 +1110,7 @@ const RECIPES = [
     ] },
 
   { id: "tortilla", name: "Tortilla de pommes de terre, salade", cat: "oeufs", cui: "med", time: 30, slots: ["midi", "soir"],
+    img: "https://upload.wikimedia.org/wikipedia/commons/5/5b/Tortilla-de-patatas.jpg", imgPage: "https://fr.wikipedia.org/wiki/Tortilla_de_patatas",
     ing: [["pdt", 500, "g"], ["oeuf", 6, "pc"], ["oignon", 1, "pc"], ["laitue", 1, "pc"], ["tomate", 2, "pc"]],
     pantry: ["huile d'olive", "vinaigre", "sel", "poivre"],
     steps: [
@@ -1045,6 +1122,7 @@ const RECIPES = [
     ] },
 
   { id: "mezze", name: "Assiette mezze (houmous, crudités, pita)", cat: "vege", cui: "lb", time: 20, slots: ["midi"], diet: ["leger", "chol"],
+    img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a3/Syrian_meal.jpg/500px-Syrian_meal.jpg", imgPage: "https://fr.wikipedia.org/wiki/Mezz%C3%A9",
     ing: [["pois_chiches", 1, "boite"], ["tahini", 3, "cs"], ["citron", 1, "pc"], ["ail", 1, "gousse"], ["concombre", 1, "pc"], ["carotte", 2, "pc"], ["tomates_cerises", 150, "g"], ["feta", 100, "g"], ["olives_noires", 60, "g"], ["pita", 4, "pc"]],
     pantry: ["cumin", "paprika", "huile d'olive", "sel"],
     steps: [
@@ -1056,6 +1134,7 @@ const RECIPES = [
     ] },
 
   { id: "fattoush", name: "Fattoush", cat: "salade", cui: "lb", time: 25, slots: ["midi"], diet: ["leger", "chol"],
+    img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a5/Fattoush.JPG/500px-Fattoush.JPG", imgPage: "https://fr.wikipedia.org/wiki/Fattouche",
     ing: [["romaine", 1, "pc"], ["tomate", 3, "pc"], ["concombre", 1, "pc"], ["radis", 1, "botte"], ["oignon_nouveau", 2, "pc"], ["menthe", 1, "botte"], ["persil", 1, "botte"], ["pita", 2, "pc"], ["citron", 1, "pc"]],
     pantry: ["sumac", "huile d'olive", "sel", "poivre"],
     steps: [
@@ -1068,6 +1147,7 @@ const RECIPES = [
 
   /* ---------- Mexicaines ---------- */
   { id: "fajitas", name: "Fajitas de poulet", cat: "volaille", cui: "mx", time: 25, slots: ["midi", "soir"], diet: ["leger", "chol"],
+    img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/cf/Chicken_fajitas.jpg/500px-Chicken_fajitas.jpg", imgPage: "https://fr.wikipedia.org/wiki/Fajita",
     ing: [["poulet_blanc", 300, "g"], ["poivron", 2, "pc"], ["oignon", 1, "pc"], ["tortillas", 4, "pc"], ["creme", 10, "cl"], ["avocat", 1, "pc"], ["citron_vert", 1, "pc"]],
     pantry: ["paprika", "cumin", "piment", "huile", "sel"],
     steps: [
@@ -1079,6 +1159,7 @@ const RECIPES = [
     ] },
 
   { id: "tacos-boeuf", name: "Tacos au bœuf haché", cat: "viande", cui: "mx", time: 25, slots: ["midi", "soir"],
+    img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/73/001_Tacos_de_carnitas%2C_carne_asada_y_al_pastor.jpg/500px-001_Tacos_de_carnitas%2C_carne_asada_y_al_pastor.jpg", imgPage: "https://fr.wikipedia.org/wiki/Taco",
     ing: [["boeuf_hache", 300, "g"], ["tortillas", 4, "pc"], ["cheddar_rape", 100, "g"], ["tomate", 2, "pc"], ["laitue", 1, "pc"], ["oignon_rouge", 1, "pc"], ["avocat", 1, "pc"], ["citron_vert", 1, "pc"]],
     pantry: ["cumin", "paprika", "piment", "huile", "sel"],
     steps: [
@@ -1090,6 +1171,7 @@ const RECIPES = [
     ] },
 
   { id: "quesadillas", name: "Quesadillas au poulet et cheddar", cat: "volaille", cui: "mx", time: 15, slots: ["midi"],
+    img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/75/Quesadilla_2.jpg/500px-Quesadilla_2.jpg", imgPage: "https://fr.wikipedia.org/wiki/Quesadilla",
     ing: [["tortillas", 4, "pc"], ["poulet_blanc", 200, "g"], ["cheddar_rape", 150, "g"], ["poivron", 1, "pc"], ["oignon_nouveau", 2, "pc"], ["creme", 10, "cl"]],
     pantry: ["paprika", "huile", "sel"],
     steps: [
@@ -1102,6 +1184,7 @@ const RECIPES = [
 
   /* ---------- Françaises ---------- */
   { id: "pot-au-feu", name: "Pot-au-feu", cat: "viande", cui: "fr", time: 150, slots: ["soir"], diet: ["leger"],
+    img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/51/Pot-au-feu2.jpg/500px-Pot-au-feu2.jpg", imgPage: "https://fr.wikipedia.org/wiki/Pot-au-feu",
     ing: [["boeuf_braiser", 600, "g"], ["carotte", 3, "pc"], ["poireau", 2, "pc"], ["navet", 2, "pc"], ["pdt", 400, "g"], ["oignon", 1, "pc"], ["celeri", 1, "pc"], ["cornichons", 6, "pc"]],
     pantry: ["laurier", "thym", "clous de girofle", "gros sel", "poivre en grains", "moutarde"],
     steps: [
@@ -1124,6 +1207,7 @@ const RECIPES = [
     ] },
 
   { id: "quiche-poireaux", name: "Quiche aux poireaux", cat: "oeufs", cui: "fr", time: 50, slots: ["midi", "soir"],
+    img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7e/Quiche_Lorraine.jpg/500px-Quiche_Lorraine.jpg", imgPage: "https://fr.wikipedia.org/wiki/Quiche",
     ing: [["pate_brisee", 1, "pc"], ["poireau", 3, "pc"], ["oeuf", 3, "pc"], ["creme", 20, "cl"], ["gruyere", 80, "g"], ["beurre", 20, "g"], ["laitue", 1, "pc"]],
     pantry: ["muscade", "vinaigre", "huile", "sel", "poivre"],
     steps: [
@@ -1135,6 +1219,7 @@ const RECIPES = [
     ] },
 
   { id: "truite-amandes", name: "Truite aux amandes, pommes vapeur", cat: "poisson", cui: "fr", time: 25, slots: ["midi", "soir"],
+    img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/94/Truite_meuni%C3%A8re.jpg/500px-Truite_meuni%C3%A8re.jpg", imgPage: "https://fr.wikipedia.org/wiki/Truite_meuni%C3%A8re",
     ing: [["truite", 2, "pc"], ["amandes", 40, "g"], ["beurre", 40, "g"], ["citron", 1, "pc"], ["pdt", 500, "g"], ["persil", 1, "botte"], ["farine", 20, "g"]],
     pantry: ["sel", "poivre"],
     steps: [
@@ -1146,6 +1231,7 @@ const RECIPES = [
     ] },
 
   { id: "gratin-pates-thon", name: "Gratin de pâtes au thon", cat: "pates", cui: "fr", time: 35, slots: ["soir"],
+    img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/fa/Tuna_Casserole2.jpg/500px-Tuna_Casserole2.jpg", imgPage: "https://en.wikipedia.org/wiki/Tuna_casserole",
     ing: [["pates", 200, "g"], ["thon", 1, "boite"], ["tomates_concassees", 1, "boite"], ["oignon", 1, "pc"], ["gruyere", 80, "g"], ["creme", 10, "cl"]],
     pantry: ["origan", "huile d'olive", "sel", "poivre"],
     steps: [
@@ -1157,6 +1243,7 @@ const RECIPES = [
     ] },
 
   { id: "salade-lyonnaise", name: "Salade tiède au bœuf et œuf poché", cat: "salade", cui: "fr", time: 20, slots: ["midi"],
+    img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/ed/Salade_lyonnaise.JPG/500px-Salade_lyonnaise.JPG", imgPage: "https://fr.wikipedia.org/wiki/Salade_lyonnaise",
     ing: [["laitue", 1, "pc"], ["boeuf_saute", 200, "g"], ["oeuf", 2, "pc"], ["pain", 2, "tranche"], ["ail", 1, "gousse"], ["echalote", 1, "pc"]],
     pantry: ["vinaigre", "moutarde", "huile", "sel", "poivre"],
     steps: [
@@ -1168,6 +1255,7 @@ const RECIPES = [
     ] },
 
   { id: "roti-boeuf", name: "Rôti de bœuf, haricots verts", cat: "viande", cui: "fr", time: 40, slots: ["soir"],
+    img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/de/Rosbif.jpg/500px-Rosbif.jpg", imgPage: "https://fr.wikipedia.org/wiki/Rosbif",
     ing: [["roti_boeuf", 600, "g"], ["haricots_verts", 400, "g"], ["echalote", 2, "pc"], ["beurre", 30, "g"], ["ail", 2, "gousse"]],
     pantry: ["huile", "thym", "sel", "poivre"],
     steps: [
@@ -1179,6 +1267,7 @@ const RECIPES = [
     ] },
 
   { id: "gratin-chou-fleur", name: "Gratin de chou-fleur", cat: "vege", cui: "fr", time: 45, slots: ["soir"],
+    img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/51/Cauliflower_cheese_side_dish.jpg/500px-Cauliflower_cheese_side_dish.jpg", imgPage: "https://en.wikipedia.org/wiki/Cauliflower_cheese",
     ing: [["chou_fleur", 1, "pc"], ["lait", 40, "cl"], ["beurre", 30, "g"], ["farine", 30, "g"], ["gruyere", 100, "g"]],
     pantry: ["muscade", "sel", "poivre"],
     steps: [
@@ -1190,6 +1279,7 @@ const RECIPES = [
     ] },
 
   { id: "papillote", name: "Cabillaud en papillote, riz", cat: "poisson", cui: "fr", time: 30, slots: ["midi", "soir"], diet: ["leger", "chol"],
+    img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4a/Papillotes_de_Lyon.JPG/500px-Papillotes_de_Lyon.JPG", imgPage: "https://fr.wikipedia.org/wiki/Papillote",
     ing: [["cabillaud", 300, "g"], ["courgette", 1, "pc"], ["tomate", 2, "pc"], ["citron", 1, "pc"], ["riz", 150, "g"], ["echalote", 1, "pc"]],
     pantry: ["huile d'olive", "thym", "sel", "poivre"],
     steps: [
@@ -1201,6 +1291,7 @@ const RECIPES = [
     ] },
 
   { id: "lentilles-merguez", name: "Lentilles aux merguez", cat: "viande", cui: "fr", time: 45, slots: ["soir"],
+    img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f4/Merguez_grilled.jpg/500px-Merguez_grilled.jpg", imgPage: "https://fr.wikipedia.org/wiki/Merguez",
     ing: [["lentilles_vertes", 250, "g"], ["merguez", 4, "pc"], ["carotte", 2, "pc"], ["oignon", 1, "pc"], ["ail", 2, "gousse"], ["bouillon", 1, "pc"]],
     pantry: ["laurier", "thym", "moutarde", "huile", "sel", "poivre"],
     steps: [
@@ -1212,6 +1303,7 @@ const RECIPES = [
     ] },
 
   { id: "tarte-tomate", name: "Tarte fine tomate–moutarde, salade", cat: "vege", cui: "fr", time: 35, slots: ["midi", "soir"],
+    img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/58/Pr%C3%A9paration_d%27une_tarte_%C3%A0_la_tomate_%2807%29_-_r%C3%A9sultat_%28gros_plan%29.jpg/500px-Pr%C3%A9paration_d%27une_tarte_%C3%A0_la_tomate_%2807%29_-_r%C3%A9sultat_%28gros_plan%29.jpg", imgPage: "https://fr.wikipedia.org/wiki/Tarte_%C3%A0_la_tomate",
     ing: [["pate_feuilletee", 1, "pc"], ["tomate", 4, "pc"], ["gruyere", 60, "g"], ["laitue", 1, "pc"]],
     pantry: ["moutarde", "thym", "huile d'olive", "vinaigre", "sel", "poivre"],
     steps: [
@@ -1224,6 +1316,7 @@ const RECIPES = [
 
   /* ---------- Légères et pauvres en cholestérol ---------- */
   { id: "wok-crevettes", name: "Wok de crevettes aux légumes croquants", cat: "poisson", cui: "cn", time: 20, slots: ["midi", "soir"], diet: ["leger", "chol"],
+    img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/62/Making_Stir-Fry_%283286445383%29.jpg/500px-Making_Stir-Fry_%283286445383%29.jpg", imgPage: "https://en.wikipedia.org/wiki/Stir_frying",
     ing: [["crevettes", 250, "g"], ["brocoli", 1, "pc"], ["poivron", 1, "pc"], ["carotte", 1, "pc"], ["ail", 2, "gousse"], ["gingembre", 15, "g"], ["sauce_soja", 3, "cs"], ["citron_vert", 1, "pc"], ["riz", 150, "g"]],
     pantry: ["huile", "poivre"],
     steps: ["Faites cuire 150 g de riz. Détaillez le brocoli en petits bouquets, le poivron en lanières, la carotte en bâtonnets fins. Hachez 2 gousses d'ail, râpez 15 g de gingembre.",
@@ -1242,6 +1335,7 @@ const RECIPES = [
       "Servez tiède ou froid. Se garde 2 jours au frais et se transporte bien."] },
 
   { id: "soupe-verte", name: "Soupe verte courgette, poireau et épinards", cat: "soupe", cui: "fr", time: 30, slots: ["midi", "soir"], diet: ["leger", "chol"],
+    img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/78/Vegetable_udon_noodle_soup.jpg/500px-Vegetable_udon_noodle_soup.jpg", imgPage: "https://en.wikipedia.org/wiki/Vegetable_soup",
     ing: [["courgette", 2, "pc"], ["poireau", 1, "pc"], ["epinards", 150, "g"], ["pdt", 200, "g"], ["oignon", 1, "pc"], ["bouillon", 1, "pc"], ["citron", 1, "pc"]],
     pantry: ["huile d'olive", "sel", "poivre"],
     steps: ["Émincez l'oignon et le poireau (bien lavé). Coupez les 2 courgettes et 200 g de pommes de terre en cubes.",
@@ -1268,6 +1362,7 @@ const RECIPES = [
       "Servez le poulet tranché avec les haricots et le reste du citron en quartiers."] },
 
   { id: "salade-pois-chiches", name: "Salade de pois chiches, concombre et menthe", cat: "vege", cui: "med", time: 15, slots: ["midi"], diet: ["leger", "chol"],
+    img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/fe/Hummus_salad.jpg/500px-Hummus_salad.jpg", imgPage: "https://en.wikipedia.org/wiki/Chickpea_salad",
     ing: [["pois_chiches", 1, "boite"], ["concombre", 1, "pc"], ["tomates_cerises", 200, "g"], ["oignon_rouge", 1, "pc"], ["menthe", 1, "botte"], ["citron", 1, "pc"]],
     pantry: ["huile d'olive", "cumin", "sel", "poivre"],
     steps: ["Égouttez et rincez les pois chiches.",
@@ -1286,6 +1381,7 @@ const RECIPES = [
       "Servez avec le riz."] },
 
   { id: "veloute-carottes", name: "Velouté de carottes au cumin", cat: "soupe", cui: "fr", time: 30, slots: ["midi", "soir"], diet: ["leger", "chol"],
+    img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/ab/Carrot_soup.jpg/500px-Carrot_soup.jpg", imgPage: "https://en.wikipedia.org/wiki/Carrot_soup",
     ing: [["carotte", 6, "pc"], ["oignon", 1, "pc"], ["pdt", 150, "g"], ["bouillon", 1, "pc"], ["coriandre", 1, "botte"], ["citron", 1, "pc"]],
     pantry: ["cumin", "huile d'olive", "sel", "poivre"],
     steps: ["Épluchez les 6 carottes et 150 g de pommes de terre, coupez-les en rondelles. Émincez l'oignon.",
@@ -1313,6 +1409,7 @@ const RECIPES = [
       "Servez avec du pain de campagne grillé et un filet d'huile d'olive."] },
 
   { id: "salade-poulet-avocat", name: "Salade de poulet à l'avocat et au citron vert", cat: "salade", cui: "mx", time: 20, slots: ["midi"], diet: ["leger", "chol"],
+    img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/76/Chicken_Salad_Chick_Classic_Carol_scoop%2C_Jan_2020.jpg/500px-Chicken_Salad_Chick_Classic_Carol_scoop%2C_Jan_2020.jpg", imgPage: "https://en.wikipedia.org/wiki/Chicken_salad",
     ing: [["poulet_blanc", 250, "g"], ["avocat", 1, "pc"], ["laitue", 1, "pc"], ["tomates_cerises", 150, "g"], ["oignon_rouge", 1, "pc"], ["citron_vert", 1, "pc"], ["coriandre", 1, "botte"]],
     pantry: ["huile d'olive", "cumin", "sel", "poivre"],
     steps: ["Coupez 250 g de blanc de poulet en lanières, salez, poivrez, saupoudrez de cumin. Faites-les griller 8 minutes dans une poêle antiadhésive avec 1 cuillère d'huile d'olive. Laissez tiédir.",
@@ -1321,6 +1418,7 @@ const RECIPES = [
       "Réunissez tout dans un saladier avec la coriandre ciselée, versez la sauce, mélangez délicatement."] },
 
   { id: "brochettes-dinde-yaourt", name: "Brochettes de dinde au yaourt et citron, salade", cat: "volaille", cui: "med", time: 25, slots: ["midi", "soir"], diet: ["leger", "chol"],
+    img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/11/PinchosAmericanos.jpg/500px-PinchosAmericanos.jpg", imgPage: "https://fr.wikipedia.org/wiki/Brochette",
     ing: [["dinde", 300, "g"], ["yaourt", 1, "pot"], ["citron", 1, "pc"], ["ail", 2, "gousse"], ["laitue", 1, "pc"], ["tomate", 2, "pc"], ["concombre", 1, "pc"]],
     pantry: ["paprika", "cumin", "origan", "huile d'olive", "sel", "poivre"],
     steps: ["Coupez 300 g d'escalopes de dinde en cubes. Mélangez le yaourt, le jus d'un demi-citron, 2 gousses d'ail pressées, 1 cuillère à café de paprika, 1 de cumin, 1 d'origan, sel et poivre. Enrobez la dinde, laissez mariner 10 minutes.",
@@ -1338,6 +1436,7 @@ const RECIPES = [
       "Servez avec le jus du citron."] },
 
   { id: "salade-crevettes-avocat", name: "Salade de crevettes, avocat et concombre", cat: "salade", cui: "fr", time: 15, slots: ["midi"], diet: ["leger", "chol"],
+    img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f8/Cocktail_1_bg_060702.jpg/500px-Cocktail_1_bg_060702.jpg", imgPage: "https://en.wikipedia.org/wiki/Prawn_cocktail",
     ing: [["crevettes", 200, "g"], ["avocat", 1, "pc"], ["concombre", 1, "pc"], ["laitue", 1, "pc"], ["citron_vert", 1, "pc"], ["aneth", 1, "botte"]],
     pantry: ["huile d'olive", "sel", "poivre"],
     steps: ["Coupez le concombre en demi-rondelles, l'avocat en dés, la laitue en lanières. Ciselez l'aneth.",
@@ -1364,6 +1463,7 @@ const RECIPES = [
 
   /* ---------- Japonaises ---------- */
   { id: "oyakodon", name: "Oyakodon (bol de riz au poulet et à l'œuf)", cat: "volaille", cui: "jp", time: 25, slots: ["midi", "soir"], diet: ["leger"],
+    img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/29/Oyakodon_003.jpg/500px-Oyakodon_003.jpg", imgPage: "https://fr.wikipedia.org/wiki/Oyakodon",
     ing: [["poulet_haut", 3, "pc"], ["oignon", 1, "pc"], ["oeuf", 4, "pc"], ["sauce_soja", 4, "cs"], ["bouillon", 1, "pc"], ["oignon_nouveau", 2, "pc"], ["riz", 150, "g"]],
     pantry: ["sucre", "vinaigre de riz"],
     steps: ["Faites cuire 150 g de riz. Désossez les hauts de cuisse et coupez-les en morceaux de 2 cm. Émincez l'oignon, ciselez les oignons nouveaux.",
@@ -1373,6 +1473,7 @@ const RECIPES = [
       "Faites glisser le tout sur le riz dans deux bols, parsemez d'oignons nouveaux."] },
 
   { id: "yakitori", name: "Yakitori de poulet, riz et concombre au sésame", cat: "volaille", cui: "jp", time: 25, slots: ["midi", "soir"], diet: ["leger", "chol"],
+    img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4b/Cooking_yakitori.jpg/500px-Cooking_yakitori.jpg", imgPage: "https://fr.wikipedia.org/wiki/Yakitori",
     ing: [["poulet_blanc", 350, "g"], ["oignon_nouveau", 4, "pc"], ["sauce_soja", 4, "cs"], ["miel", 2, "cs"], ["gingembre", 15, "g"], ["concombre", 1, "pc"], ["sesame", 1, "cs"], ["riz", 150, "g"]],
     pantry: ["vinaigre de riz", "sucre", "huile", "sel"],
     steps: ["Faites cuire 150 g de riz. Sauce : faites réduire 3 minutes à feu doux 4 cuillères de sauce soja, 2 de miel, 2 d'eau, 1 de vinaigre de riz et le gingembre râpé, jusqu'à consistance sirupeuse.",
@@ -1382,6 +1483,7 @@ const RECIPES = [
       "Servez sur le riz avec le concombre et le reste de sauce."] },
 
   { id: "soba-sesame", name: "Nouilles soba froides au sésame et légumes croquants", cat: "vege", cui: "jp", time: 20, slots: ["midi"], diet: ["leger", "chol"],
+    img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b6/Seiro_soba_at_Takasho_in_Nezu%2C_Tokyo.jpg/500px-Seiro_soba_at_Takasho_in_Nezu%2C_Tokyo.jpg", imgPage: "https://fr.wikipedia.org/wiki/Soba",
     ing: [["nouilles_soba", 200, "g"], ["concombre", 1, "pc"], ["carotte", 1, "pc"], ["oignon_nouveau", 2, "pc"], ["tahini", 2, "cs"], ["sauce_soja", 3, "cs"], ["miel", 1, "cs"], ["sesame", 1, "cs"], ["citron_vert", 1, "pc"]],
     pantry: ["vinaigre de riz", "huile de sésame (facultatif)"],
     steps: ["Faites cuire 200 g de soba selon le paquet (4 à 5 minutes), égouttez et rincez longuement à l'eau froide en frottant pour retirer l'amidon. Égouttez bien.",
@@ -1390,6 +1492,7 @@ const RECIPES = [
       "Mélangez les nouilles avec la sauce, ajoutez les légumes et le sésame. Servez frais."] },
 
   { id: "curry-japonais", name: "Curry japonais au poulet et aux légumes", cat: "volaille", cui: "jp", time: 40, slots: ["soir"], diet: ["leger", "chol"],
+    img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3b/Beef_curry_rice_003.jpg/500px-Beef_curry_rice_003.jpg", imgPage: "https://fr.wikipedia.org/wiki/Curry_japonais",
     ing: [["poulet_blanc", 300, "g"], ["pdt", 300, "g"], ["carotte", 2, "pc"], ["oignon", 2, "pc"], ["ail", 2, "gousse"], ["gingembre", 10, "g"], ["farine", 30, "g"], ["bouillon", 1, "pc"], ["sauce_soja", 1, "cs"], ["miel", 1, "cs"], ["riz", 150, "g"]],
     pantry: ["curry", "garam masala", "huile", "ketchup", "sel", "poivre"],
     steps: ["Faites cuire 150 g de riz. Émincez les 2 oignons, coupez les carottes en rondelles épaisses, 300 g de pommes de terre en gros cubes et le poulet en morceaux.",
@@ -1399,6 +1502,7 @@ const RECIPES = [
       "Servez sur le riz."] },
 
   { id: "soupe-miso-udon", name: "Soupe miso aux nouilles udon, champignons et épinards", cat: "soupe", cui: "jp", time: 20, slots: ["midi", "soir"], diet: ["leger", "chol"],
+    img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/97/Kakeudon.jpg/500px-Kakeudon.jpg", imgPage: "https://fr.wikipedia.org/wiki/Udon",
     ing: [["udon", 300, "g"], ["miso", 3, "cs"], ["champignons", 200, "g"], ["epinards", 100, "g"], ["oignon_nouveau", 3, "pc"], ["gingembre", 10, "g"], ["bouillon", 1, "pc"], ["sauce_soja", 1, "cs"]],
     pantry: ["sésame", "huile de sésame (facultatif)"],
     steps: ["Portez 1 litre d'eau à ébullition avec le cube de bouillon et le gingembre en fines lamelles. Émincez les champignons, les oignons nouveaux ; lavez les épinards.",
@@ -1416,6 +1520,7 @@ const RECIPES = [
       "Servez avec le chou, le riz, la sauce et un quartier de citron."] },
 
   { id: "gyudon", name: "Gyudon (bol de riz au bœuf et aux oignons)", cat: "viande", cui: "jp", time: 20, slots: ["midi", "soir"], diet: ["leger"],
+    img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9a/Gyuu-don_003.jpg/500px-Gyuu-don_003.jpg", imgPage: "https://fr.wikipedia.org/wiki/Gy%C5%ABdon",
     ing: [["boeuf_saute", 300, "g"], ["oignon", 2, "pc"], ["sauce_soja", 4, "cs"], ["gingembre", 15, "g"], ["bouillon", 1, "pc"], ["oignon_nouveau", 2, "pc"], ["riz", 150, "g"]],
     pantry: ["sucre", "vinaigre de riz"],
     steps: ["Faites cuire 150 g de riz. Émincez les 2 oignons, coupez le bœuf en tranches très fines, râpez le gingembre.",
@@ -1426,6 +1531,7 @@ const RECIPES = [
 
   /* ---------- Chinoises ---------- */
   { id: "poulet-cajou", name: "Poulet sauté aux noix de cajou", cat: "volaille", cui: "cn", time: 25, slots: ["midi", "soir"], diet: ["leger", "chol"],
+    img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/36/Cashewchickenphoto.jpg/500px-Cashewchickenphoto.jpg", imgPage: "https://en.wikipedia.org/wiki/Cashew_chicken",
     ing: [["poulet_blanc", 300, "g"], ["cajou", 60, "g"], ["poivron", 1, "pc"], ["oignon_nouveau", 3, "pc"], ["ail", 2, "gousse"], ["gingembre", 15, "g"], ["sauce_soja", 3, "cs"], ["miel", 1, "cs"], ["farine", 1, "cs"], ["riz", 150, "g"]],
     pantry: ["vinaigre de riz", "huile", "poivre"],
     steps: ["Faites cuire 150 g de riz. Coupez le poulet en dés, enrobez-les de 1 cuillère de farine et 1 de sauce soja. Coupez le poivron en dés, émincez les oignons nouveaux, hachez l'ail et le gingembre.",
@@ -1435,6 +1541,7 @@ const RECIPES = [
       "Ajoutez les noix de cajou et les oignons nouveaux. Servez sur le riz."] },
 
   { id: "boeuf-brocoli", name: "Bœuf au brocoli, sauce soja-gingembre", cat: "viande", cui: "cn", time: 25, slots: ["midi", "soir"], diet: ["leger"],
+    img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/58/Beef_and_broccoli_stir_fry.jpg/500px-Beef_and_broccoli_stir_fry.jpg", imgPage: "https://en.wikipedia.org/wiki/Beef_and_broccoli",
     ing: [["boeuf_saute", 300, "g"], ["brocoli", 1, "pc"], ["ail", 2, "gousse"], ["gingembre", 20, "g"], ["sauce_soja", 4, "cs"], ["farine", 1, "cs"], ["riz", 150, "g"], ["sesame", 1, "cs"]],
     pantry: ["sucre", "huile", "poivre"],
     steps: ["Faites cuire 150 g de riz. Coupez le bœuf en lanières fines, mélangez-le avec 1 cuillère de sauce soja et 1 de farine. Détaillez le brocoli en bouquets, hachez l'ail, râpez le gingembre.",
@@ -1444,6 +1551,7 @@ const RECIPES = [
       "Remettez le bœuf, mélangez 1 minute. Sésame, poivre, sur le riz."] },
 
   { id: "chow-mein", name: "Nouilles sautées aux légumes (chow mein)", cat: "vege", cui: "cn", time: 20, slots: ["midi", "soir"], diet: ["leger", "chol"],
+    img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d1/Chow_mein_1_by_yuen.jpg/500px-Chow_mein_1_by_yuen.jpg", imgPage: "https://fr.wikipedia.org/wiki/Chow_mein",
     ing: [["nouilles_chinoises", 200, "g"], ["chou_vert", 1, "pc"], ["carotte", 1, "pc"], ["poivron", 1, "pc"], ["germes_soja", 100, "g"], ["oignon_nouveau", 3, "pc"], ["ail", 2, "gousse"], ["sauce_soja", 3, "cs"], ["sesame", 1, "cs"]],
     pantry: ["huile", "vinaigre de riz", "sucre", "poivre"],
     steps: ["Faites cuire 200 g de nouilles chinoises selon le paquet, égouttez, rincez et mélangez avec quelques gouttes d'huile pour qu'elles ne collent pas.",
@@ -1453,6 +1561,7 @@ const RECIPES = [
       "Germes de soja et oignons nouveaux 30 secondes. Sésame, poivre, servez."] },
 
   { id: "kung-pao", name: "Poulet kung pao aux cacahuètes", cat: "volaille", cui: "cn", time: 25, slots: ["midi", "soir"], diet: ["leger", "chol"],
+    img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c2/Kung-pao-shanghai.jpg/500px-Kung-pao-shanghai.jpg", imgPage: "https://fr.wikipedia.org/wiki/Poulet_imp%C3%A9rial",
     ing: [["poulet_blanc", 300, "g"], ["cacahuetes", 50, "g"], ["poivron", 1, "pc"], ["oignon_nouveau", 3, "pc"], ["ail", 3, "gousse"], ["gingembre", 15, "g"], ["sauce_soja", 3, "cs"], ["farine", 1, "cs"], ["riz", 150, "g"]],
     pantry: ["vinaigre de riz", "sucre", "piment (flocons)", "huile"],
     steps: ["Faites cuire 150 g de riz. Coupez le poulet en dés, mélangez avec 1 cuillère de sauce soja et 1 de farine. Poivron en dés, oignons nouveaux en tronçons, ail et gingembre hachés.",
@@ -1462,6 +1571,7 @@ const RECIPES = [
       "Remettez le poulet, versez la sauce, 1 minute. Cacahuètes et oignons nouveaux. Servez sur le riz."] },
 
   { id: "soupe-poulet-mais", name: "Soupe chinoise au poulet et au maïs", cat: "soupe", cui: "cn", time: 25, slots: ["midi", "soir"], diet: ["leger"],
+    img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4b/Corn_soup.jpg/500px-Corn_soup.jpg", imgPage: "https://en.wikipedia.org/wiki/Corn_soup",
     ing: [["poulet_blanc", 200, "g"], ["mais", 2, "boite"], ["oeuf", 1, "pc"], ["oignon_nouveau", 3, "pc"], ["gingembre", 15, "g"], ["bouillon", 2, "pc"], ["farine", 2, "cs"], ["sauce_soja", 1, "cs"]],
     pantry: ["huile de sésame (facultatif)", "poivre"],
     steps: ["Portez 1 litre d'eau à ébullition avec les 2 cubes de bouillon et le gingembre râpé. Ajoutez le poulet entier, laissez frémir 12 minutes, retirez-le et effilochez-le à la fourchette.",
@@ -1480,6 +1590,7 @@ const RECIPES = [
       "Remettez les aubergines, enrobez, ajoutez les oignons nouveaux. Servez sur le riz."] },
 
   { id: "mapo-tofu", name: "Mapo tofu au bœuf", cat: "vege", cui: "cn", time: 25, slots: ["midi", "soir"], diet: ["leger"],
+    img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d4/Mapodoufu.jpg/500px-Mapodoufu.jpg", imgPage: "https://fr.wikipedia.org/wiki/Mapo_doufu",
     ing: [["tofu", 400, "g"], ["boeuf_hache", 150, "g"], ["ail", 3, "gousse"], ["gingembre", 15, "g"], ["oignon_nouveau", 3, "pc"], ["sauce_soja", 2, "cs"], ["bouillon", 1, "pc"], ["farine", 1, "cs"], ["riz", 150, "g"]],
     pantry: ["sauce pimentée (sriracha ou pâte de piment)", "huile", "poivre", "sucre"],
     steps: ["Faites cuire 150 g de riz. Coupez le tofu en cubes de 2 cm et plongez-le 2 minutes dans l'eau frémissante salée, égouttez délicatement.",
@@ -1490,6 +1601,7 @@ const RECIPES = [
 
   /* ---------- Libanaises ---------- */
   { id: "kafta-libanaise", name: "Kafta libanaise grillée, riz aux vermicelles", cat: "viande", cui: "lb", time: 30, slots: ["soir"],
+    img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a2/Sultanahmet_K%C3%B6ftesi.jpg/500px-Sultanahmet_K%C3%B6ftesi.jpg", imgPage: "https://fr.wikipedia.org/wiki/Kefta",
     ing: [["boeuf_hache", 400, "g"], ["oignon", 1, "pc"], ["persil", 1, "botte"], ["riz", 150, "g"], ["vermicelles", 40, "g"], ["tomate", 3, "pc"], ["yaourt", 1, "pot"]],
     pantry: ["sept-épices libanais (ou cannelle + quatre-épices)", "cumin", "huile d'olive", "sel", "poivre"],
     steps: ["Riz aux vermicelles : faites dorer 40 g de vermicelles dans 1 cuillère d'huile, ajoutez 150 g de riz rincé, remuez 1 minute, versez 30 cl d'eau chaude salée, couvrez, 15 minutes à feu doux.",
@@ -1499,6 +1611,7 @@ const RECIPES = [
       "Servez avec le riz aux vermicelles et le yaourt salé."] },
 
   { id: "moujaddara", name: "Moujaddara (lentilles, riz et oignons caramélisés)", cat: "vege", cui: "lb", time: 40, slots: ["soir"], diet: ["leger", "chol"],
+    img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c9/Mujaddara.jpg/500px-Mujaddara.jpg", imgPage: "https://en.wikipedia.org/wiki/Mujaddara",
     ing: [["lentilles_vertes", 200, "g"], ["riz", 120, "g"], ["oignon", 4, "pc"], ["yaourt", 1, "pot"], ["concombre", 1, "pc"], ["tomate", 2, "pc"], ["citron", 1, "pc"]],
     pantry: ["cumin", "huile d'olive", "sel", "poivre"],
     steps: ["Rincez 200 g de lentilles vertes, couvrez-les de 60 cl d'eau et faites-les cuire 15 minutes.",
@@ -1508,6 +1621,7 @@ const RECIPES = [
       "Servez avec le reste des oignons sur le dessus, le yaourt et la salade."] },
 
   { id: "fatteh-pois-chiches", name: "Fatteh aux pois chiches, yaourt et pita croustillant", cat: "vege", cui: "lb", time: 20, slots: ["midi"], diet: ["leger"],
+    img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/08/%D9%81%D8%AA%D9%91%D8%A9_%D8%A8%D8%A7%D9%84%D9%84%D9%88%D8%B2_%D9%88_%D8%A7%D9%84%D8%B3%D9%91%D9%85%D9%86.jpg/500px-%D9%81%D8%AA%D9%91%D8%A9_%D8%A8%D8%A7%D9%84%D9%84%D9%88%D8%B2_%D9%88_%D8%A7%D9%84%D8%B3%D9%91%D9%85%D9%86.jpg", imgPage: "https://en.wikipedia.org/wiki/Fatteh",
     ing: [["pois_chiches", 1, "boite"], ["pita", 2, "pc"], ["yaourt", 2, "pot"], ["tahini", 2, "cs"], ["ail", 1, "gousse"], ["citron", 1, "pc"], ["pignons", 20, "g"], ["persil", 1, "botte"]],
     pantry: ["cumin", "huile d'olive", "paprika", "sel"],
     steps: ["Coupez les pains pita en petits triangles, badigeonnez-les d'huile d'olive et faites-les griller au four à 200 °C 8 minutes (ou à la poêle sèche) jusqu'à ce qu'ils soient croustillants.",
@@ -1517,6 +1631,7 @@ const RECIPES = [
       "Dans un plat : pita croustillant, pois chiches chauds avec un peu de leur eau, sauce au yaourt, pignons, persil ciselé, paprika. Servez tout de suite."] },
 
   { id: "shawarma-poulet", name: "Shawarma de poulet maison en pita, sauce à l'ail", cat: "volaille", cui: "lb", time: 30, slots: ["midi", "soir"], diet: ["leger", "chol"],
+    img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/00/Shawarma_2.jpg/500px-Shawarma_2.jpg", imgPage: "https://fr.wikipedia.org/wiki/Chawarma",
     ing: [["poulet_haut", 4, "pc"], ["yaourt", 2, "pot"], ["citron", 1, "pc"], ["ail", 4, "gousse"], ["pita", 4, "pc"], ["tomate", 2, "pc"], ["cornichons", 4, "pc"], ["laitue", 1, "pc"]],
     pantry: ["cumin", "coriandre moulue", "paprika", "cannelle", "curcuma", "huile d'olive", "sel", "poivre"],
     steps: ["Désossez les hauts de cuisse (ou demandez-le au boucher) et coupez-les en lanières. Marinade : 1 yaourt, le jus d'un demi-citron, 2 gousses d'ail pressées, 1 cuillère à café de cumin, 1 de coriandre, 1 de paprika, 1/2 de cannelle, 1/2 de curcuma, 1 cuillère d'huile, sel, poivre. Laissez mariner 15 minutes minimum.",
@@ -1533,6 +1648,7 @@ const RECIPES = [
       "Faites cuire 150 g de riz. Servez les haricots tièdes ou à température ambiante avec le riz, un filet d'huile d'olive et du citron."] },
 
   { id: "kibbeh-four", name: "Kibbeh au four (bœuf et boulgour), salade au yaourt", cat: "viande", cui: "lb", time: 60, slots: ["soir"],
+    img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/12/%C4%B0%C3%A7li_k%C3%B6fte_%28Oruk%29.jpg/500px-%C4%B0%C3%A7li_k%C3%B6fte_%28Oruk%29.jpg", imgPage: "https://fr.wikipedia.org/wiki/Kebb%C3%A9",
     ing: [["boeuf_hache", 500, "g"], ["boulgour", 200, "g"], ["oignon", 2, "pc"], ["pignons", 30, "g"], ["yaourt", 1, "pot"], ["concombre", 1, "pc"], ["menthe", 1, "botte"]],
     pantry: ["sept-épices libanais (ou cannelle + quatre-épices)", "cumin", "huile d'olive", "sel", "poivre"],
     steps: ["Rincez 200 g de boulgour fin, couvrez-le d'eau 10 minutes, pressez-le bien. Mixez-le avec 350 g de bœuf haché, 1 oignon, 1 cuillère à café de sept-épices, sel et poivre, jusqu'à obtenir une pâte lisse (ajoutez un peu d'eau glacée si besoin).",
@@ -1542,6 +1658,7 @@ const RECIPES = [
       "Salade : yaourt, concombre en dés, menthe ciselée, sel. Servez avec le kibbeh."] },
 
   { id: "poulet-zaatar-batata-harra", name: "Poulet au zaatar, batata harra (pommes de terre épicées)", cat: "volaille", cui: "lb", time: 40, slots: ["soir"], diet: ["leger", "chol"],
+    img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6f/Batata_harra.jpg/500px-Batata_harra.jpg", imgPage: "https://fr.wikipedia.org/wiki/Batata_harra",
     ing: [["poulet_blanc", 350, "g"], ["pdt", 600, "g"], ["coriandre", 1, "botte"], ["ail", 4, "gousse"], ["citron", 2, "pc"], ["poivron", 1, "pc"]],
     pantry: ["zaatar", "paprika", "piment (flocons)", "huile d'olive", "sel", "poivre"],
     steps: ["Préchauffez le four à 210 °C. Coupez 600 g de pommes de terre en petits cubes, huilez, salez, enfournez 25 minutes jusqu'à ce qu'ils soient dorés.",
@@ -1552,6 +1669,7 @@ const RECIPES = [
 
   /* ---------- Syriennes ---------- */
   { id: "kabsa-poulet", name: "Kabsa au poulet (riz épicé aux raisins et amandes)", cat: "volaille", cui: "sy", time: 60, slots: ["soir"], diet: ["chol"],
+    img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4c/Kabsa.jpg/500px-Kabsa.jpg", imgPage: "https://fr.wikipedia.org/wiki/Kebsa",
     ing: [["poulet_haut", 4, "pc"], ["riz_basmati", 200, "g"], ["oignon", 2, "pc"], ["tomate", 3, "pc"], ["ail", 3, "gousse"], ["carotte", 1, "pc"], ["raisins_secs", 40, "g"], ["amandes", 30, "g"], ["citron", 1, "pc"]],
     pantry: ["cardamome", "cannelle", "clous de girofle", "curcuma", "laurier", "cumin", "huile d'olive", "sel", "poivre"],
     steps: ["Dans une cocotte, faites dorer les 4 hauts de cuisse salés et poivrés dans 2 cuillères d'huile, 4 minutes par face. Réservez.",
@@ -1561,6 +1679,7 @@ const RECIPES = [
       "Faites dorer les amandes à sec. Dressez le riz, le poulet dessus (passez-le 5 minutes sous le gril pour le croustillant), les amandes et des quartiers de citron."] },
 
   { id: "shakriyeh", name: "Shakriyeh (agneau mijoté au yaourt), riz", cat: "viande", cui: "sy", time: 75, slots: ["soir"],
+    img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/03/MyPlate_gov_Cultural_Food_%2820241025-USDA-FNS-UNK-0046%29.jpg/500px-MyPlate_gov_Cultural_Food_%2820241025-USDA-FNS-UNK-0046%29.jpg", imgPage: "https://en.wikipedia.org/wiki/Shakriyeh",
     ing: [["agneau", 500, "g"], ["yaourt", 4, "pot"], ["oignon", 1, "pc"], ["ail", 2, "gousse"], ["farine", 20, "g"], ["riz", 150, "g"], ["pignons", 20, "g"], ["bouillon", 1, "pc"]],
     pantry: ["menthe séchée", "laurier", "huile d'olive", "sel", "poivre"],
     steps: ["Coupez 500 g d'agneau en cubes. Couvrez-les d'eau froide avec l'oignon entier, le laurier et le cube de bouillon, portez à ébullition, écumez, puis laissez frémir 45 minutes à couvert. Réservez la viande et 20 cl de bouillon.",
@@ -1570,6 +1689,7 @@ const RECIPES = [
       "Faites dorer les pignons dans un peu d'huile d'olive. Servez la shakriyeh sur le riz, pignons dessus."] },
 
   { id: "yalanji", name: "Yalanji (feuilles de vigne farcies au riz, à l'huile d'olive)", cat: "vege", cui: "sy", time: 80, slots: ["soir"], diet: ["leger", "chol"],
+    img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c8/Speca_te_mbushura_me_mish.JPG/500px-Speca_te_mbushura_me_mish.JPG", imgPage: "https://en.wikipedia.org/wiki/Dolma",
     ing: [["feuilles_vigne", 40, "pc"], ["riz", 200, "g"], ["tomate", 3, "pc"], ["oignon", 2, "pc"], ["persil", 1, "botte"], ["menthe", 1, "botte"], ["citron", 2, "pc"], ["pdt", 300, "g"]],
     pantry: ["huile d'olive", "mélasse de grenade (facultatif)", "cumin", "sel", "poivre"],
     steps: ["Rincez les feuilles de vigne à l'eau chaude, égouttez. Farce : mélangez 200 g de riz rincé (cru), les 2 oignons hachés très fin, 2 tomates en petits dés, le persil et la menthe ciselés, 4 cuillères d'huile d'olive, le jus d'un citron, 1 cuillère à café de cumin, sel, poivre.",
@@ -1579,6 +1699,7 @@ const RECIPES = [
       "Laissez tiédir dans la casserole. Servez tiède ou froid avec du citron. Se garde 3 jours au frais."] },
 
   { id: "sheikh-el-mahshi", name: "Sheikh el mahshi (courgettes farcies au bœuf, sauce yaourt), riz", cat: "viande", cui: "sy", time: 50, slots: ["soir"],
+    img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/43/Makhshi1.jpg/500px-Makhshi1.jpg", imgPage: "https://en.wikipedia.org/wiki/Sheikh_al-mahshi",
     ing: [["courgette", 4, "pc"], ["boeuf_hache", 300, "g"], ["oignon", 1, "pc"], ["pignons", 30, "g"], ["yaourt", 3, "pot"], ["farine", 20, "g"], ["ail", 2, "gousse"], ["riz", 150, "g"], ["bouillon", 1, "pc"]],
     pantry: ["sept-épices libanais (ou cannelle + quatre-épices)", "menthe séchée", "huile d'olive", "sel", "poivre"],
     steps: ["Coupez les 4 courgettes en deux dans la longueur et évidez-les à la petite cuillère en gardant 1 cm de chair. Faites-les dorer 3 minutes côté chair dans 1 cuillère d'huile.",
@@ -1597,6 +1718,7 @@ const RECIPES = [
       "Servez avec les oignons croustillants et des morceaux de pita grillés sur le dessus."] },
 
   { id: "kebab-halabi", name: "Kebab halabi (kefta d'Alep à la sauce tomate-poivron), pita", cat: "viande", cui: "sy", time: 40, slots: ["soir"],
+    img: "https://upload.wikimedia.org/wikipedia/commons/a/ad/D%C3%B6ner_kebab_slicing.jpg", imgPage: "https://fr.wikipedia.org/wiki/Kebab",
     ing: [["boeuf_hache", 450, "g"], ["poivron", 2, "pc"], ["tomate", 4, "pc"], ["oignon", 2, "pc"], ["ail", 3, "gousse"], ["persil", 1, "botte"], ["pita", 4, "pc"], ["pignons", 20, "g"]],
     pantry: ["piment d'Alep (ou paprika + piment)", "sept-épices libanais (ou cannelle + quatre-épices)", "huile d'olive", "sel", "poivre"],
     steps: ["Préchauffez le four à 220 °C. Mélangez 450 g de bœuf haché avec 1 oignon râpé et pressé, la moitié du persil ciselé, 1 cuillère à café de sept-épices, 1 de piment d'Alep, sel, poivre. Formez 8 boudins aplatis.",
@@ -1606,6 +1728,7 @@ const RECIPES = [
       "Servez avec le reste du persil, les pignons dorés et les pains pita chauds."] },
 
   { id: "foul-mdammas", name: "Foul mdammas (fèves à l'huile d'olive, citron et cumin)", cat: "vege", cui: "sy", time: 15, slots: ["midi"], diet: ["leger", "chol"],
+    img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/bf/Ful_medames_%28arabic_meal%29.jpg/500px-Ful_medames_%28arabic_meal%29.jpg", imgPage: "https://en.wikipedia.org/wiki/Ful_medames",
     ing: [["feves", 2, "boite"], ["ail", 2, "gousse"], ["citron", 2, "pc"], ["tomate", 2, "pc"], ["persil", 1, "botte"], ["oignon_nouveau", 2, "pc"], ["pita", 4, "pc"]],
     pantry: ["cumin", "huile d'olive", "sel", "poivre"],
     steps: ["Versez les 2 boîtes de fèves avec leur jus dans une casserole, chauffez 5 minutes à feu doux.",
@@ -1615,6 +1738,7 @@ const RECIPES = [
       "Servez chaud avec les pains pita, pour saucer."] },
 
   { id: "muhammara", name: "Muhammara (dip poivrons-noix), crudités et pita", cat: "vege", cui: "sy", time: 30, slots: ["midi"], diet: ["leger", "chol"],
+    img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4c/Tanoreen_muhammara.jpg/500px-Tanoreen_muhammara.jpg", imgPage: "https://fr.wikipedia.org/wiki/Mouhammara",
     ing: [["poivron", 3, "pc"], ["noix", 80, "g"], ["chapelure", 40, "g"], ["ail", 1, "gousse"], ["melasse_grenade", 2, "cs"], ["citron", 1, "pc"], ["concombre", 1, "pc"], ["carotte", 2, "pc"], ["pita", 4, "pc"]],
     pantry: ["cumin", "piment d'Alep (ou paprika + piment)", "huile d'olive", "sel"],
     steps: ["Faites griller les 3 poivrons entiers sous le gril du four 20 minutes en les tournant, jusqu'à ce que la peau noircisse. Enfermez-les 10 minutes dans un sac ou sous un bol, pelez-les et épépinez-les.",

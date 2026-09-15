@@ -60,6 +60,12 @@ Le sélecteur **− / +** de l'en-tête (1 à 8, mémorisé) ajuste toutes les q
 Les recettes sont écrites pour 2 ; les arrondis sont pensés pour l'achat (grammes par 5 ou 10, œufs/boîtes/pains entiers,
 ½ possible pour un poivron ou un citron). Les étapes citent les quantités pour 2 — la fiche l'indique avec le facteur à appliquer.
 
+## Photos des plats
+- Recettes de la base : 124 sur 147 portent une illustration (`img`, `imgPage`) — vignette 500 px issue de l'article Wikipédia du plat
+  (Wikimedia Commons, créditée dans la fiche). Choisies après vérification ; les plats sans article fidèle n'en ont pas.
+- Recettes importées : la photo publiée par le site (`image` de la fiche schema.org) est enregistrée avec la recette.
+- Chargées à la demande à l'ouverture de la fiche, masquées si l'image ne répond pas.
+
 ## Fiche recette
 Toucher le nom d'un plat (semaine ou catalogue) ouvre sa fiche : ingrédients avec quantités pour 2, « du placard », et la préparation en 5–6 étapes détaillées (températures, temps, gestes).
 

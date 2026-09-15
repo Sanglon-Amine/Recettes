@@ -460,6 +460,7 @@
         ${ctx ? `<p class="eyebrow ${ctx.slot === "midi" ? "noon" : "night"}">${DAYS[ctx.day]} · ${SLOT_LABEL[ctx.slot]}</p>` : ""}
         <h2 id="sheetTitle">${esc(r.name)}</h2>
         <div class="chips"><span class="chip">${r.time} min</span><span class="chip">${esc(CATS[r.cat])}</span><span class="chip">${esc(CUISINES[r.cui])}</span>${(r.diet || []).map(d => `<span class="chip chip-diet">${esc(DIETS[d])}</span>`).join("")}<span class="chip chip-ok">${personsLabel()}</span></div>
+        ${dishFigure(r)}
         <h3>Ingrédients</h3>
         <ul class="ing">${r.ing.map(([k, q, u]) => `<li><span>${esc(ingLabel(k))}</span><span class="qty">${fmtQty(scaleQty(k, q, u), u)}</span></li>`).join("")}</ul>
         ${r.pantry && r.pantry.length ? `<p class="pantry">Du placard : ${esc(r.pantry.join(", "))}.</p>` : ""}
@@ -627,7 +628,9 @@
     const dur = s => { const m = /P(?:(\d+)D)?T?(?:(\d+)H)?(?:(\d+)M)?/.exec(String(s || "")); return m ? (+(m[1] || 0)) * 1440 + (+(m[2] || 0)) * 60 + (+(m[3] || 0)) : 0; };
     const time = dur(ld.totalTime) || (dur(ld.prepTime) + dur(ld.cookTime)) || 30;
     const name = clean(text(ld.name)) || clean(title);
-    return { url, name, servings, time: Math.max(5, Math.min(300, time)), ingText: ingLines.join("\n"), stepsText: steps.join("\n"), pantryText: "",
+    const imgOf = v => { if (!v) return ""; if (typeof v === "string") return v; if (Array.isArray(v)) return imgOf(v[0]); if (typeof v === "object") return imgOf(v.url || v.contentUrl || ""); return ""; };
+    const image = /^https?:\/\//.test(imgOf(ld.image)) ? imgOf(ld.image) : "";
+    return { url, name, servings, image, time: Math.max(5, Math.min(300, time)), ingText: ingLines.join("\n"), stepsText: steps.join("\n"), pantryText: "",
       cat: guessCat(name, ingLines), cui: guessCui(clean(text(ld.recipeCuisine)), name), diets: [], slots: ["midi", "soir"] };
   }
   // Lecture d'une page : via la coque Android quand elle est là, sinon fetch (souvent refusé par les sites).
@@ -765,6 +768,7 @@
       <h2 id="sheetTitle">${f.id ? esc(f.name) : "Ajouter une recette"}</h2>
       ${f.id ? "" : `<div class="import-row"><input id="fUrl" type="url" inputmode="url" placeholder="Lien d'une recette (Marmiton, 750g, CuisineAZ…)" value="${esc(f.url || "")}"><button class="btn btn-accent" data-act="importUrl">Importer</button></div>`}
       ${f.status ? `<p class="form-status">${esc(f.status)}</p>` : `<p class="hint">Colle un lien et touche Importer, ou remplis les champs à la main.</p>`}
+      ${f.image ? `<figure class="dish dish-small"><img src="${esc(f.image)}" alt="" referrerpolicy="no-referrer" onerror="this.parentNode.hidden=true"><figcaption>Photo du site, enregistrée avec la recette</figcaption></figure>` : ""}
       <label class="field"><span>Nom du plat</span><input id="fName" value="${esc(f.name || "")}" placeholder="Ex. Gratin de courgettes au chèvre"></label>
       <div class="field-row">
         <label class="field"><span>Prévue pour (personnes)</span><input id="fServ" type="number" inputmode="numeric" min="1" max="20" value="${esc(f.servings || "")}" placeholder="4"></label>
@@ -786,6 +790,16 @@
     let fixed = 0;
     state.plan.forEach((d, day) => SLOTS.forEach(slot => { if (!BY_ID[d[slot]]) { d[slot] = null; d[slot] = pick(day, slot, state.plan, null); fixed++; } }));
     if (fixed) save();
+  }
+
+  // Photo du plat : celle du site pour une recette importée, sinon l'illustration Wikimedia Commons de la base.
+  function dishFigure(r) {
+    const src = r.image || r.img;
+    if (!src) return "";
+    const credit = r.image
+      ? `Photo : ${esc(hostOf(r.source || src))}`
+      : `Photo : <a href="${esc(r.imgPage || "https://commons.wikimedia.org")}" target="_blank" rel="noopener">Wikimedia Commons</a> · illustration du plat`;
+    return `<figure class="dish"><img src="${esc(src)}" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentNode.hidden=true"><figcaption>${credit}</figcaption></figure>`;
   }
 
   function toast(msg) {
@@ -857,7 +871,7 @@
         const pantry = [...new Set(parsed.filter(x => x.pantry).map(x => x.name).concat((f.pantryText || "").split(",").map(x => x.trim()).filter(Boolean)))];
         const rec = { id: f.id || "custom-" + Date.now().toString(36), name: f.name.trim(), cat: CATS[f.cat] ? f.cat : "vege", cui: CUISINES[f.cui] ? f.cui : "fr",
           time: Math.max(5, Math.min(300, parseInt(f.time, 10) || 30)), slots: f.slots && f.slots.length ? f.slots : ["midi", "soir"], diet: f.diets || [],
-          ing, pantry, steps, custom: true, source: f.url || "" };
+          ing, pantry, steps, custom: true, source: f.url || "", image: f.image || "" };
         const idx = state.custom.findIndex(x => x.id === rec.id);
         if (idx >= 0) state.custom[idx] = rec; else state.custom.push(rec);
         rebuildIndex(); save();
@@ -867,7 +881,7 @@
       }
       case "editRecipe": {
         const r = BY_ID[ui.sheet.id];
-        ui.form = { id: r.id, url: r.source || "", name: r.name, servings: BASE_PERSONS, time: r.time, cat: r.cat, cui: r.cui, diets: r.diet || [], slots: r.slots,
+        ui.form = { id: r.id, url: r.source || "", image: r.image || "", name: r.name, servings: BASE_PERSONS, time: r.time, cat: r.cat, cui: r.cui, diets: r.diet || [], slots: r.slots,
           ingText: r.ing.map(([k, q, u]) => editLine(k, q, u)).join("\n"), pantryText: (r.pantry || []).join(", "), stepsText: r.steps.join("\n") };
         ui.sheet = { mode: "form" }; renderSheet(); break;
       }
