@@ -27,7 +27,7 @@
 
   /* ---------- État ---------- */
   let state = load();
-  const ui = { tab: "semaine", picking: null, sheet: null, search: "", cat: "all", cui: "all", selected: new Set(), version: null, form: null };
+  const ui = { tab: "semaine", picking: null, sheet: null, search: "", cat: "all", cui: "all", selected: new Set(), version: null, form: null, web: null };
   let toastTimer = null;
 
   function load() {
@@ -415,13 +415,15 @@
         ${chip("cat", "all", "Tous les plats", ui.cat === "all")}
         ${Object.entries(CATS).map(([k, v]) => chip("cat", k, v, ui.cat === k)).join("")}
       </div>
-      <p class="hint">${rows.length} recette${rows.length > 1 ? "s" : ""}${state.excluded.length ? ` · ${state.excluded.length} exclue${state.excluded.length > 1 ? "s" : ""} des tirages` : ""}</p>
+      ${q.length >= 3 ? `<button class="btn btn-block web-btn" data-act="webSearch">${icon("search")} Chercher « ${esc(ui.search.trim())} » sur internet</button>` : ""}
+      <p class="hint">${rows.length} recette${rows.length > 1 ? "s" : ""}${state.excluded.length ? ` · ${state.excluded.length} exclue${state.excluded.length > 1 ? "s" : ""} des tirages` : ""}${q.length >= 3 ? " dans l'app" : ""}</p>
       <div class="catalog">
+        ${!rows.length && q.length >= 3 ? `<p class="empty">Rien dans l'app pour « ${esc(ui.search.trim())} ». Essaie le bouton ci-dessus pour chercher sur internet.</p>` : ""}
         ${rows.length ? rows.map(r => `
           <button class="recipe-row${excluded.has(r.id) ? " excluded" : ""}" data-act="${p ? "pickRecipe" : "openRecipe"}" data-id="${r.id}">
             <span><span class="meal-name">${esc(r.name)}</span>${used.has(r.id) ? '<span class="tag tag-ok">au menu</span>' : ""}${excluded.has(r.id) ? '<span class="tag">exclue</span>' : ""}${r.custom ? '<span class="tag tag-me">perso</span>' : ""}<span class="meal-meta">${esc(CATS[r.cat])} · ${esc(CUISINES[r.cui])}${(r.diet || []).length ? " · " + r.diet.map(d => esc(DIETS[d]).toLowerCase()).join(", ") : ""}</span></span>
             <span class="recipe-side"><span class="recipe-time">${r.time} min</span>${icon("chevron")}</span>
-          </button>`).join("") : `<p class="empty">Aucune recette ne correspond.</p>`}
+          </button>`).join("") : (q.length >= 3 ? "" : `<p class="empty">Aucune recette ne correspond.</p>`)}
       </div>`;
   }
 
@@ -436,6 +438,9 @@
     if (s.mode === "form") {
       body = renderForm();
       actions = `<button class="btn" data-act="cancelForm">Annuler</button><button class="btn btn-primary" data-act="saveRecipe">${icon("check")} Enregistrer</button>`;
+    } else if (s.mode === "web") {
+      body = renderWebResults();
+      actions = `<button class="btn" data-act="closeSheet">Fermer</button><button class="btn" data-act="newRecipe">${icon("book")} Coller un lien</button>`;
     } else if (s.mode === "slots") {
       body = `
         <p class="eyebrow">Mettre au menu</p>
@@ -570,14 +575,18 @@
   }
   function hostOf(url) { try { return new URL(url).hostname.replace(/^www\./, ""); } catch (e) { return url; } }
   function guessCat(name, lines) {
-    const n = strip(name), all = strip(name + " " + lines.join(" "));
-    if (/\b(soupe|veloute|potage|minestrone|chorba|harira)\b/.test(n)) return "soupe";
-    if (/\bsalade\b/.test(n)) return "salade";
-    if (/\b(quiche|omelette|oeufs?|croque|tarte salee|galette|frittata)\b/.test(n)) return "oeufs";
-    if (/\b(pates|spaghetti|penne|tagliatelle|risotto|lasagne|gnocchi|nouilles|ramen|paella|riz)\b/.test(n)) return "pates";
-    if (/\b(poulet|dinde|volaille|canard|pintade)\b/.test(all)) return "volaille";
-    if (/\b(boeuf|veau|agneau|steak|viande|merguez|kefta|kafta|hache|roti)\b/.test(all)) return "viande";
-    if (/\b(saumon|cabillaud|poisson|crevette|thon|truite|moule|gambas|dorade|daurade|colin|lieu|merlu|sardine|calamar|lotte|maquereau)\b/.test(all)) return "poisson";
+    const n = strip(name), ing = strip(lines.join(" "));
+    const RX = {
+      soupe: /\b(soupe|veloute|potage|minestrone|chorba|harira|bouillon)\b/, salade: /\bsalade\b/,
+      oeufs: /\b(quiche|omelette|oeufs?|croque|tarte salee|galette|frittata|tortilla)\b/,
+      pates: /\b(pates|spaghetti|penne|tagliatelle|risotto|lasagne|gnocchi|nouilles|ramen|paella|riz)\b/,
+      poisson: /\b(saumon|cabillaud|poisson|crevette|thon|truite|moule|gambas|dorade|daurade|colin|lieu|merlu|sardine|calamar|lotte|maquereau|bar|loup|sole|rouget)\b/,
+      volaille: /\b(poulet|dinde|volaille|canard|pintade|poule)\b/,
+      viande: /\b(boeuf|veau|agneau|mouton|steak|viande|merguez|kefta|kafta|bavette|entrecote|roti de boeuf)\b/,
+    };
+    // Le nom du plat d'abord (« tajine de poisson » reste un poisson même avec de l'ail haché), les ingrédients ensuite.
+    for (const k of ["soupe", "salade", "oeufs", "pates", "poisson", "volaille", "viande"]) if (RX[k].test(n)) return k;
+    for (const k of ["poisson", "volaille", "viande"]) if (RX[k].test(ing)) return k;
     return "vege";
   }
   function guessCui(hint, name) {
@@ -605,7 +614,12 @@
   }
   function draftFromLd(ld, url, title) {
     const text = v => { if (v == null) return ""; if (typeof v === "string") return v; if (Array.isArray(v)) return v.map(text).filter(Boolean).join("\n"); if (typeof v === "object") return v.itemListElement ? text(v.itemListElement) : text(v.text || v.name || ""); return String(v); };
-    const clean = s => String(s).replace(/<[^>]+>/g, " ").replace(/&nbsp;/g, " ").replace(/&amp;/g, "&").replace(/&#39;|&apos;/g, "'").replace(/&quot;/g, '"').replace(/&eacute;/g, "é").replace(/&egrave;/g, "è").replace(/[ \t]+/g, " ").replace(/\s+([.,;:!?])/g, "$1").trim();
+    const ta = document.createElement("textarea");
+    const clean = s => {
+      let t = String(s).replace(/<br\s*\/?>/gi, "\n").replace(/<\/(p|li|div)>/gi, "\n").replace(/<[^>]+>/g, " ");
+      for (let i = 0; i < 3 && /&(#\d+|#x[0-9a-f]+|[a-z]+);/i.test(t); i++) { ta.innerHTML = t; t = ta.value; }  // certains sites encodent deux fois
+      return t.replace(/\u00a0/g, " ").replace(/[ \t]+/g, " ").replace(/\s+([.,;:!?])/g, "$1").replace(/([.:;!?])(?=[A-ZÀ-ÝŒ])/g, "$1 ").replace(/ *\n */g, "\n").trim();
+    };
     const steps = clean(text(ld.recipeInstructions)).split(/\n+/).map(s => s.replace(/^\s*(\d+\s*[.)-]|etape\s*\d+\s*:?|étape\s*\d+\s*:?)\s*/i, "").trim()).filter(Boolean);
     const ingLines = (Array.isArray(ld.recipeIngredient) ? ld.recipeIngredient : (Array.isArray(ld.ingredients) ? ld.ingredients : [])).map(clean).filter(Boolean);
     const yieldText = Array.isArray(ld.recipeYield) ? ld.recipeYield.join(" ") : String(ld.recipeYield || "");
@@ -629,6 +643,61 @@
       });
     }
     return fetch(url, { mode: "cors" }).then(r => { if (!r.ok) throw new Error("HTTP " + r.status); return r.text(); });
+  }
+  function importFromUrl(url) {
+    fetchPage(url).then(html => {
+      if (!ui.form || ui.form.url !== url) return;  // formulaire fermé ou autre lien entre-temps
+      const { recipe, title } = findRecipeLd(html);
+      if (!recipe) throw new Error("no-ld");
+      const d = draftFromLd(recipe, url, title);
+      Object.assign(ui.form, d, { status: `Recette lue${d.servings ? ` — prévue pour ${d.servings} personne${d.servings > 1 ? "s" : ""} sur le site` : " — indique pour combien de personnes elle est prévue"}. Vérifie, corrige si besoin, puis enregistre.` });
+      if (ui.sheet && ui.sheet.mode === "form") renderSheet();
+    }).catch(err => {
+      if (!ui.form || ui.form.url !== url) return;
+      ui.form.status = err.message === "no-ld"
+        ? "Ce site ne publie pas de fiche lisible automatiquement. Copie la recette dans les champs ci-dessous."
+        : (window.Android ? "Impossible de lire cette page (site injoignable ou qui bloque). Tu peux saisir la recette à la main." : "L'import automatique fonctionne dans l'application Android. Ici, saisis la recette à la main.");
+      if (ui.sheet && ui.sheet.mode === "form") renderSheet();
+    });
+  }
+  // Sites de recettes qui publient des fiches lisibles : affichés en premier.
+  const KNOWN_SITES = ["marmiton.org", "750g.com", "cuisineaz.com", "journaldesfemmes.fr", "ptitchef.com", "cuisineactuelle.fr", "femmeactuelle.fr", "academiedugout.fr", "atelierdeschefs.fr", "chefsimon.com", "regal.fr", "papillesetpupilles.fr", "elle.fr", "cuisine-libre.org", "lacuisinedannie.20minutes.fr", "ricardocuisine.com", "recettes.de"];
+  const BLOCKED_HOSTS = ["youtube.com", "youtu.be", "pinterest.", "facebook.com", "instagram.com", "tiktok.com", "amazon.", "wikipedia.org", "twitter.com", "x.com", "duckduckgo.com"];
+  function parseSearchResults(html) {
+    const doc = new DOMParser().parseFromString(html, "text/html");
+    const out = [];
+    doc.querySelectorAll("a.result__a, a.result-link, a[href*='uddg=']").forEach(a => {
+      let href = a.getAttribute("href") || "";
+      const m = /[?&]uddg=([^&]+)/.exec(href);
+      if (m) { try { href = decodeURIComponent(m[1]); } catch (e) { return; } }
+      if (!/^https?:\/\//.test(href)) return;
+      const host = hostOf(href);
+      if (BLOCKED_HOSTS.some(b => host.includes(b)) || out.some(r => r.url === href)) return;
+      const title = a.textContent.replace(/\s+/g, " ").trim();
+      if (!title) return;
+      const block = a.closest(".result, .links_main, tr");
+      let snippet = "";
+      if (block) {
+        const sn = block.querySelector(".result__snippet, .result-snippet") || (block.nextElementSibling && block.nextElementSibling.querySelector(".result-snippet"));
+        if (sn) snippet = sn.textContent.replace(/\s+/g, " ").trim();
+      }
+      out.push({ url: href, title, host, snippet, known: KNOWN_SITES.some(s => host === s || host.endsWith("." + s)) });
+    });
+    out.sort((x, y) => (y.known ? 1 : 0) - (x.known ? 1 : 0));
+    return out.slice(0, 12);
+  }
+  function renderWebResults() {
+    const w = ui.web || { q: "", status: "", results: [] };
+    return `
+      <p class="eyebrow">Sur internet</p>
+      <h2 id="sheetTitle">« ${esc(w.q)} »</h2>
+      <p class="form-status">${esc(w.status)}</p>
+      ${w.results.length ? `<div class="catalog web-results">${w.results.map(r => `
+        <button class="recipe-row web-result" data-act="webImport" data-url="${esc(r.url)}">
+          <span><span class="meal-name">${esc(r.title)}</span><span class="meal-meta"><strong>${esc(r.host)}</strong>${r.known ? " · import direct" : ""}${r.snippet ? " · " + esc(r.snippet) : ""}</span></span>
+          <span class="recipe-side">${icon("chevron")}</span>
+        </button>`).join("")}</div>` : ""}
+      <p class="hint">Résultats DuckDuckGo. Les sites marqués « import direct » publient des fiches lisibles : la recette arrive pré-remplie, avec les quantités converties pour ton nombre de personnes. Porc, lardons et alcool sont signalés avant l'enregistrement.</p>`;
   }
   function readForm() {
     const f = Object.assign({}, ui.form || {});
@@ -699,23 +768,35 @@
       case "goCourses": ui.tab = "courses"; render(); window.scrollTo(0, 0); break;
       case "newRecipe": ui.form = { ingText: "", stepsText: "", pantryText: "", slots: ["midi", "soir"], diets: [], cat: "vege", cui: "fr" }; ui.sheet = { mode: "form" }; renderSheet(); break;
       case "cancelForm": ui.sheet = null; ui.form = null; renderSheet(); break;
+      case "webSearch": {
+        const qs = ui.search.trim();
+        if (qs.length < 3) break;
+        ui.web = { q: qs, status: "Recherche sur internet…", results: [] };
+        ui.sheet = { mode: "web" }; renderSheet();
+        fetchPage("https://html.duckduckgo.com/html/?kl=fr-fr&q=" + encodeURIComponent("recette " + qs)).then(html => {
+          const results = parseSearchResults(html);
+          ui.web.results = results;
+          ui.web.status = results.length ? `${results.length} résultat${results.length > 1 ? "s" : ""} — touche une recette pour l'importer.`
+            : (/anomaly|challenge|captcha|bot/i.test(html) ? "Le moteur de recherche bloque temporairement les requêtes. Réessaie dans quelques minutes, ou colle un lien." : "Aucun résultat. Essaie d'autres mots.");
+          renderSheet();
+        }).catch(() => {
+          ui.web.status = window.Android ? "Recherche impossible pour le moment (pas de réseau ou moteur injoignable)." : "La recherche sur internet fonctionne dans l'application Android. Ici, colle un lien ou saisis la recette à la main.";
+          renderSheet();
+        });
+        break;
+      }
+      case "webImport": {
+        ui.form = { url: el.dataset.url, ingText: "", stepsText: "", pantryText: "", slots: ["midi", "soir"], diets: [], cat: "vege", cui: "fr", status: "Lecture de la page…" };
+        ui.sheet = { mode: "form" }; renderSheet();
+        importFromUrl(el.dataset.url);
+        break;
+      }
       case "importUrl": {
         const f = readForm();
         const url = (f.url || "").trim();
         if (!/^https?:\/\//i.test(url)) { f.status = "Colle l'adresse complète de la recette (elle commence par http)."; ui.form = f; renderSheet(); break; }
         f.status = "Lecture de la page…"; ui.form = f; renderSheet();
-        fetchPage(url).then(html => {
-          const { recipe, title } = findRecipeLd(html);
-          if (!recipe) throw new Error("no-ld");
-          const d = draftFromLd(recipe, url, title);
-          Object.assign(ui.form, d, { status: `Recette lue${d.servings ? ` — prévue pour ${d.servings} personne${d.servings > 1 ? "s" : ""} sur le site` : " — indique pour combien de personnes elle est prévue"}. Vérifie, corrige si besoin, puis enregistre.` });
-          renderSheet();
-        }).catch(err => {
-          ui.form.status = err.message === "no-ld"
-            ? "Ce site ne publie pas de fiche lisible automatiquement. Copie la recette dans les champs ci-dessous."
-            : (window.Android ? "Impossible de lire cette page (site injoignable ou qui bloque). Tu peux saisir la recette à la main." : "L'import automatique fonctionne dans l'application Android. Ici, saisis la recette à la main.");
-          renderSheet();
-        });
+        importFromUrl(url);
         break;
       }
       case "saveRecipe": {

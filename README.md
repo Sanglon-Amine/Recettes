@@ -36,8 +36,13 @@ Deux boutons **Régime** (onglet Semaine et Recettes), cumulables, mémorisés :
 Activer un régime remplace aussitôt les repas non conformes (sauf verrouillés), restreint les tirages et le catalogue.
 Les étiquettes (`diet: ["leger", "chol"]` dans `recipes.js`) sont une classification de bon sens, pas un avis médical.
 
-## Recettes personnelles : import depuis un lien ou saisie
-Onglet Recettes → **Ajouter une recette**.
+## Recettes personnelles : recherche sur internet, import depuis un lien, saisie
+Onglet Recettes. Dès qu'on tape 3 lettres dans la recherche, un bouton **« Chercher « … » sur internet »** apparaît :
+l'app interroge DuckDuckGo (`html.duckduckgo.com/html/?q=recette …`, via le pont Android, sans clé ni compte), filtre
+les publicités et réseaux sociaux, affiche les résultats (sites de recettes connus en premier, marqués « import direct »)
+et un tap sur un résultat lance l'import automatique ci-dessous. Si le moteur bloque temporairement, l'app le dit.
+
+**Ajouter une recette** ouvre le même formulaire pour coller un lien ou saisir à la main.
 - **Depuis un lien** (app Android) : coller l'adresse (Marmiton, 750g, CuisineAZ…) → Importer. L'app lit la fiche structurée
   `schema.org/Recipe` publiée par le site (nom, nombre de personnes, temps, ingrédients, étapes), pré-remplit le formulaire
   et signale porc / lardons / alcool. La lecture de la page passe par le pont `Android.fetchUrl` de la coque
