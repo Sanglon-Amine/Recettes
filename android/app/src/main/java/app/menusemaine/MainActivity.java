@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
+import android.webkit.JavascriptInterface;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebResourceResponse;
 import android.webkit.WebSettings;
@@ -35,9 +36,10 @@ import java.nio.charset.StandardCharsets;
 
 /**
  * Coque native : affiche l'app web embarquée, hors ligne.
- * Au démarrage, elle vérifie sur GitHub si les fichiers web ont changé (version.json) et les télécharge
- * dans le stockage privé : les recettes se mettent à jour sans réinstaller l'APK.
- * Une fois par jour, elle vérifie aussi s'il existe un APK plus récent (Releases) et propose de le télécharger.
+ * - Mise à jour des fichiers web depuis GitHub (version.json) sans réinstaller.
+ * - Vérification quotidienne d'un APK plus récent (Releases), proposé au téléchargement.
+ * - Pont JavaScript « Android.fetchUrl » : va chercher une page web (import de recettes),
+ *   ce qu'une page web n'a pas le droit de faire elle-même.
  */
 public class MainActivity extends Activity {
     private static final String APP_HOST = "appassets.androidplatform.net";
@@ -45,20 +47,21 @@ public class MainActivity extends Activity {
     private static final String RAW_BASE = "https://raw.githubusercontent.com/Sanglon-Amine/Recettes/main/";
     private static final String RELEASES_API = "https://api.github.com/repos/Sanglon-Amine/Recettes/releases/latest";
     private static final long APK_CHECK_INTERVAL_MS = 24L * 60 * 60 * 1000;
+    private static final int MAX_PAGE_BYTES = 4 * 1024 * 1024;
+    private static final String BROWSER_UA = "Mozilla/5.0 (Linux; Android 13) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Mobile Safari/537.36";
 
     private WebView webView;
     private SharedPreferences prefs;
-    private File webDir;          // fichiers web téléchargés (prioritaires sur ceux de l'APK)
-    private int embeddedVersion;  // version des fichiers embarqués dans l'APK
+    private File webDir;
+    private int embeddedVersion;
 
-    @SuppressLint("SetJavaScriptEnabled")
+    @SuppressLint({"SetJavaScriptEnabled", "AddJavascriptInterface"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         prefs = getSharedPreferences("menu", MODE_PRIVATE);
         webDir = new File(getFilesDir(), "web");
         embeddedVersion = parseVersion(readAsset("version.json"));
-        // Un APK fraîchement installé peut être plus récent que les fichiers téléchargés : on repart de l'APK.
         if (prefs.getInt("web_version", 0) <= embeddedVersion) {
             deleteRecursive(webDir);
             prefs.edit().remove("web_version").apply();
@@ -70,13 +73,15 @@ public class MainActivity extends Activity {
 
         WebSettings settings = webView.getSettings();
         settings.setJavaScriptEnabled(true);
-        settings.setDomStorageEnabled(true);   // localStorage : la semaine et les cases cochées
+        settings.setDomStorageEnabled(true);
         settings.setAllowFileAccess(false);
         settings.setAllowContentAccess(false);
         settings.setSupportZoom(false);
         settings.setTextZoom(100);
 
-        // Sert les fichiers sous une origine https ; ceux téléchargés passent avant ceux de l'APK.
+        // Seuls nos propres fichiers sont chargés dans la WebView : le pont ne peut être appelé que par eux.
+        webView.addJavascriptInterface(new Bridge(), "Android");
+
         final WebViewAssetLoader loader = new WebViewAssetLoader.Builder()
                 .addPathHandler("/assets/", new LocalFirstHandler(webDir, new WebViewAssetLoader.AssetsPathHandler(this)))
                 .build();
@@ -110,10 +115,69 @@ public class MainActivity extends Activity {
 
     @Override
     public void onBackPressed() {
-        // Bouton Retour : ferme la fiche recette si elle est ouverte, sinon quitte l'app.
         webView.evaluateJavascript(
                 "(function(){var b=document.querySelector('.sheet-backdrop');if(b){b.click();return true;}return false;})()",
                 value -> { if (!"true".equals(value)) MainActivity.super.onBackPressed(); });
+    }
+
+    /* ---------- Pont JavaScript : lecture d'une page web pour l'import de recettes ---------- */
+
+    private class Bridge {
+        @JavascriptInterface
+        public void fetchUrl(final String url, final String id) {
+            new Thread(() -> {
+                boolean ok;
+                String result;
+                try {
+                    if (url == null || !(url.startsWith("http://") || url.startsWith("https://"))) throw new IOException("adresse invalide");
+                    result = fetchPage(url);
+                    ok = true;
+                } catch (Exception e) {
+                    result = String.valueOf(e.getMessage());
+                    ok = false;
+                }
+                final boolean okF = ok;
+                final String js = "window.__fetchResult && window.__fetchResult(" + JSONObject.quote(id) + "," + okF + "," + JSONObject.quote(result) + ")";
+                runOnUiThread(() -> { if (!isFinishing() && !isDestroyed()) webView.evaluateJavascript(js, null); });
+            }).start();
+        }
+    }
+
+    /** GET d'une page HTML avec un User-Agent de navigateur, en suivant les redirections. */
+    private static String fetchPage(String url) throws IOException {
+        String current = url;
+        for (int hop = 0; hop < 6; hop++) {
+            HttpURLConnection c = (HttpURLConnection) new URL(current).openConnection();
+            c.setInstanceFollowRedirects(false);
+            c.setConnectTimeout(12000);
+            c.setReadTimeout(15000);
+            c.setRequestProperty("User-Agent", BROWSER_UA);
+            c.setRequestProperty("Accept", "text/html,application/xhtml+xml,*/*;q=0.8");
+            c.setRequestProperty("Accept-Language", "fr-FR,fr;q=0.9,en;q=0.5");
+            try {
+                int code = c.getResponseCode();
+                if (code >= 300 && code < 400) {
+                    String loc = c.getHeaderField("Location");
+                    if (loc == null) throw new IOException("HTTP " + code);
+                    current = new URL(new URL(current), loc).toString();
+                    continue;
+                }
+                if (code != 200) throw new IOException("HTTP " + code);
+                try (InputStream in = c.getInputStream()) {
+                    ByteArrayOutputStream bos = new ByteArrayOutputStream();
+                    byte[] buf = new byte[16384];
+                    int n;
+                    while ((n = in.read(buf)) > 0) {
+                        bos.write(buf, 0, n);
+                        if (bos.size() > MAX_PAGE_BYTES) break;
+                    }
+                    return new String(bos.toByteArray(), StandardCharsets.UTF_8);
+                }
+            } finally {
+                c.disconnect();
+            }
+        }
+        throw new IOException("trop de redirections");
     }
 
     /* ---------- Mise à jour des fichiers web (sans réinstaller) ---------- */
@@ -151,7 +215,7 @@ public class MainActivity extends Activity {
                     Toast.makeText(this, "Recettes mises à jour (v" + remote + ")", Toast.LENGTH_SHORT).show();
                 });
             } catch (Exception e) {
-                deleteRecursive(tmp);  // hors ligne ou téléchargement incomplet : on garde la version actuelle
+                deleteRecursive(tmp);
             }
         }).start();
     }
@@ -188,7 +252,6 @@ public class MainActivity extends Activity {
 
     /* ---------- Outils ---------- */
 
-    /** Sert d'abord les fichiers téléchargés, sinon ceux embarqués dans l'APK. */
     private static class LocalFirstHandler implements WebViewAssetLoader.PathHandler {
         private final File dir;
         private final WebViewAssetLoader.AssetsPathHandler assets;

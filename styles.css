@@ -290,6 +290,27 @@ input:checked + .check { background: var(--ok); border-color: var(--ok); color: 
 .filter.pref .icon { width: 14px; height: 14px; stroke-width: 3; }
 .filter.pref[aria-pressed="true"] { background: var(--ok); border-color: var(--ok); color: #fff; }
 .chip-diet { background: var(--ok-soft); color: var(--ok); }
+.tag-me { background: var(--night-soft); color: var(--night-ink); }
+.add-btn { margin: 4px 0 12px; }
+
+/* ---------- Formulaire recette ---------- */
+.import-row { display: flex; gap: 8px; margin: 12px 0 8px; }
+.import-row input { flex: 1; min-width: 0; }
+.form-status { margin: 6px 0 10px; padding: 8px 12px; border-radius: 10px; background: var(--night-soft); color: var(--night-ink); font-size: 13px; }
+.field { display: block; margin: 0 0 12px; }
+.field > span { display: block; margin-bottom: 4px; font-size: 12px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: var(--ink-3); }
+.field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.sheet input:not([type="checkbox"]), .sheet select, .sheet textarea {
+  width: 100%; min-height: 42px; padding: 9px 12px; border-radius: 10px; border: 1px solid var(--line);
+  background: var(--surface); color: var(--ink); font: inherit; font-size: 15px;
+}
+.sheet textarea { line-height: 1.4; resize: vertical; }
+.sheet select { appearance: auto; }
+.checks { display: flex; flex-wrap: wrap; gap: 8px 16px; padding: 4px 0; }
+.checks label { display: inline-flex; align-items: center; gap: 6px; font-size: 14px; }
+.checks input { width: 18px; height: 18px; accent-color: var(--ok); }
+.warn-box { margin: -4px 0 12px; padding: 8px 12px; border-left: 3px solid var(--danger); background: var(--surface-2); border-radius: 0 10px 10px 0; font-size: 13px; color: var(--ink-2); }
+.sheet a { color: var(--night-ink); }
 .hint.version { margin-top: 4px; text-align: center; font-size: 12px; }
 .select-bar {
   position: fixed; left: 50%; transform: translateX(-50%); z-index: 7;

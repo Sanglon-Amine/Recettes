@@ -30,6 +30,7 @@ const UNITS = {
   pc: ["", ""], g: ["g", "g"], cl: ["cl", "cl"],
   gousse: ["gousse", "gousses"], botte: ["botte", "bottes"], tranche: ["tranche", "tranches"],
   boite: ["boîte", "boîtes"], cs: ["c. à soupe", "c. à soupe"], pot: ["pot", "pots"], feuille: ["feuille", "feuilles"],
+  cc: ["c. à café", "c. à café"], sachet: ["sachet", "sachets"],
 };
 
 /* clé : [libellé, rayon] */

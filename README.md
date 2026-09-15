@@ -36,6 +36,20 @@ Deux boutons **Régime** (onglet Semaine et Recettes), cumulables, mémorisés :
 Activer un régime remplace aussitôt les repas non conformes (sauf verrouillés), restreint les tirages et le catalogue.
 Les étiquettes (`diet: ["leger", "chol"]` dans `recipes.js`) sont une classification de bon sens, pas un avis médical.
 
+## Recettes personnelles : import depuis un lien ou saisie
+Onglet Recettes → **Ajouter une recette**.
+- **Depuis un lien** (app Android) : coller l'adresse (Marmiton, 750g, CuisineAZ…) → Importer. L'app lit la fiche structurée
+  `schema.org/Recipe` publiée par le site (nom, nombre de personnes, temps, ingrédients, étapes), pré-remplit le formulaire
+  et signale porc / lardons / alcool. La lecture de la page passe par le pont `Android.fetchUrl` de la coque
+  (une page web n'a pas le droit de lire un autre site) ; dans la version web, seule la saisie manuelle est possible.
+- **À la main** : un ingrédient par ligne (« 200 g de bœuf haché », « 2 oignons », « 1 c. à soupe d'huile »). L'analyseur
+  reconnaît quantités (fractions, décimales), unités (g, kg, cl, l, cuillères, gousses, bottes, boîtes…) et rattache
+  l'ingrédient au dictionnaire quand il existe (donc au bon rayon et agrégé dans les courses) ; sinon il devine le rayon.
+  Sel, huile, épices… vont au placard.
+- Les quantités sont converties pour 2 personnes à l'enregistrement (champ « Prévue pour »), puis suivent le sélecteur.
+- Une recette perso porte l'étiquette **perso**, peut être modifiée ou supprimée depuis sa fiche, et est stockée sur le
+  téléphone (`state.custom`) — pas dans `recipes.js`.
+
 ## Nombre de personnes
 Le sélecteur **− / +** de l'en-tête (1 à 8, mémorisé) ajuste toutes les quantités : liste de courses et fiches.
 Les recettes sont écrites pour 2 ; les arrondis sont pensés pour l'achat (grammes par 5 ou 10, œufs/boîtes/pains entiers,
